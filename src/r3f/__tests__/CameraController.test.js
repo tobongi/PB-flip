@@ -234,4 +234,50 @@ describe('CameraController — state machine', () => {
       [FLIP_MODE.CINEMATIC_CUT, FLIP_MODE.FOLLOW, FLIP_MODE.LOCKED].sort()
     );
   });
+
+  it('clamps _curDistance to MAX_CAMERA_DISTANCE even when tar overshoots', () => {
+    const { ctrl } = makeController();
+    const bottle = makeBottleFixture(new THREE.Vector3(0, 0, 0.5), new THREE.Vector3(0, -1, 0));
+    // Force a target distance way beyond the cap.
+    ctrl._tarDistance = 50;
+    for (let i = 0; i < 200; i++) ctrl.update(0.05, bottle);
+    expect(ctrl._curDistance).toBeLessThanOrEqual(_internals.MAX_CAMERA_DISTANCE + 1e-6);
+  });
+
+  it('clamps _curZoom to MIN_ORTHO_ZOOM (label-readable floor)', () => {
+    const { ctrl } = makeController();
+    const bottle = makeBottleFixture(new THREE.Vector3(0, 0, 0.5), new THREE.Vector3(0, -1, 0));
+    ctrl._tarZoom = 0.1; // would shrink label to a speck
+    for (let i = 0; i < 200; i++) ctrl.update(0.05, bottle);
+    expect(ctrl._curZoom).toBeGreaterThanOrEqual(_internals.MIN_ORTHO_ZOOM - 1e-6);
+  });
+
+  it('clamps _curFov to MAX_PERSP_FOV (label-readable ceiling)', () => {
+    const { ctrl } = makeController();
+    const bottle = makeBottleFixture(new THREE.Vector3(0, 0, 0.5), new THREE.Vector3(0, -1, 0));
+    ctrl._tarFov = 90;
+    for (let i = 0; i < 200; i++) ctrl.update(0.05, bottle);
+    expect(ctrl._curFov).toBeLessThanOrEqual(_internals.MAX_PERSP_FOV + 1e-6);
+  });
+
+  it('PITCH_ANGLE is steeper than 30° so the next platform is visible past the bottle', () => {
+    expect(_internals.PITCH_ANGLE).toBeGreaterThan((30 * Math.PI) / 180);
+  });
+
+  it('caps the vertical lift so the camera does not punch through the ceiling', () => {
+    const { ctrl } = makeController();
+    const labelPos = new THREE.Vector3(0, 0, 0.5);
+    const bottle = makeBottleFixture(labelPos, new THREE.Vector3(0, -1, 0));
+    ctrl._tarDistance = 50;
+    const cur = { mesh: { position: new THREE.Vector3(0, 0, 0) }, body: { position: { z: 0 } }, height: 0.5 };
+    const nxt = { mesh: { position: new THREE.Vector3(0, 4, 0) }, body: { position: { z: 0 } }, height: 0.5 };
+    ctrl.setTarget(cur, nxt, true);
+    for (let i = 0; i < 200; i++) ctrl.update(0.05, bottle);
+    // Camera Z should be at most labelZ + MAX_VERTICAL_LIFT + Z_LIFT
+    // (Z_LIFT is tiny, so cap is essentially MAX_VERTICAL_LIFT).
+    const labelZ = labelPos.z;
+    expect(ctrl.activeCamera.position.z - labelZ).toBeLessThanOrEqual(
+      _internals.MAX_VERTICAL_LIFT + _internals.Z_LIFT + 1e-6
+    );
+  });
 });

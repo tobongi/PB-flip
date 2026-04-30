@@ -16,19 +16,39 @@ const FLIP_FOLLOW_DISTANCE = 5.0;
 const FLIP_LOCKED_DISTANCE = 5.0;
 const FLIP_CINEMATIC_DISTANCE = 5.4;
 
-// Perspective FOVs (degrees).
+// Hard cap on `_curDistance`. Anything beyond starts clipping into
+// walls or shows the bottle as an unreadable speck — clamp before
+// applying so breathing oscillation, lerp overshoot, or future tunable
+// edits can't punch through.
+const MAX_CAMERA_DISTANCE = 6.2;
+
+// Hard cap on how far above the label the camera can climb. Without
+// this, the pitch * distance product can lift the camera into the
+// ceiling/upper-wall sections of the restaurant model — visible as
+// a "looking at a wall" shot. 2.6 keeps the cam at ~labelZ+2.6 max,
+// which sits comfortably below the GLB ceiling but above all the
+// chairs/tables/plates the player needs to see beyond the bottle.
+const MAX_VERTICAL_LIFT = 2.6;
+
+// Perspective FOVs (degrees). MAX_PERSP_FOV caps the widest FOV reach
+// so the label stays readable even when the user holds charge for the
+// full breathing window.
 const IDLE_FOV = 35;
-const CHARGE_FOV = 55;
+const CHARGE_FOV = 50;
 const FLIP_FOLLOW_FOV = 42;
 const FLIP_LOCKED_FOV = 35;
 const FLIP_CINEMATIC_FOV = 28;
+const MAX_PERSP_FOV = 52;
 
 // Orthographic zoom (THREE camera.zoom). Smaller = wider FOV.
+// MIN_ORTHO_ZOOM ensures the label band always renders at >= ~15%
+// of screen height regardless of which state we're in.
 const IDLE_ZOOM = 1.4;
-const CHARGE_ZOOM = 0.95;
-const FLIP_FOLLOW_ZOOM = 1.15;
+const CHARGE_ZOOM = 1.10;
+const FLIP_FOLLOW_ZOOM = 1.20;
 const FLIP_LOCKED_ZOOM = 1.4;
-const FLIP_CINEMATIC_ZOOM = 1.65;
+const FLIP_CINEMATIC_ZOOM = 1.55;
+const MIN_ORTHO_ZOOM = 1.05;
 
 // Breathing-zoom oscillation (idle only).
 const BREATHE_PERIOD_S = 6.0;
@@ -43,7 +63,12 @@ const BREATHE_AMPLITUDE = 0.05; // ±5% on distance + zoom
 // up-and-back so its sightline clears the surrounding props. The label
 // still appears at the center of the frame because we lookAt the label
 // position; the pitch only affects the camera's elevation.
-const PITCH_ANGLE = (28 * Math.PI) / 180;
+//
+// Bumped from 28° to 36° on the second art pass — the lower angle was
+// hiding the next-landing platform behind the bottle's silhouette.
+// 36° lets the player see the platform layout beyond the bottle while
+// still reading as a "cinematic shoulder shot" rather than a top-down.
+const PITCH_ANGLE = (36 * Math.PI) / 180;
 const PITCH_COS = Math.cos(PITCH_ANGLE);
 const PITCH_SIN = Math.sin(PITCH_ANGLE);
 // Tiny extra vertical lift so the optical axis hits just above the
@@ -409,11 +434,22 @@ export default class CameraController {
     if (this.state === CAMERA_STATE.IDLE) {
       breathe = Math.sin((this.elapsed / BREATHE_PERIOD_S) * Math.PI * 2);
     }
-    const tarDistance = this._tarDistance * (1 + BREATHE_AMPLITUDE * breathe);
-    const tarZoom = this._tarZoom * (1 - BREATHE_AMPLITUDE * 0.5 * breathe);
+    const tarDistanceRaw = this._tarDistance * (1 + BREATHE_AMPLITUDE * breathe);
+    const tarZoomRaw = this._tarZoom * (1 - BREATHE_AMPLITUDE * 0.5 * breathe);
+    // Clamp to readability + sightline limits so neither tunable edits
+    // nor breathing/lerp overshoot can pull the camera into the walls
+    // or shrink the label below the readable threshold.
+    const tarDistance = Math.min(tarDistanceRaw, MAX_CAMERA_DISTANCE);
+    const tarZoom = Math.max(tarZoomRaw, MIN_ORTHO_ZOOM);
+    const tarFov = Math.min(this._tarFov, MAX_PERSP_FOV);
     this._curDistance += (tarDistance - this._curDistance) * t;
-    this._curFov += (this._tarFov - this._curFov) * t;
+    this._curFov += (tarFov - this._curFov) * t;
     this._curZoom += (tarZoom - this._curZoom) * t;
+    // Belt-and-braces post-clamp in case the lerp overshoots once
+    // a frame at very high dt (alt-tab, devtools open, etc).
+    if (this._curDistance > MAX_CAMERA_DISTANCE) this._curDistance = MAX_CAMERA_DISTANCE;
+    if (this._curZoom < MIN_ORTHO_ZOOM) this._curZoom = MIN_ORTHO_ZOOM;
+    if (this._curFov > MAX_PERSP_FOV) this._curFov = MAX_PERSP_FOV;
 
     // 4. Compute ideal camera position.
     if (this.state === CAMERA_STATE.FLIP && this.flipMode === FLIP_MODE.LOCKED) {
@@ -428,11 +464,13 @@ export default class CameraController {
       //                       + Z       * (distance * sin(pitch)).
       // The horizontal pull-back × cos keeps the on-screen distance the
       // same as a non-pitched setup; the vertical lift × sin clears the
-      // restaurant clutter.
+      // restaurant clutter — but is hard-capped at MAX_VERTICAL_LIFT
+      // so we don't punch through the ceiling at extreme distances.
       this._idealPosition
         .copy(labelPos)
         .addScaledVector(cameraAxis, this._curDistance * PITCH_COS);
-      this._idealPosition.z += this._curDistance * PITCH_SIN + Z_LIFT;
+      const verticalLift = Math.min(this._curDistance * PITCH_SIN, MAX_VERTICAL_LIFT);
+      this._idealPosition.z += verticalLift + Z_LIFT;
     } else {
       // No bottle — fall back to a fixed offset behind/above the lookAt.
       this._idealPosition
@@ -533,10 +571,13 @@ export default class CameraController {
       if (bottle.setLabelFaceDirection) {
         bottle.setLabelFaceDirection(cameraAxis, true);
       }
+      // Match the lerped update path's pitch math so snap() lands at
+      // the same pose as the eventual idle steady state.
       this._idealPosition
         .copy(labelPos)
-        .addScaledVector(cameraAxis, this._curDistance);
-      this._idealPosition.z += Z_LIFT;
+        .addScaledVector(cameraAxis, this._curDistance * PITCH_COS);
+      const verticalLift = Math.min(this._curDistance * PITCH_SIN, MAX_VERTICAL_LIFT);
+      this._idealPosition.z += verticalLift + Z_LIFT;
     } else {
       this._idealPosition
         .copy(this._currentLookAt)
@@ -571,15 +612,20 @@ export default class CameraController {
 export const _internals = {
   IDLE_DISTANCE,
   CHARGE_DISTANCE,
+  MAX_CAMERA_DISTANCE,
+  MAX_VERTICAL_LIFT,
   IDLE_FOV,
   CHARGE_FOV,
+  MAX_PERSP_FOV,
   IDLE_ZOOM,
   CHARGE_ZOOM,
+  MIN_ORTHO_ZOOM,
   BREATHE_PERIOD_S,
   BREATHE_AMPLITUDE,
   FAILED_FADE_ALPHA,
   FAILED_GREY_WEIGHT,
   FAILED_LIGHT_SCALE,
   Z_LIFT,
+  PITCH_ANGLE,
   ALL_FLIP_MODES,
 };
