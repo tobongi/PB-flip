@@ -1,22 +1,44 @@
 import * as THREE from 'three';
 
-// Read viewport from window — available immediately, no layout dependency.
-// body.offsetWidth/Height returned 0 in some headless/early-load contexts,
-// freezing every derived dimension at 0 forever.
-const rawWidth = window.innerWidth || window.document.documentElement.clientWidth || 360;
-const rawHeight = window.innerHeight || window.document.documentElement.clientHeight || 640;
+const GAME_ASPECT = 9 / 16; // portrait — enforced on all platforms
 
-export const BODY_WIDTH = Math.min(rawWidth, 540);
-export const BODY_HEIGHT = rawHeight;
-export const ASPECT = BODY_WIDTH / BODY_HEIGHT;
-export const SCREEN_HEIGHT = BODY_HEIGHT;
-export const SCREEN_WIDTH = SCREEN_HEIGHT * ASPECT;
-export const FRUSTUM_HEIGHT = 8;
-export const FRUSTUM_WIDTH = FRUSTUM_HEIGHT * ASPECT;
-export const FRUSTUM_SCALE = FRUSTUM_HEIGHT / SCREEN_HEIGHT;
+function computeGameSize(windowW, windowH) {
+  if (windowW / windowH > GAME_ASPECT) {
+    // Window is wider than 9:16 → pillarbox: constrain by height
+    return { w: Math.round(windowH * GAME_ASPECT), h: windowH };
+  }
+  // Window is taller than 9:16 → letterbox: constrain by width
+  return { w: windowW, h: Math.round(windowW / GAME_ASPECT) };
+}
 
-export const FLIP_DISTANCE_UNIT = 2.5;
-export const FLIP_HEIGHT = 1.5;
+const windowW0 = window.innerWidth || window.document.documentElement.clientWidth || 360;
+const windowH0 = window.innerHeight || window.document.documentElement.clientHeight || 640;
+const { w: rawWidth, h: rawHeight } = computeGameSize(windowW0, windowH0);
+
+export let BODY_WIDTH = rawWidth;
+export let BODY_HEIGHT = rawHeight;
+export let ASPECT = BODY_WIDTH / BODY_HEIGHT;
+export let SCREEN_HEIGHT = BODY_HEIGHT;
+export let SCREEN_WIDTH = BODY_WIDTH;
+export let FRUSTUM_HEIGHT = 11.0;
+export let FRUSTUM_WIDTH = FRUSTUM_HEIGHT * ASPECT;
+export let FRUSTUM_SCALE = FRUSTUM_HEIGHT / SCREEN_HEIGHT;
+
+export function updateViewport() {
+  const ww = window.innerWidth || window.document.documentElement.clientWidth || 360;
+  const wh = window.innerHeight || window.document.documentElement.clientHeight || 640;
+  const { w, h } = computeGameSize(ww, wh);
+  BODY_WIDTH = w;
+  BODY_HEIGHT = h;
+  ASPECT = BODY_WIDTH / BODY_HEIGHT;
+  SCREEN_HEIGHT = BODY_HEIGHT;
+  SCREEN_WIDTH = BODY_WIDTH;
+  FRUSTUM_WIDTH = FRUSTUM_HEIGHT * ASPECT;
+  FRUSTUM_SCALE = FRUSTUM_HEIGHT / SCREEN_HEIGHT;
+}
+
+export const FLIP_DISTANCE_UNIT = 6.0;
+export const FLIP_HEIGHT = 3.5;
 export const FLIP_DURATION = 500;
 
 export const RESTAURANT_START_TABLE_INDEX = 0;
@@ -44,7 +66,7 @@ export const PB_BRUN_BOIS = 0x6B3A1B;
 export const PB_GRIS_FONTE = 0x3A3A3A;
 export const PB_OR = 0xD4A017;
 
-export const MODEL_SCALE = 0.8;
+export const MODEL_SCALE = 2.0;
 
 export const WORLDS = {
   restaurant: {

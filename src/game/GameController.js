@@ -14,9 +14,14 @@ import {
   BLOCK_PRESSED_H,
   FLIP_DISTANCE_UNIT,
   FLIP_DURATION,
+  FRUSTUM_HEIGHT,
+  FRUSTUM_WIDTH,
   LANDING_IMPACT_DURATION,
   RESTAURANT_START_TABLE_INDEX,
+  SCREEN_HEIGHT,
+  SCREEN_WIDTH,
   WORLDS,
+  updateViewport,
 } from './config/constants';
 import OrbitControls from '../orbitControls';
 import CameraController from './world/CameraController';
@@ -110,7 +115,21 @@ export default class Game extends THREE.EventDispatcher {
     this.up$ = this.input.up$;
     this.update$ = this.input.update$;
 
-    this.cameraController = new CameraController(this.camera, this.light, this.addScoreText);
+    this.cameraController = new CameraController(
+      this.camera,
+      this.perspectiveCamera,
+      this.light,
+      this.addScoreText,
+      {
+        scene: this.scene,
+        hemi: this.hemi,
+        ambientLight: this.ambientLight,
+        fill: this.fill,
+        fadeOverlayOrtho: this.fadeOverlayOrtho,
+        fadeOverlayPersp: this.fadeOverlayPersp,
+      }
+    );
+    this.cameraController.captureBaseline();
 
     if (isDebugEnabled() && debugConfig.scene && debugConfig.scene.enableOrbitControls) {
       this.debugOrbitControls = new OrbitControls(this.camera, this.renderer.domElement);
@@ -210,6 +229,7 @@ export default class Game extends THREE.EventDispatcher {
 
   startFlipCharge() {
     this.flipping = true;
+    this.cameraController.setStateCharge();
     this.bottle.polymeric.particles.visible = true;
     this.bottle.sputtering.stop();
     this.bottle.groundZ = this.currentBlock.body.position.z + this.currentBlock.height;
@@ -245,11 +265,24 @@ export default class Game extends THREE.EventDispatcher {
     } else {
       this.cameraController.setTarget(this.currentBlock, this.nextBlock);
     }
+
+    // Track midpoint of bottle arc + landing zone so both stay in frame
+    const landingPos = new THREE.Vector3(
+      this.nextBlock.mesh.position.x,
+      this.nextBlock.mesh.position.y,
+      landingZ,
+    );
+    // Pass the Bottle entity (not raw mesh) so the camera can read
+    // label world position + outward normal for tracking.
+    this.cameraController.setStateFlip(this.bottle, landingPos);
+
     return [Rx.Observable.timer(FLIP_DURATION)];
   }
 
   resolveLanding() {
     this.flipping = false;
+    this.cameraController.setStateLanding();
+    this.cameraController.setStateIdle();
 
     const bottlePos = this._flipLandingTarget || this.bottle.mesh.position.clone();
     this._flipLandingTarget = null;
@@ -260,6 +293,7 @@ export default class Game extends THREE.EventDispatcher {
       this.bottle.groundZ = this.currentBlock.body.position.z + this.currentBlock.height;
       this.bottle.mesh.position.z = this.bottle.groundZ;
       this.syncBottleBody();
+      this.cameraController.setTarget(this.currentBlock, this.nextBlock);
       return;
     }
 
@@ -276,7 +310,7 @@ export default class Game extends THREE.EventDispatcher {
 
     this.bottle.groundZ = this.nextBlock.body.position.z + this.nextBlock.height;
     this.bottle.mesh.position.z = this.bottle.groundZ;
-    this.scroreText.text = (this.score += 1 + Math.min(5, this.combo));
+    this.scroreText.text = (this.score += 1);
 
     if (this.score >= 30 && !this.modeBUnlocked) {
       this.modeBUnlocked = true;
@@ -308,6 +342,7 @@ export default class Game extends THREE.EventDispatcher {
     this.bottle.fall();
     this.falling = true;
     this.gameOver = true;
+    this.cameraController.setStateFailed();
 
     const shouldRetry =
       isDebugEnabled() && debugConfig.retryFromCheckpointOnFailure && this.lastCheckpoint !== null;
@@ -726,7 +761,7 @@ export default class Game extends THREE.EventDispatcher {
     this.restoreBottle(restored.bottle);
 
     this.cameraController.setTarget(this.currentBlock, this.nextBlock, true);
-    this.cameraController.snap(this.bottle.getLabelDirection());
+    this.cameraController.snap(this.bottle);
 
     if (updateRetryCheckpoint) {
       this.lastCheckpoint = cloneCheckpoint(restored);
@@ -936,13 +971,31 @@ export default class Game extends THREE.EventDispatcher {
     this.bottle.swapModel(modelUrl);
     this.resetBottleForTurn();
     this.cameraController.setTarget(this.currentBlock, this.nextBlock, true);
-    this.cameraController.snap(this.bottle.getLabelDirection());
+    this.cameraController.snap(this.bottle);
     this.saveRetryCheckpoint('restart');
     return cloneCheckpoint(this.lastCheckpoint);
   }
 
   render() {
-    this.renderer.render(this.scene, this.camera);
+    this.renderer.render(this.scene, this.cameraController.activeCamera);
+  }
+
+  resize() {
+    updateViewport();
+    this.renderer.setSize(SCREEN_WIDTH, SCREEN_HEIGHT);
+    this.renderer.setPixelRatio(Math.min(2, window.devicePixelRatio));
+    this.camera.left = FRUSTUM_WIDTH / -2;
+    this.camera.right = FRUSTUM_WIDTH / 2;
+    this.camera.top = FRUSTUM_HEIGHT / 2;
+    this.camera.bottom = FRUSTUM_HEIGHT / -2;
+    this.camera.updateProjectionMatrix();
+    if (this.perspectiveCamera) {
+      this.perspectiveCamera.aspect = SCREEN_WIDTH / SCREEN_HEIGHT;
+      this.perspectiveCamera.updateProjectionMatrix();
+    }
+    this.UI.position.set(FRUSTUM_WIDTH / -2, FRUSTUM_HEIGHT / -2, 0);
+    this.scroreText.text = this.scroreText.text;
+    this.render();
   }
 
   update = time => {
@@ -960,7 +1013,7 @@ export default class Game extends THREE.EventDispatcher {
     TWEEN.update();
     this.world.step(1 / 60, dt, 3);
     this.bottle.update();
-    this.cameraController.update(dt, this.bottle.getLabelDirection());
+    this.cameraController.update(dt, this.bottle);
     this.update$.next();
     this.render();
   };

@@ -146,6 +146,17 @@ function clipWallSection(mesh, yMin, yMax) {
   mesh.material = mat;
 }
 
+function makeWallsOpaque(model) {
+  model.traverse(node => {
+    if (!node.isMesh) return;
+    if (node.name.startsWith('PB_') || hasPBAncestor(node)) return;
+    const mat = Array.isArray(node.material)
+      ? node.material.map(m => { const c = m.clone(); c.transparent = false; c.opacity = 1.0; c.depthWrite = true; return c; })
+      : (() => { const c = node.material.clone(); c.transparent = false; c.opacity = 1.0; c.depthWrite = true; return c; })();
+    node.material = mat;
+  });
+}
+
 function createWallOpenings(model) {
   const hideNames = new Set([
     'Cube004',
@@ -165,6 +176,7 @@ function createWallOpenings(model) {
     'Cube034',
     'Cube035',
     'Cube058',
+    'Cube027',
   ]);
   model.traverse(node => {
     if (!node.isMesh) return;
@@ -200,6 +212,7 @@ export function InitializeRestaurantModel(gameController) {
       model.updateMatrixWorld(true);
 
       createWallOpenings(model);
+      makeWallsOpaque(model);
       gameController.restaurantTables = orderTables(extractTables(model));
       correctProblematicTablePositions(gameController.restaurantTables);
       assignCameraAngle(gameController.restaurantTables);

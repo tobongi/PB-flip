@@ -400,9 +400,19 @@ export default class Bottle {
 
   _tmpVec = new THREE.Vector3();
   _tmpOffset = new THREE.Vector3();
+  // Local-space outward normal of the front-facing label artwork.
+  // Bottle local frame has +Z up, so the label band wraps around the
+  // body and the artwork "front" is at -Y in local space.
   _labelLocal = new THREE.Vector3(0, -1, 0);
+  // Local-space center of the label band (on the body waist).
+  // Lathe band spans z=0.40 -> 0.66; center at 0.53. X/Y stay at 0
+  // because the band is a rotational surface.
+  _labelCenterLocal = new THREE.Vector3(0, 0, 0.53);
   _labelWorld = new THREE.Vector3();
+  _labelNormalWorld = new THREE.Vector3();
+  _labelPosWorld = new THREE.Vector3();
   _worldQ = new THREE.Quaternion();
+  _scaleVec = new THREE.Vector3();
 
   update() {
     if (this.connected) {
@@ -413,12 +423,66 @@ export default class Bottle {
     }
   }
 
-  getLabelDirection() {
+  // Composed quaternion of bottle body × inner bottle group.
+  _composeWorldQuat() {
     this._worldQ.copy(this.mesh.quaternion).multiply(this.bottle.quaternion);
+    return this._worldQ;
+  }
+
+  getLabelDirection() {
+    this._composeWorldQuat();
     this._labelWorld.copy(this._labelLocal).applyQuaternion(this._worldQ);
     this._labelWorld.z = 0;
     if (this._labelWorld.lengthSq() > 0.001) this._labelWorld.normalize();
     return this._labelWorld;
+  }
+
+  // World-space outward normal of the front-facing label artwork.
+  // Returned vector keeps its Z component (unlike getLabelDirection
+  // which projects to ground plane), so the camera can orbit around
+  // the true label face regardless of bottle pitch.
+  getLabelWorldNormal() {
+    this._composeWorldQuat();
+    this._labelNormalWorld.copy(this._labelLocal).applyQuaternion(this._worldQ);
+    if (this._labelNormalWorld.lengthSq() > 0.001) this._labelNormalWorld.normalize();
+    return this._labelNormalWorld;
+  }
+
+  // World-space center of the label band. Walks the matrix chain via
+  // localToWorld so the inner-bottle's own position offset (computed
+  // from the bounding-box base anchor in the constructor) is included.
+  getLabelWorldPosition() {
+    this.mesh.updateMatrixWorld(true);
+    this.bottle.updateMatrixWorld(true);
+    this._labelPosWorld.copy(this._labelCenterLocal);
+    this.bottle.localToWorld(this._labelPosWorld);
+    return this._labelPosWorld;
+  }
+
+  // Force the inner bottle group's Z-rotation so the label artwork
+  // (`_labelLocal`, default (0,-1,0)) faces `worldDir2D`. Used by
+  // CameraController to keep the label always facing the camera even
+  // when the cannon body has settled at an arbitrary yaw post-flip.
+  // Only touches the visual inner group — the cannon body keeps its
+  // physics-correct rotation, so collisions remain authoritative.
+  // Skipped while flipping because we want the bottle to spin freely
+  // mid-air (caller passes `force=false` during flips).
+  setLabelFaceDirection(worldDir2D, force = true) {
+    if (!force) return;
+    if (!worldDir2D || worldDir2D.lengthSq() < 1e-6) return;
+    // _labelLocal = (0, -1, 0). Want worldDir = R_z(theta) * (0, -1, 0)
+    //                                        = (sin theta, -cos theta, 0).
+    //   sin theta = worldDir.x ; cos theta = -worldDir.y
+    //   theta     = atan2(worldDir.x, -worldDir.y).
+    const theta = Math.atan2(worldDir2D.x, -worldDir2D.y);
+    // Compose with mesh quaternion's inverse so the inner-group rotation
+    // results in the desired WORLD label direction even if the outer
+    // mesh has settled at some yaw from physics.
+    if (!this._faceQ) this._faceQ = new THREE.Quaternion();
+    if (!this._invMeshQ) this._invMeshQ = new THREE.Quaternion();
+    this._faceQ.setFromAxisAngle(new THREE.Vector3(0, 0, 1), theta);
+    this._invMeshQ.copy(this.mesh.quaternion).inverse();
+    this.bottle.quaternion.copy(this._invMeshQ).multiply(this._faceQ);
   }
 
   computeBoundingBox() {
