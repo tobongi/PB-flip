@@ -34,6 +34,16 @@ export default function createWorldScene() {
     -40,
     1000
   );
+  // Perspective camera lives alongside ortho; CameraController picks
+  // which one feeds the renderer each round (random switch on landing).
+  // FOV is dynamic — see CameraController.IDLE_FOV / CHARGE_FOV.
+  const perspectiveCamera = new THREE.PerspectiveCamera(
+    35,
+    SCREEN_WIDTH / SCREEN_HEIGHT,
+    0.1,
+    200
+  );
+  perspectiveCamera.up.set(0, 0, 1);
   const UI = new THREE.Group();
 
   renderer.setSize(SCREEN_WIDTH, SCREEN_HEIGHT);
@@ -108,17 +118,24 @@ export default function createWorldScene() {
   const ambientLight = new THREE.AmbientLight(0xFFF0DD, 0.18);
   scene.add(ambientLight);
 
+  // Backdrop floor. Used to be parented to the ortho camera as a fake
+  // skybox plane at camera-local z=-20, which worked while the camera
+  // was a fixed top-down isometric. The new label-tracking camera
+  // controller orbits and tilts horizontally, so the camera-attached
+  // plane would render as a wall in front of the bottle. Parent it to
+  // the world instead, oriented flat, far below gameplay so the tables
+  // stack on top of it as a real ground plane.
   const ground = new THREE.Mesh(
-    new THREE.PlaneGeometry(FRUSTUM_WIDTH * 1.2, FRUSTUM_HEIGHT * 1.2),
+    new THREE.PlaneGeometry(60, 60),
     new THREE.MeshStandardMaterial({
       color: PB_CREAM,
       roughness: 0.95,
       metalness: 0.0,
     })
   );
-  ground.position.z = -20;
+  ground.position.set(0, 0, -8);
   ground.receiveShadow = true;
-  camera.add(ground);
+  scene.add(ground);
 
   camera.position.set(-4, -4.8, 6.4);
   camera.up.set(0, 0, 1);
@@ -127,6 +144,36 @@ export default function createWorldScene() {
   UI.position.set(FRUSTUM_WIDTH / -2, FRUSTUM_HEIGHT / -2, 0);
   camera.add(UI);
   scene.add(camera);
+  scene.add(perspectiveCamera);
+
+  // === Failed-state fade overlay ===
+  // A black quad parented to whichever camera is active, sized to fully
+  // cover the screen (huge size + small near-z works for both ortho and
+  // perspective). Alpha is driven by CameraController._failedT.
+  function makeFadeOverlay() {
+    const mat = new THREE.MeshBasicMaterial({
+      color: 0x000000,
+      transparent: true,
+      opacity: 0,
+      depthWrite: false,
+      depthTest: false,
+    });
+    const mesh = new THREE.Mesh(new THREE.PlaneGeometry(1, 1), mat);
+    mesh.frustumCulled = false;
+    mesh.renderOrder = 9999;
+    return mesh;
+  }
+  const fadeOverlayOrtho = makeFadeOverlay();
+  fadeOverlayOrtho.position.set(0, 0, -0.5);
+  fadeOverlayOrtho.scale.set(FRUSTUM_WIDTH * 4, FRUSTUM_HEIGHT * 4, 1);
+  camera.add(fadeOverlayOrtho);
+
+  const fadeOverlayPersp = makeFadeOverlay();
+  // Plane sits 0.2 units in front of the perspective camera; sized
+  // huge so it covers the whole frustum at any FOV.
+  fadeOverlayPersp.position.set(0, 0, -0.2);
+  fadeOverlayPersp.scale.set(2, 2, 1);
+  perspectiveCamera.add(fadeOverlayPersp);
 
   // === Physics tuning ===
   // Slightly stronger gravity than Earth — arcade snap, bottle falls feel decisive.
@@ -166,6 +213,9 @@ export default function createWorldScene() {
     renderer,
     scene,
     camera,
+    perspectiveCamera,
+    fadeOverlayOrtho,
+    fadeOverlayPersp,
     light,
     ambientLight,
     hemi,

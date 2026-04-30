@@ -90,10 +90,18 @@ module.exports = {
     // for React Native Web.
     extensions: ['.web.js', '.mjs', '.js', '.json', '.web.jsx', '.jsx'],
     alias: {
-      
+
       // Support React Native Web
       // https://www.smashingmagazine.com/2016/08/a-glimpse-into-the-future-with-react-native-for-web/
       'react-native': 'react-native-web',
+      // Force framer-motion (and its ESM-only sibling deps) to use their
+      // CommonJS builds. Webpack 3 does not properly interop the .mjs ESM
+      // builds shipped by these packages, which causes `motion`,
+      // `AnimatePresence` and value-type lookups to resolve to undefined.
+      'framer-motion$': path.join(paths.appNodeModules, 'framer-motion/dist/cjs/index.js'),
+      'style-value-types$': path.join(paths.appNodeModules, 'style-value-types/dist/valueTypes.cjs.js'),
+      'popmotion$': path.join(paths.appNodeModules, 'popmotion/dist/popmotion.cjs.js'),
+      'framesync$': path.join(paths.appNodeModules, 'framesync/dist/framesync.cjs.js'),
     },
     plugins: [
       // Prevents users from importing files from outside of src/ (or node_modules/).
