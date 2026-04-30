@@ -86,6 +86,23 @@ const FAILED_LIGHT_SCALE = 0.45;
 const STATE_DAMPING = 4.0;
 const FLIP_DAMPING = 10.0;
 const FAILED_DAMPING = 2.0;
+// Slerp speed for the bottle-yaw + camera-axis convergence when an
+// obstacle forces a direction change. Slow enough to feel like the
+// bottle "rotates on itself" rather than snapping.
+const AXIS_SLERP_DAMPING = 3.0;
+
+// Camera-axis collision sweep. Number of horizontal directions sampled
+// around the bottle when the preferred -travelAxis is occluded.
+const SWEEP_SAMPLES = 24;
+// Margin under MAX_CAMERA_DISTANCE for the collision raycast — gives
+// the camera a small buffer so it isn't kissing the wall.
+const SWEEP_MARGIN = 0.4;
+// Cast a small bundle of rays across the label area. A single center ray
+// can report "clear" while a chair/table edge still covers most of the
+// artwork on screen.
+const LABEL_VIS_HALF_WIDTH = 0.24;
+const LABEL_VIS_HALF_HEIGHT = 0.28;
+const LABEL_HIT_CLEARANCE = 0.12;
 
 // Mid-flip behaviour modes.
 export const FLIP_MODE = Object.freeze({
@@ -159,9 +176,25 @@ export default class CameraController {
   // Block-travel axis: unit vector from currentBlock toward nextBlock,
   // ground-projected. The camera sits on the OPPOSITE side of this axis
   // (i.e. behind the bottle relative to the upcoming flip), which is
-  // always a clear sightline because the gameplay path is laid out
+  // usually a clear sightline because the gameplay path is laid out
   // along these axes. Defaults to +Y (typical first-block direction).
   _travelAxis = new THREE.Vector3(0, 1, 0);
+
+  // Best camera axis after the obstacle-collision sweep. May differ
+  // from -travelAxis when the preferred direction is blocked by a
+  // wall, chair, or upcoming table. Smoothed toward over a few
+  // frames so the bottle visibly rotates rather than snapping.
+  _targetCameraAxis = new THREE.Vector3(0, -1, 0);
+  _smoothedCameraAxis = new THREE.Vector3(0, -1, 0);
+
+  // Reusable raycaster for the collision sweep.
+  _raycaster = null;
+  // Tmp vec to avoid allocating per ray.
+  _sweepDir = new THREE.Vector3();
+  _sweepCamPos = new THREE.Vector3();
+  _sweepTarget = new THREE.Vector3();
+  _sweepRight = new THREE.Vector3();
+  _sweepViewDir = new THREE.Vector3();
 
   // Latest world position of the label, cached from the last update tick
   // so snap() and the test suite can read it without re-walking the
@@ -348,6 +381,13 @@ export default class CameraController {
       this._lookAtTarget.set(0, 0, 0);
     }
 
+    // Defer the obstacle-clear camera-axis sweep to the next update()
+    // tick — at that point the bottle's matrices are up-to-date and we
+    // can run the raycast against the actual labelPos. setTarget is
+    // called at every block transition so the sweep runs once per turn.
+    this._sweepDirty = true;
+    this._sweepSnap = !!snap;
+
     if (snap) {
       this._currentLookAt.copy(this._lookAtTarget);
       this._curDistance = this._tarDistance;
@@ -373,6 +413,18 @@ export default class CameraController {
     //    is then yawed via setLabelFaceDirection so the label artwork
     //    keeps facing the camera — that's how we deliver "always tracking
     //    the label" without ending up clipped into restaurant walls.
+    // 0. Run the obstacle sweep if it's dirty (set on every setTarget).
+    //    Done before computing labelPos so the sweep uses the same
+    //    label position as the rest of the frame.
+    if (this._sweepDirty && bottle) {
+      this._refreshTargetCameraAxis(bottle);
+      this._sweepDirty = false;
+      if (this._sweepSnap) {
+        this._smoothedCameraAxis.copy(this._targetCameraAxis);
+        this._sweepSnap = false;
+      }
+    }
+
     let labelPos = this._lookAtTarget;
     if (bottle && bottle.getLabelWorldPosition) {
       // While flipping the bottle is rotating wildly — using the
@@ -390,11 +442,18 @@ export default class CameraController {
         this._labelPosCache.copy(labelPos);
       }
     }
-    // Negate travelAxis to get the direction FROM bottle TO camera.
-    const cameraAxis = this._travelAxis.clone().negate();
+    // Smooth-rotate the camera axis toward the obstacle-clear target.
+    // Bottle visually rotates with this axis (setLabelFaceDirection
+    // below) so the user reads it as "the bottle turning to face
+    // wherever the camera can see clearly", which is exactly the
+    // failure mode they wanted fixed.
+    const axisT = 1 - Math.exp(-AXIS_SLERP_DAMPING * dt);
+    this._smoothedCameraAxis.lerp(this._targetCameraAxis, axisT).normalize();
+    const cameraAxis = this._smoothedCameraAxis;
     if (cameraAxis.lengthSq() < 1e-6) cameraAxis.set(0, -1, 0);
-    // Force the bottle's inner-mesh yaw to face the camera. Skipped
-    // mid-flip — the bottle should be free to spin in the air.
+    // Force the bottle's inner-mesh yaw to face the (smoothed) camera
+    // axis. Skipped mid-flip — the bottle should be free to spin in
+    // the air without our override fighting the physics rotation.
     if (
       bottle && bottle.setLabelFaceDirection &&
       this.state !== CAMERA_STATE.FLIP
@@ -566,7 +625,12 @@ export default class CameraController {
       const labelPos = bottle.getLabelWorldPosition();
       this._lookAtTarget.copy(labelPos);
       this._currentLookAt.copy(labelPos);
-      const cameraAxis = this._travelAxis.clone().negate();
+      // Run the sweep immediately and snap to the obstacle-clear axis
+      // so the snapped pose matches what the eventual idle update lands on.
+      this._refreshTargetCameraAxis(bottle);
+      this._smoothedCameraAxis.copy(this._targetCameraAxis);
+      this._sweepDirty = false;
+      const cameraAxis = this._smoothedCameraAxis;
       if (cameraAxis.lengthSq() < 1e-6) cameraAxis.set(0, -1, 0);
       if (bottle.setLabelFaceDirection) {
         bottle.setLabelFaceDirection(cameraAxis, true);
@@ -591,6 +655,140 @@ export default class CameraController {
 
     this._applyProjectionParams();
     this._applyFailedGrade();
+  }
+
+  // ---- Obstacle-clear camera axis sweep -------------------------------
+  // Sample SWEEP_SAMPLES horizontal directions around the bottle, find
+  // the ones with no scene-mesh hit within MAX_CAMERA_DISTANCE, and
+  // pick the one closest to the preferred direction (-travelAxis).
+  // The bottle is visually rotated to face the chosen axis via
+  // setLabelFaceDirection, so the player reads it as "the bottle
+  // turning so the camera can see it clearly".
+  _refreshTargetCameraAxis(bottle) {
+    const preferred = new THREE.Vector3()
+      .copy(this._travelAxis).negate().setZ(0);
+    if (preferred.lengthSq() < 1e-6) preferred.set(0, -1, 0);
+    preferred.normalize();
+
+    if (!this.scene || !bottle || !bottle.getLabelWorldPosition) {
+      this._targetCameraAxis.copy(preferred);
+      return;
+    }
+    if (!this._raycaster) {
+      this._raycaster = new THREE.Raycaster();
+      this._raycaster.near = 0.001;
+    }
+    if (this.scene.updateMatrixWorld) {
+      this.scene.updateMatrixWorld(true);
+    }
+    const labelPos = bottle.getLabelWorldPosition();
+    const sweepDistance = Math.min(this._tarDistance || IDLE_DISTANCE, MAX_CAMERA_DISTANCE);
+    const horizontalReach = Math.max(0.1, sweepDistance * PITCH_COS - SWEEP_MARGIN);
+    const verticalLift = Math.min(sweepDistance * PITCH_SIN, MAX_VERTICAL_LIFT) + Z_LIFT;
+
+    // Build the candidate excludelist: the bottle's whole subtree, the
+    // camera and overlay quads, and the lights (Object3D leaves).
+    const excludeBottle = bottle.mesh || null;
+    const candidates = this.scene.children.filter(c => {
+      if (!c.visible) return false;
+      if (c === this.orthoCamera || c === this.perspectiveCamera) return false;
+      if (excludeBottle && c === excludeBottle) return false;
+      // Skip pure non-visual nodes (lights, helpers, the gameOverText group, etc).
+      // Heuristic: keep Mesh + Group + Object3D (which can contain meshes).
+      const t = c.type;
+      if (t === 'DirectionalLight' || t === 'HemisphereLight' ||
+          t === 'AmbientLight' || t === 'PointLight') return false;
+      return true;
+    });
+
+    // Build sorted candidate list — preferred direction first, then
+    // increasing angular deviation.  Iterate and pick the first that
+    // raycast-clears.  This visits at most SWEEP_SAMPLES directions
+    // and short-circuits on the first hit (typically the preferred).
+    const samples = [];
+    for (let i = 0; i < SWEEP_SAMPLES; i++) {
+      const angle = (i / SWEEP_SAMPLES) * Math.PI * 2;
+      const dir = new THREE.Vector3(Math.cos(angle), Math.sin(angle), 0);
+      samples.push({ dir, score: preferred.dot(dir) });
+    }
+    samples.sort((a, b) => b.score - a.score);
+
+    let bestDir = null;
+    let fallback = null;
+    for (const s of samples) {
+      const visibility = this._scoreSightline(labelPos, s.dir, horizontalReach, verticalLift, candidates);
+      if (visibility.clear) {
+        bestDir = s.dir;
+        break;
+      }
+      if (
+        !fallback ||
+        visibility.clearance > fallback.clearance + 1e-4 ||
+        (Math.abs(visibility.clearance - fallback.clearance) <= 1e-4 && s.score > fallback.score)
+      ) {
+        fallback = { dir: s.dir, clearance: visibility.clearance, score: s.score };
+      }
+    }
+    if (bestDir) {
+      this._targetCameraAxis.copy(bestDir);
+    } else if (fallback) {
+      // Fully boxed-in cases happen in the dense restaurant layout. Use
+      // the direction that keeps the blocker farthest from the camera
+      // instead of blindly returning to the known-blocked preferred axis.
+      this._targetCameraAxis.copy(fallback.dir);
+    } else {
+      this._targetCameraAxis.copy(preferred);
+    }
+  }
+
+  _scoreSightline(labelPos, dir, horizontalReach, verticalLift, candidates) {
+    this._sweepCamPos
+      .copy(labelPos)
+      .addScaledVector(dir, horizontalReach);
+    this._sweepCamPos.z += verticalLift;
+
+    this._sweepViewDir.subVectors(labelPos, this._sweepCamPos);
+    const sightDistance = this._sweepViewDir.length();
+    if (sightDistance <= LABEL_HIT_CLEARANCE) {
+      return { clear: true, clearance: sightDistance };
+    }
+    this._sweepViewDir.multiplyScalar(1 / sightDistance);
+
+    this._sweepRight.set(-dir.y, dir.x, 0);
+    if (this._sweepRight.lengthSq() < 1e-6) this._sweepRight.set(1, 0, 0);
+    this._sweepRight.normalize();
+
+    const offsets = [
+      [0, 0],
+      [LABEL_VIS_HALF_WIDTH, 0],
+      [-LABEL_VIS_HALF_WIDTH, 0],
+      [0, LABEL_VIS_HALF_HEIGHT],
+      [0, -LABEL_VIS_HALF_HEIGHT],
+    ];
+
+    let minClearance = Infinity;
+    for (const offset of offsets) {
+      this._sweepTarget
+        .copy(labelPos)
+        .addScaledVector(this._sweepRight, offset[0]);
+      this._sweepTarget.z += offset[1];
+
+      this._sweepViewDir.subVectors(this._sweepTarget, this._sweepCamPos);
+      const rayDistance = this._sweepViewDir.length();
+      if (rayDistance <= LABEL_HIT_CLEARANCE) continue;
+      this._sweepViewDir.multiplyScalar(1 / rayDistance);
+      this._raycaster.far = Math.max(0.001, rayDistance - LABEL_HIT_CLEARANCE);
+      this._raycaster.set(this._sweepCamPos, this._sweepViewDir);
+      const hits = this._raycaster.intersectObjects(candidates, true);
+      if (hits.length > 0) {
+        minClearance = Math.min(minClearance, hits[0].distance);
+      }
+    }
+
+    return {
+      clear: minClearance === Infinity,
+      clearance: minClearance === Infinity ? Number.MAX_VALUE : minClearance,
+    };
   }
 
   // ---- Back-compat shim for legacy GameController call sites ----------

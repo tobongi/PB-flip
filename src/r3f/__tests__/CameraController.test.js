@@ -264,6 +264,84 @@ describe('CameraController — state machine', () => {
     expect(_internals.PITCH_ANGLE).toBeGreaterThan((30 * Math.PI) / 180);
   });
 
+  it('obstacle sweep: picks preferred -travelAxis when nothing blocks', () => {
+    // Build a real scene + ortho/persp + light so the controller can
+    // run a raycast against an empty world.
+    const scene = new THREE.Scene();
+    const ortho = new THREE.OrthographicCamera(-1, 1, 1, -1, -10, 100);
+    const persp = new THREE.PerspectiveCamera(35, 1, 0.1, 100);
+    ortho.up.set(0, 0, 1); persp.up.set(0, 0, 1);
+    scene.add(ortho); scene.add(persp);
+    const ctrl = new CameraController(ortho, persp, makeFakeLight(), makeFakeAddScoreText(), {
+      scene, hemi: { intensity: 0.5 }, ambientLight: { intensity: 0.1 }, fill: { intensity: 0.1 },
+    });
+    const bottle = makeBottleFixture(new THREE.Vector3(0, 0, 0.5), new THREE.Vector3(0, -1, 0));
+    const cur = { mesh: { position: new THREE.Vector3(0, 0, 0) }, body: { position: { z: 0 } }, height: 0.5 };
+    const nxt = { mesh: { position: new THREE.Vector3(0, 4, 0) }, body: { position: { z: 0 } }, height: 0.5 };
+    ctrl.setTarget(cur, nxt, true);
+    // First update runs the deferred sweep against an empty world.
+    ctrl.update(0.05, bottle);
+    // Preferred axis = -travelAxis = (0, -1, 0). With no obstacles
+    // the sweep should pick that exact direction.
+    expect(ctrl._targetCameraAxis.x).toBeCloseTo(0);
+    expect(ctrl._targetCameraAxis.y).toBeCloseTo(-1);
+  });
+
+  it('obstacle sweep: deviates around a wall blocking the preferred axis', () => {
+    const scene = new THREE.Scene();
+    const ortho = new THREE.OrthographicCamera(-1, 1, 1, -1, -10, 100);
+    const persp = new THREE.PerspectiveCamera(35, 1, 0.1, 100);
+    ortho.up.set(0, 0, 1); persp.up.set(0, 0, 1);
+    scene.add(ortho); scene.add(persp);
+    // Plant a wall in the preferred (-Y) direction at distance 2.
+    const wall = new THREE.Mesh(
+      new THREE.BoxGeometry(20, 0.2, 20),
+      new THREE.MeshBasicMaterial()
+    );
+    wall.position.set(0, -2, 0.5);
+    wall.updateMatrixWorld(true);
+    scene.add(wall);
+    scene.updateMatrixWorld(true);
+    const ctrl = new CameraController(ortho, persp, makeFakeLight(), makeFakeAddScoreText(), {
+      scene, hemi: { intensity: 0.5 }, ambientLight: { intensity: 0.1 }, fill: { intensity: 0.1 },
+    });
+    const bottle = makeBottleFixture(new THREE.Vector3(0, 0, 0.5), new THREE.Vector3(0, -1, 0));
+    const cur = { mesh: { position: new THREE.Vector3(0, 0, 0) }, body: { position: { z: 0 } }, height: 0.5 };
+    const nxt = { mesh: { position: new THREE.Vector3(0, 4, 0) }, body: { position: { z: 0 } }, height: 0.5 };
+    ctrl.setTarget(cur, nxt, true);
+    ctrl.update(0.05, bottle);
+    // The -Y direction is blocked. The sweep should pick a
+    // direction that's NOT (0, -1, 0).
+    const axis = ctrl._targetCameraAxis;
+    const blockedDot = axis.dot(new THREE.Vector3(0, -1, 0));
+    // It deviated — dot product with -Y is not 1.
+    expect(blockedDot).toBeLessThan(0.99);
+    // It still has some component (it's a unit vector).
+    expect(axis.lengthSq()).toBeCloseTo(1, 1);
+  });
+
+  it('obstacle sweep: fully blocked fallback chooses the least obstructed direction', () => {
+    const scene = new THREE.Scene();
+    const ortho = new THREE.OrthographicCamera(-1, 1, 1, -1, -10, 100);
+    const persp = new THREE.PerspectiveCamera(35, 1, 0.1, 100);
+    ortho.up.set(0, 0, 1); persp.up.set(0, 0, 1);
+    scene.add(ortho); scene.add(persp);
+    const ctrl = new CameraController(ortho, persp, makeFakeLight(), makeFakeAddScoreText(), {
+      scene, hemi: { intensity: 0.5 }, ambientLight: { intensity: 0.1 }, fill: { intensity: 0.1 },
+    });
+    const bottle = makeBottleFixture(new THREE.Vector3(0, 0, 0.5), new THREE.Vector3(0, -1, 0));
+    ctrl._travelAxis.set(0, 1, 0);
+    ctrl._scoreSightline = (labelPos, dir) => ({
+      clear: false,
+      clearance: dir.x > 0.95 ? 6 : 1,
+    });
+
+    ctrl._refreshTargetCameraAxis(bottle);
+
+    expect(ctrl._targetCameraAxis.x).toBeGreaterThan(0.95);
+    expect(Math.abs(ctrl._targetCameraAxis.y)).toBeLessThan(0.3);
+  });
+
   it('caps the vertical lift so the camera does not punch through the ceiling', () => {
     const { ctrl } = makeController();
     const labelPos = new THREE.Vector3(0, 0, 0.5);
