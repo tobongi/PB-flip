@@ -448,4 +448,51 @@ describe('CameraController — state machine', () => {
     for (let i = 0; i < 80; i++) ctrl.update(0.05, bottle);
     expect(ctrl._smoothedProjectionBlend).toBeGreaterThan(0.95);
   });
+
+  it('blend matrix is element-wise lerp of ortho and persp projection matrices', () => {
+    const ortho = new THREE.OrthographicCamera(-5.5, 5.5, 5.5, -5.5, -10, 100);
+    const persp = new THREE.PerspectiveCamera(35, 1, 0.1, 100);
+    ortho.up.set(0, 0, 1); persp.up.set(0, 0, 1);
+    const ctrl = new CameraController(ortho, persp, makeFakeLight(), makeFakeAddScoreText());
+    ortho.zoom = 1.4; ortho.updateProjectionMatrix();
+    persp.fov = 35; persp.updateProjectionMatrix();
+    // Force a blend value of exactly 0.5.
+    ctrl._smoothedProjectionBlend = 0.5;
+    // Both cameras need a known projection. Capture them.
+    const mOrtho = ortho.projectionMatrix.elements.slice();
+    const mPersp = persp.projectionMatrix.elements.slice();
+    // Run the per-frame projection-application path. The active camera's
+    // projectionMatrix should be the element-wise mean of the two.
+    ctrl._applyProjectionParams();
+    const mActive = ctrl.activeCamera.projectionMatrix.elements;
+    for (let i = 0; i < 16; i++) {
+      const expected = (mOrtho[i] + mPersp[i]) / 2;
+      expect(mActive[i]).toBeCloseTo(expected, 5);
+    }
+  });
+
+  it('blend at endpoints reproduces each camera\'s native projection matrix', () => {
+    const ortho = new THREE.OrthographicCamera(-5.5, 5.5, 5.5, -5.5, -10, 100);
+    const persp = new THREE.PerspectiveCamera(35, 1, 0.1, 100);
+    ortho.up.set(0, 0, 1); persp.up.set(0, 0, 1);
+    const ctrl = new CameraController(ortho, persp, makeFakeLight(), makeFakeAddScoreText());
+    ortho.zoom = 1.4; ortho.updateProjectionMatrix();
+    persp.fov = 35; persp.updateProjectionMatrix();
+
+    ctrl._smoothedProjectionBlend = 0;
+    ctrl._applyProjectionParams();
+    const mAtZero = ctrl.activeCamera.projectionMatrix.elements.slice();
+    const mOrtho = ortho.projectionMatrix.elements;
+    for (let i = 0; i < 16; i++) {
+      expect(mAtZero[i]).toBeCloseTo(mOrtho[i], 5);
+    }
+
+    ctrl._smoothedProjectionBlend = 1;
+    ctrl._applyProjectionParams();
+    const mAtOne = ctrl.activeCamera.projectionMatrix.elements.slice();
+    const mPersp = persp.projectionMatrix.elements;
+    for (let i = 0; i < 16; i++) {
+      expect(mAtOne[i]).toBeCloseTo(mPersp[i], 5);
+    }
+  });
 });
