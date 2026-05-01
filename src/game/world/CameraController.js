@@ -673,6 +673,17 @@ export default class CameraController {
     this._targetQ.setFromRotationMatrix(this._lookMatrix);
     this.activeCamera.quaternion.slerp(this._targetQ, t);
 
+    // Mirror pose onto the inactive camera every frame so the projection
+    // blend's host swap at blend≈0.5 doesn't pop. Without this, the inactive
+    // camera holds whatever pose was synced inside setProjection, so any
+    // breathing animation, lerp progression, or obstacle-sweep shift of
+    // _idealPosition during the 1.9 s blend would leave it stale at the
+    // moment activeCamera flips to it.
+    const inactiveCamera = (this.activeCamera === this.orthoCamera)
+      ? this.perspectiveCamera : this.orthoCamera;
+    inactiveCamera.position.copy(this.activeCamera.position);
+    inactiveCamera.quaternion.copy(this.activeCamera.quaternion);
+
     this._applyProjectionParams();
 
     // 6. Failed-state grading.

@@ -464,6 +464,9 @@ describe('CameraController — state machine', () => {
     const persp = new THREE.PerspectiveCamera(35, 1, 0.1, 100);
     ortho.up.set(0, 0, 1); persp.up.set(0, 0, 1);
     const ctrl = new CameraController(ortho, persp, makeFakeLight(), makeFakeAddScoreText());
+    // Sanity: constructor must have established an activeCamera or the
+    // _applyProjectionParams call below would silently no-op the assertions.
+    expect(ctrl.activeCamera).toBeDefined();
     ortho.zoom = 1.4; ortho.updateProjectionMatrix();
     persp.fov = 35; persp.updateProjectionMatrix();
     // Force a blend value of exactly 0.5.
@@ -541,5 +544,35 @@ describe('CameraController — state machine', () => {
       prev = Array.from(cur);
     }
     expect(maxFrameJump).toBeLessThan(0.15);
+  });
+
+  it('pose stays mirrored on the inactive camera so the blend host swap does not pop', () => {
+    // Regression for a bug caught in code review: update() only lerped
+    // activeCamera.position, leaving the inactive camera at whatever pose
+    // setProjection synced. The host swap at blend≈0.5 then snapped the
+    // renderer to the stale inactive pose. Both cameras must hold
+    // identical pose every frame so the swap is a visual no-op.
+    const { ctrl, ortho, persp } = makeController();
+    const bottle = makeBottleFixture(new THREE.Vector3(0, 0, 0.5), new THREE.Vector3(0, -1, 0));
+    const cur = { mesh: { position: new THREE.Vector3(0, 0, 0) }, body: { position: { z: 0 } }, height: 0.5 };
+    const nxt = { mesh: { position: new THREE.Vector3(0, 4, 0) }, body: { position: { z: 0 } }, height: 0.5 };
+    ctrl.setTarget(cur, nxt, true);
+    // Trigger a transition mid-flight so _idealPosition keeps moving
+    // through the breathing animation while activeCamera lerps.
+    ctrl.setProjection(PROJECTION.PERSP);
+    for (let i = 0; i < 30; i++) {
+      ctrl.update(0.05, bottle);
+      // After every tick, both cameras should hold identical pose.
+      expect(ortho.position.distanceTo(persp.position)).toBeLessThan(1e-5);
+      // Quaternion equality via dot product — abs(dot) ≈ 1 means same rotation.
+      // (THREE r0.89 has no Quaternion.angleTo helper.)
+      const qDot = Math.abs(
+        ortho.quaternion.x * persp.quaternion.x +
+        ortho.quaternion.y * persp.quaternion.y +
+        ortho.quaternion.z * persp.quaternion.z +
+        ortho.quaternion.w * persp.quaternion.w
+      );
+      expect(qDot).toBeGreaterThan(1 - 1e-5);
+    }
   });
 });
