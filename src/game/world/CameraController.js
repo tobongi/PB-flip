@@ -411,15 +411,14 @@ export default class CameraController {
   setProjection(p) {
     if (p === this.projection) return;
 
-    // Smooth ortho ↔ persp transition. The two projection types render
-    // the same scene very differently — at a fixed pose, an ortho frame
-    // shows the bottle smaller than a perspective frame because ortho
-    // has no foreshortening. A naive swap is a hard cut where the
-    // bottle suddenly grows or shrinks. To soften it, we match the
-    // OUTGOING camera's visible vertical extent on the INCOMING camera
-    // for the first frame, then let the existing _curFov / _curZoom
-    // lerp drive the rest of the transition toward the state's normal
-    // FOV / zoom over ~0.5 s.
+    // Smooth ortho ↔ persp transition. Both cameras stay alive; the
+    // renderer keeps using whichever is `activeCamera`. What changes
+    // here is the BLEND TARGET — the actual switch (which camera is
+    // active and what projection matrix it renders with) is driven
+    // by `update()` over ~1.9 s of damping. At swap time we still
+    // size-match the bottle on the *incoming* camera so its endpoint
+    // visible extent matches the *outgoing* one — combined with the
+    // matrix-lerp in update(), the user can't tell two modes exist.
     const dist = Math.max(
       0.5, this.activeCamera.position.distanceTo(this._currentLookAt)
     );
@@ -432,30 +431,35 @@ export default class CameraController {
     }
 
     this.projection = p;
+    this._targetProjectionBlend = (p === PROJECTION.PERSP) ? 1 : 0;
+
+    // Pre-set the incoming camera's zoom/FOV so the steady-state image
+    // at the END of the lerp matches the steady-state image at the START.
+    // The matrix-lerp in update() handles everything BETWEEN those endpoints.
     if (p === PROJECTION.ORTHO) {
-      this.activeCamera = this.orthoCamera;
-      // Pick zoom that reproduces the outgoing visible extent. Clamp to
-      // MIN_ORTHO_ZOOM so the label can never drop below the readable
-      // floor as a side-effect of a generous outgoing FOV.
       const matchZoom = orthoFrustumHeight / Math.max(0.01, outgoingExtent);
       this._curZoom = Math.max(MIN_ORTHO_ZOOM, matchZoom);
       this.orthoCamera.zoom = this._curZoom;
       this.orthoCamera.updateProjectionMatrix();
     } else {
-      this.activeCamera = this.perspectiveCamera;
-      // Pick FOV that reproduces the outgoing visible extent. The cap is
-      // MAX_PERSP_FOV so the label stays readable; the ortho frustum is
-      // wider than the persp can match at idle distances, so the swap
-      // will START at the cap and lerp DOWN toward the state's target.
       const matchFov = (Math.atan(outgoingExtent / (2 * dist)) * 360) / Math.PI;
       this._curFov = Math.min(MAX_PERSP_FOV, Math.max(10, matchFov));
       this.perspectiveCamera.fov = this._curFov;
       this.perspectiveCamera.updateProjectionMatrix();
     }
-    // Carry over current pose to the newly-active camera.
-    this.activeCamera.position.copy(this._idealPosition);
-    this.activeCamera.up.set(0, 0, 1);
-    this.activeCamera.lookAt(this._currentLookAt);
+
+    // Both cameras need the current pose (the renderer might switch from
+    // one to the other during the lerp; if either is stale you get a
+    // visible pop at the crossover frame).
+    this.orthoCamera.position.copy(this._idealPosition);
+    this.perspectiveCamera.position.copy(this._idealPosition);
+    this.orthoCamera.up.set(0, 0, 1);
+    this.perspectiveCamera.up.set(0, 0, 1);
+    this.orthoCamera.lookAt(this._currentLookAt);
+    this.perspectiveCamera.lookAt(this._currentLookAt);
+    // activeCamera is NOT switched here — update() decides per frame
+    // based on the smoothed blend, so the swap happens at blend≈0.5
+    // when both cameras would render the same blended matrix anyway.
   }
 
   // ---- pre-flip aim (block-to-block) ----------------------------------
