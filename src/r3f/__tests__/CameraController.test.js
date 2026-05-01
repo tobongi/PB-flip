@@ -61,7 +61,7 @@ describe('CameraController — state machine', () => {
     expect(ctrl._tarZoom).toBe(_internals.CHARGE_ZOOM);
   });
 
-  it('FLIP picks a mid-flip mode using the injected RNG (deterministic)', () => {
+  it('FLIP always picks FOLLOW (LOCKED/CINEMATIC retired for tracking reliability)', () => {
     const seq = [0.0, 0.4, 0.9];
     let i = 0;
     const random = () => seq[i++ % seq.length];
@@ -73,37 +73,20 @@ describe('CameraController — state machine', () => {
     expect(ctrl.flipMode).toBe(FLIP_MODE.FOLLOW);
 
     ctrl.setStateFlip(bottle, landing);
-    expect(ctrl.flipMode).toBe(FLIP_MODE.LOCKED);
+    expect(ctrl.flipMode).toBe(FLIP_MODE.FOLLOW);
 
     ctrl.setStateFlip(bottle, landing);
-    expect(ctrl.flipMode).toBe(FLIP_MODE.CINEMATIC_CUT);
+    expect(ctrl.flipMode).toBe(FLIP_MODE.FOLLOW);
   });
 
-  it('LOCKED flip mode snapshots the camera pose', () => {
-    const random = () => 0.4; // hits LOCKED
+  it('FLIP stays in FOLLOW under perspective (legacy LOCKED guard)', () => {
+    const random = () => 0.9;
     const { ctrl } = makeController({ random });
-    const bottle = makeBottleFixture(new THREE.Vector3(1, 1, 0.5), new THREE.Vector3(0, -1, 0));
-    ctrl.activeCamera.position.set(7, 7, 7);
-    ctrl._currentLookAt.set(1, 1, 0.5);
-
-    ctrl.setStateFlip(bottle, new THREE.Vector3(2, 1, 0));
-    expect(ctrl._lockedCamPos.x).toBe(7);
-    expect(ctrl._lockedCamPos.y).toBe(7);
-    expect(ctrl._lockedCamPos.z).toBe(7);
-    expect(ctrl._lockedLookAt.equals(new THREE.Vector3(1, 1, 0.5))).toBe(true);
-  });
-
-  it('CINEMATIC_CUT positions camera perpendicular to the travel axis', () => {
-    const random = () => 0.9; // hits CINEMATIC_CUT
-    const { ctrl } = makeController({ random });
+    ctrl.setProjection(PROJECTION.PERSP);
     const bottle = makeBottleFixture(new THREE.Vector3(0, 0, 0.5), new THREE.Vector3(0, -1, 0));
-    const landing = new THREE.Vector3(4, 0, 0);
-
+    const landing = new THREE.Vector3(2, 0, 0);
     ctrl.setStateFlip(bottle, landing);
-    // Travel is along +X. Perpendicular (rotate 90° around Z) is along +Y or -Y.
-    const camPos = ctrl._cinematicCamPos;
-    expect(Math.abs(camPos.x)).toBeLessThan(1e-3); // ~zero on X axis
-    expect(Math.abs(camPos.y)).toBeGreaterThan(0.5);
+    expect(ctrl.flipMode).toBe(FLIP_MODE.FOLLOW);
   });
 
   it('LANDING returns to idle params and may swap projection', () => {
@@ -229,10 +212,58 @@ describe('CameraController — state machine', () => {
     expect(ctrl.activeCamera).toBe(ortho);
   });
 
-  it('exposes ALL_FLIP_MODES with exactly the three documented values', () => {
-    expect(_internals.ALL_FLIP_MODES.sort()).toEqual(
-      [FLIP_MODE.CINEMATIC_CUT, FLIP_MODE.FOLLOW, FLIP_MODE.LOCKED].sort()
-    );
+  it('setProjection ortho→persp matches outgoing visible extent then lerps to idle FOV', () => {
+    // Use a real-shape ortho camera so frustum_height is well-defined.
+    // top - bottom = 11 matches gameplay FRUSTUM_HEIGHT.
+    const ortho = new THREE.OrthographicCamera(-5.5, 5.5, 5.5, -5.5, -10, 100);
+    const persp = new THREE.PerspectiveCamera(35, 1, 0.1, 100);
+    ortho.up.set(0, 0, 1); persp.up.set(0, 0, 1);
+    const ctrl = new CameraController(ortho, persp, makeFakeLight(), makeFakeAddScoreText());
+    ctrl._idealPosition.set(0, -4.8, 3);
+    ctrl._currentLookAt.set(0, 0, 0.5);
+    // Ortho zoom 1.4 = visible vertical extent of 11 / 1.4 ≈ 7.86.
+    ortho.zoom = 1.4;
+    ortho.updateProjectionMatrix();
+
+    ctrl.setProjection(PROJECTION.PERSP);
+
+    // Distance from cam to lookAt ≈ 5.55, so the FOV that reproduces
+    // the 7.86-unit extent would be ~70°, which exceeds MAX_PERSP_FOV.
+    // The setter clamps to MAX_PERSP_FOV (52°) — so the swap STARTS at
+    // the cap and lerp toward IDLE_FOV (35°) over the next ~0.5s.
+    expect(ctrl._curFov).toBe(_internals.MAX_PERSP_FOV);
+    expect(persp.fov).toBe(_internals.MAX_PERSP_FOV);
+  });
+
+  it('setProjection persp→ortho matches outgoing visible extent then lerps to idle zoom', () => {
+    const ortho = new THREE.OrthographicCamera(-5.5, 5.5, 5.5, -5.5, -10, 100);
+    const persp = new THREE.PerspectiveCamera(35, 1, 0.1, 100);
+    ortho.up.set(0, 0, 1); persp.up.set(0, 0, 1);
+    const ctrl = new CameraController(ortho, persp, makeFakeLight(), makeFakeAddScoreText());
+    ctrl.setProjection(PROJECTION.PERSP);
+    ctrl._idealPosition.set(0, -4.8, 3);
+    ctrl._currentLookAt.set(0, 0, 0.5);
+    persp.fov = 35;
+    persp.updateProjectionMatrix();
+
+    ctrl.setProjection(PROJECTION.ORTHO);
+
+    // At distance ~5.55 with FOV 35°, persp visible extent = 2*5.55*tan(17.5°) ≈ 3.50.
+    // matchZoom = 11 / 3.50 ≈ 3.14. That zoom is well above MIN_ORTHO_ZOOM,
+    // so the start zoom is ~3.14 and lerp toward IDLE_ZOOM (1.4).
+    expect(ctrl._curZoom).toBeGreaterThan(2);
+    expect(ortho.zoom).toBeCloseTo(ctrl._curZoom, 5);
+  });
+
+  it('setProjection no-ops when the requested projection is already active', () => {
+    const { ctrl, ortho } = makeController();
+    const before = ortho.zoom;
+    ctrl.setProjection(PROJECTION.ORTHO); // already ortho
+    expect(ortho.zoom).toBe(before);      // untouched
+  });
+
+  it('exposes ALL_FLIP_MODES = [FOLLOW] (other modes retired for reliability)', () => {
+    expect(_internals.ALL_FLIP_MODES).toEqual([FLIP_MODE.FOLLOW]);
   });
 
   it('clamps _curDistance to MAX_CAMERA_DISTANCE even when tar overshoots', () => {
@@ -342,6 +373,52 @@ describe('CameraController — state machine', () => {
     expect(Math.abs(ctrl._targetCameraAxis.y)).toBeLessThan(0.3);
   });
 
+  it('wall-hug fallback: camera escalates pitch when the only clear shots hug a wall', () => {
+    // Build a scene where every horizontal direction at tier-0 distance
+    // is "clear of geometry on the sightline" but the sample camera
+    // position itself sits inside a tall wall enclosure — exactly the
+    // corner-table case in the restaurant. Tier 0 should be rejected
+    // (wall-hug); the sweep should escalate to a higher tier (taller
+    // pitch, shorter horizontal reach), where the camera ends up
+    // farther from the perimeter walls.
+    const scene = new THREE.Scene();
+    const ortho = new THREE.OrthographicCamera(-1, 1, 1, -1, -10, 100);
+    const persp = new THREE.PerspectiveCamera(35, 1, 0.1, 100);
+    ortho.up.set(0, 0, 1); persp.up.set(0, 0, 1);
+    scene.add(ortho); scene.add(persp);
+    // 4 tall perimeter walls forming a tight 5x5 enclosure at z 0..6.
+    // The bottle sits in the middle at (0, 0, 0.5). At tier-0 distance,
+    // every sample camera position lands within ~1 unit of one of the
+    // walls — wall-hug applies. Higher tiers pull the camera in.
+    const wallMat = new THREE.MeshBasicMaterial();
+    const mkWall = (x, y, w, d) => {
+      const m = new THREE.Mesh(new THREE.BoxGeometry(w, d, 6), wallMat);
+      m.position.set(x, y, 3);
+      m.updateMatrixWorld(true);
+      scene.add(m);
+    };
+    mkWall(0, 3, 8, 0.2);
+    mkWall(0, -3, 8, 0.2);
+    mkWall(3, 0, 0.2, 8);
+    mkWall(-3, 0, 0.2, 8);
+    scene.updateMatrixWorld(true);
+
+    const ctrl = new CameraController(ortho, persp, makeFakeLight(), makeFakeAddScoreText(), {
+      scene, hemi: { intensity: 0.5 }, ambientLight: { intensity: 0.1 }, fill: { intensity: 0.1 },
+    });
+    const bottle = makeBottleFixture(new THREE.Vector3(0, 0, 0.5), new THREE.Vector3(0, -1, 0));
+    const cur = { mesh: { position: new THREE.Vector3(0, 0, 0) }, body: { position: { z: 0 } }, height: 0.5 };
+    const nxt = { mesh: { position: new THREE.Vector3(0, 1, 0) }, body: { position: { z: 0 } }, height: 0.5 };
+    ctrl.setTarget(cur, nxt, true);
+    ctrl.update(0.05, bottle);
+
+    // Either: a higher pitch tier was picked (overhead shot), OR the
+    // distance was scaled below 1 to keep the camera off the walls.
+    // Both indicate the wall-hug logic activated correctly.
+    const escalated = ctrl._targetPitchIdx > 0 || ctrl._targetDistanceScale < 1 - 1e-3;
+    expect(escalated).toBe(true);
+  });
+
   it('caps the vertical lift so the camera does not punch through the ceiling', () => {
     const { ctrl } = makeController();
     const labelPos = new THREE.Vector3(0, 0, 0.5);
@@ -357,5 +434,18 @@ describe('CameraController — state machine', () => {
     expect(ctrl.activeCamera.position.z - labelZ).toBeLessThanOrEqual(
       _internals.MAX_VERTICAL_LIFT + _internals.Z_LIFT + 1e-6
     );
+  });
+
+  it('setProjection sets a blend TARGET (not an instant swap) and the smoothed blend lerps each frame', () => {
+    const { ctrl } = makeController();
+    const bottle = makeBottleFixture(new THREE.Vector3(0, 0, 0.5), new THREE.Vector3(0, -1, 0));
+    // Start at ortho idle (blend = 0). Switch to persp — target should be 1,
+    // smoothed should NOT instantly become 1; it lerps over many frames.
+    ctrl.setProjection(PROJECTION.PERSP);
+    expect(ctrl._targetProjectionBlend).toBe(1);
+    expect(ctrl._smoothedProjectionBlend).toBeLessThan(0.5); // not instant
+    // Drive update() for ~2 seconds and confirm the blend converges.
+    for (let i = 0; i < 80; i++) ctrl.update(0.05, bottle);
+    expect(ctrl._smoothedProjectionBlend).toBeGreaterThan(0.95);
   });
 });
