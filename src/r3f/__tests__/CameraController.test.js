@@ -505,4 +505,41 @@ describe('CameraController — state machine', () => {
       expect(mAtOne[i]).toBeCloseTo(mPersp[i], 5);
     }
   });
+
+  it('blend matrix is continuous frame-to-frame during a setProjection transition', () => {
+    // The user-visible "brutal cut" symptom is a single-frame jump in
+    // the projection matrix. With the lerp, no single update() should
+    // change any matrix element by more than ~12% of the total endpoint
+    // delta (a hard cut would be 100% on a single frame).
+    const { ctrl } = makeController();
+    const bottle = makeBottleFixture(new THREE.Vector3(0, 0, 0.5), new THREE.Vector3(0, -1, 0));
+    // Capture the ortho-end matrix and the persp-end matrix.
+    ctrl._smoothedProjectionBlend = 0;
+    ctrl._applyProjectionParams();
+    const mStart = ctrl.activeCamera.projectionMatrix.elements.slice();
+    ctrl._smoothedProjectionBlend = 1;
+    ctrl._applyProjectionParams();
+    const mEnd = ctrl.activeCamera.projectionMatrix.elements.slice();
+    // Reset and trigger a swap.
+    ctrl._smoothedProjectionBlend = 0;
+    ctrl._targetProjectionBlend = 0;
+    ctrl.setProjection(PROJECTION.PERSP);
+    let prev = null;
+    let maxFrameJump = 0;
+    for (let i = 0; i < 80; i++) {
+      ctrl.update(0.05, bottle);
+      const cur = ctrl.activeCamera.projectionMatrix.elements;
+      if (prev) {
+        for (let k = 0; k < 16; k++) {
+          const totalDelta = Math.abs(mEnd[k] - mStart[k]);
+          if (totalDelta < 1e-6) continue;
+          const frameDelta = Math.abs(cur[k] - prev[k]);
+          const ratio = frameDelta / totalDelta;
+          if (ratio > maxFrameJump) maxFrameJump = ratio;
+        }
+      }
+      prev = Array.from(cur);
+    }
+    expect(maxFrameJump).toBeLessThan(0.15);
+  });
 });
