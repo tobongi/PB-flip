@@ -199,58 +199,68 @@ describe('CameraController — state machine', () => {
     expect(ctrl.state).toBe(CAMERA_STATE.IDLE);
   });
 
-  it('setProjection swaps activeCamera and carries pose', () => {
+  it('setProjection swaps activeCamera after the blend lerp crosses 0.5', () => {
     const { ctrl, ortho, persp } = makeController();
+    const bottle = makeBottleFixture(new THREE.Vector3(0, 0, 0.5), new THREE.Vector3(0, -1, 0));
     ctrl._idealPosition.set(2, 3, 4);
     ctrl._currentLookAt.set(0, 0, 0.5);
+    // setProjection itself does NOT instantly flip activeCamera now —
+    // it sets the blend target and pre-poses both cameras. The activeCamera
+    // swap is driven by update() once the smoothed blend crosses 0.5.
     ctrl.setProjection(PROJECTION.PERSP);
-    expect(ctrl.activeCamera).toBe(persp);
+    expect(ctrl._targetProjectionBlend).toBe(1);
+    // Both cameras have the new pose so neither pops when activeCamera
+    // crosses over.
     expect(persp.position.x).toBe(2);
     expect(persp.position.y).toBe(3);
     expect(persp.position.z).toBe(4);
+    expect(ortho.position.x).toBe(2);
+    // Drive update() until the lerp crosses 0.5; activeCamera should
+    // flip from ortho to persp.
+    for (let i = 0; i < 80; i++) ctrl.update(0.05, bottle);
+    expect(ctrl.activeCamera).toBe(persp);
+    // Swap back; same story in the other direction.
     ctrl.setProjection(PROJECTION.ORTHO);
+    for (let i = 0; i < 80; i++) ctrl.update(0.05, bottle);
     expect(ctrl.activeCamera).toBe(ortho);
   });
 
-  it('setProjection ortho→persp matches outgoing visible extent then lerps to idle FOV', () => {
-    // Use a real-shape ortho camera so frustum_height is well-defined.
-    // top - bottom = 11 matches gameplay FRUSTUM_HEIGHT.
+  it('setProjection ortho→persp pre-sets persp FOV to size-match the outgoing ortho image', () => {
     const ortho = new THREE.OrthographicCamera(-5.5, 5.5, 5.5, -5.5, -10, 100);
     const persp = new THREE.PerspectiveCamera(35, 1, 0.1, 100);
     ortho.up.set(0, 0, 1); persp.up.set(0, 0, 1);
     const ctrl = new CameraController(ortho, persp, makeFakeLight(), makeFakeAddScoreText());
     ctrl._idealPosition.set(0, -4.8, 3);
     ctrl._currentLookAt.set(0, 0, 0.5);
-    // Ortho zoom 1.4 = visible vertical extent of 11 / 1.4 ≈ 7.86.
     ortho.zoom = 1.4;
     ortho.updateProjectionMatrix();
-
     ctrl.setProjection(PROJECTION.PERSP);
-
-    // Distance from cam to lookAt ≈ 5.55, so the FOV that reproduces
-    // the 7.86-unit extent would be ~70°, which exceeds MAX_PERSP_FOV.
-    // The setter clamps to MAX_PERSP_FOV (52°) — so the swap STARTS at
-    // the cap and lerp toward IDLE_FOV (35°) over the next ~0.5s.
+    // The matched FOV exceeds MAX_PERSP_FOV, so it clamps. _curFov drives
+    // persp.fov, and the perspectiveCamera's own projectionMatrix was
+    // refreshed inside setProjection.
     expect(ctrl._curFov).toBe(_internals.MAX_PERSP_FOV);
     expect(persp.fov).toBe(_internals.MAX_PERSP_FOV);
   });
 
-  it('setProjection persp→ortho matches outgoing visible extent then lerps to idle zoom', () => {
+  it('setProjection persp→ortho pre-sets ortho zoom to size-match the outgoing persp image', () => {
     const ortho = new THREE.OrthographicCamera(-5.5, 5.5, 5.5, -5.5, -10, 100);
     const persp = new THREE.PerspectiveCamera(35, 1, 0.1, 100);
     ortho.up.set(0, 0, 1); persp.up.set(0, 0, 1);
     const ctrl = new CameraController(ortho, persp, makeFakeLight(), makeFakeAddScoreText());
-    ctrl.setProjection(PROJECTION.PERSP);
+    // Force initial state to persp first (constructor defaults to ortho).
+    ctrl.projection = PROJECTION.PERSP;
+    ctrl.activeCamera = persp;
+    ctrl._targetProjectionBlend = 1;
+    ctrl._smoothedProjectionBlend = 1;
     ctrl._idealPosition.set(0, -4.8, 3);
     ctrl._currentLookAt.set(0, 0, 0.5);
+    persp.position.copy(ctrl._idealPosition);
+    persp.lookAt(ctrl._currentLookAt);
     persp.fov = 35;
     persp.updateProjectionMatrix();
-
     ctrl.setProjection(PROJECTION.ORTHO);
-
-    // At distance ~5.55 with FOV 35°, persp visible extent = 2*5.55*tan(17.5°) ≈ 3.50.
-    // matchZoom = 11 / 3.50 ≈ 3.14. That zoom is well above MIN_ORTHO_ZOOM,
-    // so the start zoom is ~3.14 and lerp toward IDLE_ZOOM (1.4).
+    // At ~5.55 distance and FOV 35°, persp visible extent ≈ 3.50.
+    // matchZoom = 11 / 3.50 ≈ 3.14 — well above MIN_ORTHO_ZOOM.
     expect(ctrl._curZoom).toBeGreaterThan(2);
     expect(ortho.zoom).toBeCloseTo(ctrl._curZoom, 5);
   });
