@@ -558,6 +558,13 @@ export default class CameraController {
     const cameraAxis = this._smoothedCameraAxis;
     if (cameraAxis.lengthSq() < 1e-6) cameraAxis.set(0, -1, 0);
 
+    // Drive the projection blend toward its target. The damping is
+    // intentionally lower than the state/axis damping so the transition
+    // feels like a slow dolly-zoom rather than a snappy state change.
+    const blendT = 1 - Math.exp(-PROJECTION_BLEND_DAMPING * dt);
+    this._smoothedProjectionBlend +=
+      (this._targetProjectionBlend - this._smoothedProjectionBlend) * blendT;
+
     // Smooth pitch + distance-scale toward whatever tier the sweep chose.
     // Both transitions ride the same axis-slerp damping so they move
     // visibly in lockstep — the camera "lifts up and pulls in" together
