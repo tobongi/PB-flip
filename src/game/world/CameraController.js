@@ -691,12 +691,37 @@ export default class CameraController {
   }
 
   _applyProjectionParams() {
-    if (this.projection === PROJECTION.ORTHO) {
-      this.orthoCamera.zoom = this._curZoom;
-      this.orthoCamera.updateProjectionMatrix();
-    } else {
-      this.perspectiveCamera.fov = this._curFov;
-      this.perspectiveCamera.updateProjectionMatrix();
+    // Always refresh BOTH cameras' native projection matrices — the
+    // blend lerp reads them every frame regardless of which projection
+    // is "logically active".
+    this.orthoCamera.zoom = this._curZoom;
+    this.orthoCamera.updateProjectionMatrix();
+    this.perspectiveCamera.fov = this._curFov;
+    this.perspectiveCamera.updateProjectionMatrix();
+
+    // Pick the host camera that the renderer will actually use this
+    // frame. Choosing by the smoothed blend's side of 0.5 keeps the
+    // visible result stable: both cameras render with the same blended
+    // matrix below, so the host swap at blend=0.5 is a visual no-op.
+    const blend = Math.min(1, Math.max(0, this._smoothedProjectionBlend));
+    const hostIsPersp = blend >= 0.5;
+    this.activeCamera = hostIsPersp ? this.perspectiveCamera : this.orthoCamera;
+
+    // Element-wise lerp the two projection matrices. At blend = 0 this
+    // equals the ortho matrix; at blend = 1 it equals the persp matrix;
+    // in between it is a smooth warp between the two so the user
+    // experiences a continuous dolly-zoom-like effect rather than a
+    // mode swap.
+    const mOrtho = this.orthoCamera.projectionMatrix.elements;
+    const mPersp = this.perspectiveCamera.projectionMatrix.elements;
+    const out = this._blendedProjMatrix.elements;
+    for (let i = 0; i < 16; i++) {
+      out[i] = mOrtho[i] * (1 - blend) + mPersp[i] * blend;
+    }
+    this.activeCamera.projectionMatrix.copy(this._blendedProjMatrix);
+    if (this.activeCamera.projectionMatrixInverse) {
+      this.activeCamera.projectionMatrixInverse
+        .copy(this._blendedProjMatrix).invert();
     }
   }
 
