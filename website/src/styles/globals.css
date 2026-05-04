@@ -1,0 +1,56 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 74 16% 8%;
+    --foreground: 40 33% 93%;
+    --card: 78 20% 13%;
+    --card-foreground: 40 33% 93%;
+    --border: 80 15% 22%;
+    --input: 80 15% 22%;
+    --ring: 43 55% 55%;
+    --radius: 0.25rem;
+    --brand: 43 55% 55%;
+  }
+
+  * { box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    @apply bg-olive-900 text-cream font-sans antialiased;
+    background-color: #1a1f0e;
+    color: #F5F0E8;
+  }
+
+  h1, h2, h3 {
+    @apply font-display;
+    font-feature-settings: "kern" 1, "liga" 1;
+  }
+
+  ::selection {
+    background-color: #C9A84C33;
+    color: #F5F0E8;
+  }
+
+  :focus-visible {
+    outline: 2px solid #C9A84C;
+    outline-offset: 3px;
+  }
+
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: #1a1f0e; }
+  ::-webkit-scrollbar-thumb { background: #3d4522; border-radius: 3px; }
+}
+
+@layer utilities {
+  .text-brass { color: #C9A84C; }
+  .border-brass { border-color: #C9A84C; }
+  .bg-olive-glass {
+    background: rgba(45, 51, 25, 0.72);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  }
+}
