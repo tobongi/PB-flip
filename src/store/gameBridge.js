@@ -10,11 +10,18 @@ export function connectGameToStore(game) {
       case 'gameover':
         store.endGame(game.score);
         break;
+      case 'game-won':
+        store.winGame(game.score);
+        break;
+      case 'score-changed':
+        store.setScore(typeof event.score === 'number' ? event.score : game.score);
+        break;
       case 'mode-b-unlocked':
         store.unlockModeB();
         break;
       case 'checkpoint-restored':
         store.setUiState('game');
+        store.setScore(game.score);
         break;
       default:
         originalDispatchEvent(event);

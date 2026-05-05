@@ -408,13 +408,17 @@ export function createPlateStack() {
   return group;
 }
 
+// Each prop has a `prob` weight that drives the random selection in
+// GameController.randomCube. Score is now flat +1 per landing, so the per-prop
+// stayScore tier (previously 0/2/8/16/32) is gone — props differ only in
+// silhouette and rarity.
 const cubeDefinitions = [
-  { model: createCuttingBoard(), stayScore: 0, prob: 3 },
-  { model: createSpiceShaker(), stayScore: 2, prob: 2 },
-  { model: createServingTray(), stayScore: 0, prob: 3 },
-  { model: createGrillBlock(), stayScore: 8, prob: 1 },
-  { model: createTagine(), stayScore: 16, prob: 1 },
-  { model: createPlateStack(), stayScore: 32, prob: 1 },
+  { model: createCuttingBoard(), prob: 3 },
+  { model: createSpiceShaker(), prob: 2 },
+  { model: createServingTray(), prob: 3 },
+  { model: createGrillBlock(), prob: 1 },
+  { model: createTagine(), prob: 1 },
+  { model: createPlateStack(), prob: 1 },
 ];
 
 export const cubes = cubeDefinitions.map((cube, index) => ({

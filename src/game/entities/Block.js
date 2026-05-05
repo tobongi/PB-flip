@@ -11,7 +11,6 @@ export default class Block {
   });
   tweens = [];
 
-  stayScore = 0;
   scale = 1;
   // Actual prop dimensions in world units, derived from the loaded mesh.
   // Each prop has a different silhouette, so the collider and landing
@@ -35,7 +34,6 @@ export default class Block {
   constructor(cube, scale = 1) {
     this.cubeId = cube.id;
     this.scale = scale;
-    this.stayScore = cube.stayScore;
     const model = cube.model.clone();
     model.position.set(0, 0, 0);
     model.traverse(child => {
@@ -136,10 +134,5 @@ export default class Block {
     const canHoldX = Math.abs(offset.x) <= this.padHalfX;
     const canHoldY = Math.abs(offset.y) <= this.padHalfY;
     return canHoldX && canHoldY;
-  }
-
-  hitCenter(position) {
-    const offset = position.clone().sub(this.mesh.position).setZ(0);
-    return offset.length() < 0.08 * Math.min(this.padHalfX, this.padHalfY) * 2;
   }
 }

@@ -47,6 +47,15 @@ export const useGameStore = create(
       });
     },
 
+    winGame: (finalScore) => {
+      const { highest } = get();
+      const newHighest = Math.max(highest, finalScore);
+      if (newHighest > highest) {
+        localStorage.setItem('highest', newHighest.toString());
+      }
+      set({ uiState: 'won', round: finalScore, highest: newHighest });
+    },
+
     unlockModeB: () => {
       localStorage.setItem('modeBUnlocked', 'true');
       set({ modeBUnlocked: true });

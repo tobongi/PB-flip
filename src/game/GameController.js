@@ -8,7 +8,7 @@ import Bottle, { BOTTLE_MODELS } from './entities/Bottle';
 import Block from './entities/Block';
 import { cubes, getCubeById } from './entities/blockCatalog';
 import InputController from './input/InputController';
-import { AddScoreText, CenterText, ScoreText } from './ui/ScoreText';
+import { AddScoreText, CenterText } from './ui/ScoreText';
 import { debugConfig, isDebugEnabled } from './config/debug';
 import {
   BLOCK_PRESSED_H,
@@ -64,9 +64,7 @@ function applyQuaternion(target, value, fallback = IDENTITY_QUATERNION) {
 
 export default class Game extends THREE.EventDispatcher {
   score = 0;
-  combo = 0;
 
-  scroreText = new ScoreText(this.score);
   gameOverText = new CenterText('GAME OVER');
   addScoreText = new AddScoreText();
 
@@ -96,7 +94,6 @@ export default class Game extends THREE.EventDispatcher {
 
   lastCheckpoint = null;
   pendingFailureTimeout = null;
-  pendingStayScoreTimeout = null;
   debugOrbitControls = null;
 
   bottle = new Bottle();
@@ -132,27 +129,150 @@ export default class Game extends THREE.EventDispatcher {
     this.cameraController.captureBaseline();
 
     if (isDebugEnabled() && debugConfig.scene && debugConfig.scene.enableOrbitControls) {
-      this.debugOrbitControls = new OrbitControls(this.camera, this.renderer.domElement);
-      this.debugOrbitControls.enablePan = false;
-      this.debugOrbitControls.enableKeys = false;
-      this.debugOrbitControls.minPolarAngle = 0.1;
-      this.debugOrbitControls.maxPolarAngle = Math.PI / 2 - 0.02;
-      this.debugOrbitControls.minZoom = 0.6;
-      this.debugOrbitControls.maxZoom = 4;
-      this.debugOrbitControls.mouseButtons.ORBIT = THREE.MOUSE.RIGHT;
-      this.debugOrbitControls.mouseButtons.PAN = -1;
-      this.debugOrbitControls.addEventListener('change', () => this.render());
-      console.info('[debug] Right-drag to orbit the scene and use the mouse wheel to zoom.');
+      // Debug-orbit workflow:
+      //   - Right-drag rotates the active camera around its target.
+      //   - Wheel zooms (ortho) or dollies (persp).
+      //   - Every change emits a copy-pasteable snapshot to the console
+      //     describing the current camera pose RELATIVE to the bottle/next
+      //     block, so the level designer can read off the override values
+      //     for the active transition (e.g. 15->16).
+      //   - Setting window.__debug.freezeCam = true (or pressing the F key
+      //     with the canvas focused) suspends CameraController.update so the
+      //     orbit pose isn't overwritten by the per-frame tween.
+      //   - The control rebinds whenever the active camera switches
+      //     (ortho<->persp) so transitions that forceProjection still work.
+      const bindOrbitToActiveCamera = () => {
+        const active = this.cameraController.activeCamera || this.camera;
+        if (this.debugOrbitControls && this.debugOrbitControls.object === active) return;
+        if (this.debugOrbitControls) {
+          this.debugOrbitControls.dispose();
+        }
+        const oc = new OrbitControls(active, this.renderer.domElement);
+        oc.enablePan = true;
+        oc.enableKeys = false;
+        oc.minPolarAngle = 0.05;
+        oc.maxPolarAngle = Math.PI / 2 - 0.02;
+        oc.minZoom = 0.15;
+        oc.maxZoom = 6;
+        oc.minDistance = 1;
+        oc.maxDistance = 80;
+        oc.mouseButtons.ORBIT = THREE.MOUSE.RIGHT;
+        oc.mouseButtons.PAN = THREE.MOUSE.MIDDLE;
+        oc.addEventListener('change', () => {
+          this.render();
+          this._logDebugCameraPose();
+        });
+        this.debugOrbitControls = oc;
+      };
+      bindOrbitToActiveCamera();
+      this._rebindDebugOrbit = bindOrbitToActiveCamera;
+
+      // Throttle pose logging so dragging doesn't flood the console.
+      let lastLog = 0;
+      this._logDebugCameraPose = () => {
+        const now = Date.now();
+        if (now - lastLog < 120) return;
+        lastLog = now;
+        const cam = this.cameraController.activeCamera;
+        const tgt = this.debugOrbitControls.target;
+        const bottle = this.bottle && this.bottle.mesh ? this.bottle.mesh.position : null;
+        const next = this.nextBlock && this.nextBlock.mesh ? this.nextBlock.mesh.position : null;
+        const cur = this.currentBlock && this.currentBlock.mesh ? this.currentBlock.mesh.position : null;
+        const dist = cam.position.distanceTo(tgt);
+        const projection = cam.isOrthographicCamera ? 'ortho' : 'persp';
+        // Compute equivalent override knobs assuming the engine's
+        // default placement (camera opposite travel axis).
+        let angleDeg = null;
+        let lookAtShiftScale = null;
+        let zoomScale = null;
+        if (cur && next) {
+          const travelX = next.x - cur.x;
+          const travelY = next.y - cur.y;
+          const travelLen = Math.hypot(travelX, travelY);
+          if (travelLen > 0.001) {
+            // Camera-to-bottle planar vector; angle relative to -travel
+            const cx = cam.position.x - cur.x;
+            const cy = cam.position.y - cur.y;
+            const camAngle = Math.atan2(cy, cx);
+            const travelAngle = Math.atan2(travelY, travelX);
+            // angle in override = additional rotation from default
+            // (default = camera placed opposite travel, i.e. at angle = travelAngle + PI)
+            let delta = camAngle - (travelAngle + Math.PI);
+            while (delta > Math.PI) delta -= 2 * Math.PI;
+            while (delta < -Math.PI) delta += 2 * Math.PI;
+            angleDeg = +(delta * 180 / Math.PI).toFixed(1);
+            // lookAtShiftScale: project (target - cur) onto travel axis, /travelLen
+            const tx = tgt.x - cur.x;
+            const ty = tgt.y - cur.y;
+            const proj = (tx * travelX + ty * travelY) / (travelLen * travelLen);
+            // engine formula: _lookAtShift = gapT * 1.2 * scale, target = cur + travelAxis * _lookAtShift
+            // here proj = _lookAtShift / travelLen, so scale = proj * travelLen / (gapT * 1.2)
+            // gapT ~ 1 for "near max gap", but engine clamps. Approximate with travelLen/avgGap (~1).
+            lookAtShiftScale = +((proj * travelLen) / 1.2).toFixed(2);
+            // zoomScale ≈ inverse of how dezoomed we are vs idle baseline (ortho only)
+            if (cam.isOrthographicCamera) {
+              const idleZoom = 1.05;
+              zoomScale = +(cam.zoom / idleZoom).toFixed(2);
+            }
+          }
+        }
+        const curIdx = (this.currentBlock && this.currentBlock._tableIndex) != null
+          ? this.currentBlock._tableIndex
+          : this.currentTableIndex;
+        const nxtIdx = (this.nextBlock && this.nextBlock._tableIndex) != null
+          ? this.nextBlock._tableIndex
+          : curIdx + 1;
+        // eslint-disable-next-line no-console
+        console.log(
+          `[debug-cam] ${curIdx}->${nxtIdx} ` +
+          `pos=(${cam.position.x.toFixed(2)}, ${cam.position.y.toFixed(2)}, ${cam.position.z.toFixed(2)}) ` +
+          `target=(${tgt.x.toFixed(2)}, ${tgt.y.toFixed(2)}, ${tgt.z.toFixed(2)}) ` +
+          `dist=${dist.toFixed(2)} zoom=${cam.zoom != null ? cam.zoom.toFixed(3) : 'n/a'} fov=${cam.fov != null ? cam.fov.toFixed(1) : 'n/a'} ` +
+          `proj=${projection} | override≈ {angle: ${angleDeg}°, lookAtShiftScale: ${lookAtShiftScale}, zoomScale: ${zoomScale}}`
+        );
+        // Also expose a structured pose for one-shot copy/paste.
+        window.__debugLastPose = {
+          transition: `${curIdx}->${nxtIdx}`,
+          camPos: [cam.position.x, cam.position.y, cam.position.z],
+          lookAt: [tgt.x, tgt.y, tgt.z],
+          fov: cam.fov || null,
+          zoom: cam.zoom || null,
+          projection,
+          override: { angle: angleDeg, lookAtShiftScale, zoomScale },
+          bottle: cur ? [cur.x, cur.y, cur.z] : null,
+          nextBlock: next ? [next.x, next.y, next.z] : null,
+        };
+      };
+
+      // Freeze toggle: suspends CameraController.update() so orbit "wins".
+      window.__debug = window.__debug || {};
+      window.__debug.freezeCam = true; // default ON when orbit is enabled
+      window.__debug.printLastPose = () => {
+        // eslint-disable-next-line no-console
+        console.log(JSON.stringify(window.__debugLastPose, null, 2));
+        return window.__debugLastPose;
+      };
+      window.addEventListener('keydown', (e) => {
+        if (e.key === 'f' || e.key === 'F') {
+          window.__debug.freezeCam = !window.__debug.freezeCam;
+          // eslint-disable-next-line no-console
+          console.log(`[debug] freezeCam = ${window.__debug.freezeCam}`);
+        }
+      });
+      // eslint-disable-next-line no-console
+      console.info(
+        '[debug] Right-drag to orbit the scene and use the mouse wheel to zoom.\n' +
+        '        Camera pose is logged on every change (override knobs included).\n' +
+        '        Press F to toggle freezeCam (default: ON — runtime tween disabled).\n' +
+        '        Call window.__debug.printLastPose() for a copy-pasteable JSON dump.'
+      );
     }
 
     this.UI.add(this.gameOverText.mesh);
-    this.scroreText.mesh.visible = false;
-    this.UI.add(this.scroreText.mesh);
 
     this.add(this.bottle);
 
     this.restart(20);
-    this.scroreText.mesh.visible = false;
 
     const flipped$ = this.down$
       .filter(() => !this.falling && !this.gameOver && !this.flipping)
@@ -289,7 +409,6 @@ export default class Game extends THREE.EventDispatcher {
     this.bottle.mesh.position.copy(bottlePos);
 
     if (this.currentBlock.canHold(bottlePos)) {
-      this.combo = 0;
       this.bottle.groundZ = this.currentBlock.body.position.z + this.currentBlock.height;
       this.bottle.mesh.position.z = this.bottle.groundZ;
       this.syncBottleBody();
@@ -302,15 +421,17 @@ export default class Game extends THREE.EventDispatcher {
       return;
     }
 
-    if (this.nextBlock.hitCenter(bottlePos)) {
-      this.bottle.waves.wave(++this.combo);
-    } else {
-      this.combo = 0;
-    }
+    // Visual landing flourish — concentric rings on every successful landing.
+    // Decoupled from scoring so the player gets the same feedback on every
+    // land, not only on hit-the-center.
+    this.bottle.waves.wave(1);
 
     this.bottle.groundZ = this.nextBlock.body.position.z + this.nextBlock.height;
     this.bottle.mesh.position.z = this.bottle.groundZ;
-    this.scroreText.text = (this.score += 1);
+    // Simple scoring: +1 per successful landing. No combo, no per-block
+    // bonus, no stay-on-pad accumulator. Easy to read, impossible to confuse.
+    this.score += 1;
+    this.dispatchEvent({ type: 'score-changed', score: this.score });
 
     if (this.score >= 30 && !this.modeBUnlocked) {
       this.modeBUnlocked = true;
@@ -330,15 +451,26 @@ export default class Game extends THREE.EventDispatcher {
     squash.chain(restore);
     squash.start();
 
+    // Last game table — trigger win instead of continuing the run.
+    if (this.gameMode === 'restaurant' && this.nextBlock._tableIndex === 28) {
+      this.handleWin();
+      return;
+    }
+
     this.createBlock();
     this.nextBlock.down();
     this.cameraController.setTarget(this.currentBlock, this.nextBlock);
     this.saveRetryCheckpoint('turn-start');
-    this.scheduleStayScore();
+  }
+
+  handleWin() {
+    this.gameOver = true;
+    setTimeout(() => {
+      this.dispatchEvent({ type: 'game-won' });
+    }, 700);
   }
 
   handleFailedLanding() {
-    this.clearPendingStayScoreTimeout();
     this.bottle.fall();
     this.falling = true;
     this.gameOver = true;
@@ -359,7 +491,6 @@ export default class Game extends THREE.EventDispatcher {
       }
 
       this.falling = false;
-      this.scroreText.mesh.visible = false;
       this.dispatchEvent({ type: 'gameover' });
     }, 800);
   }
@@ -374,17 +505,6 @@ export default class Game extends THREE.EventDispatcher {
     this.bottle.body.sleep();
   }
 
-  scheduleStayScore() {
-    this.clearPendingStayScoreTimeout();
-    const stepsLength = this.steps.length;
-    this.pendingStayScoreTimeout = setTimeout(() => {
-      this.pendingStayScoreTimeout = null;
-      if (this.steps.length === stepsLength && !this.flipping && !this.falling && !this.gameOver) {
-        this.addScore(this.currentBlock.stayScore);
-      }
-    }, 2000);
-  }
-
   clearPendingFailureTimeout() {
     if (this.pendingFailureTimeout) {
       clearTimeout(this.pendingFailureTimeout);
@@ -392,16 +512,8 @@ export default class Game extends THREE.EventDispatcher {
     }
   }
 
-  clearPendingStayScoreTimeout() {
-    if (this.pendingStayScoreTimeout) {
-      clearTimeout(this.pendingStayScoreTimeout);
-      this.pendingStayScoreTimeout = null;
-    }
-  }
-
   clearPendingTimeouts() {
     this.clearPendingFailureTimeout();
-    this.clearPendingStayScoreTimeout();
   }
 
   stopGameplayTweens() {
@@ -500,9 +612,9 @@ export default class Game extends THREE.EventDispatcher {
     return {
       cubeId: block.cubeId,
       scale: block.scale,
-      stayScore: block.stayScore,
       visible: block.mesh.visible,
       tableAngle: block._tableAngle || 0,
+      tableIndex: block._tableIndex == null ? null : block._tableIndex,
       needsLookAt: Boolean(block._needsLookAt),
       cameraOffsetX: block._cameraOffsetX || 0,
       cameraOffsetY: block._cameraOffsetY || 0,
@@ -522,8 +634,8 @@ export default class Game extends THREE.EventDispatcher {
 
   restoreBlock(blockState) {
     const block = new Block(getCubeById(blockState.cubeId), blockState.scale);
-    block.stayScore = blockState.stayScore;
     block._tableAngle = blockState.tableAngle || 0;
+    if (blockState.tableIndex != null) block._tableIndex = blockState.tableIndex;
     block._needsLookAt = Boolean(blockState.needsLookAt);
     block._cameraOffsetX = blockState.cameraOffsetX || 0;
     block._cameraOffsetY = blockState.cameraOffsetY || 0;
@@ -687,7 +799,6 @@ export default class Game extends THREE.EventDispatcher {
       mode: this.gameMode,
       tableIndex: this.currentTableIndex,
       score: this.score,
-      combo: this.combo,
       flipCount: this.flipCount,
       phase: {
         gameOver: logical ? false : this.gameOver,
@@ -703,7 +814,6 @@ export default class Game extends THREE.EventDispatcher {
         quaternion: serializeQuaternion(this.camera.quaternion),
       },
       ui: {
-        scoreVisible: this.scroreText.mesh.visible,
         gameOverVisible: this.gameOverText.mesh.visible,
       },
       pendingSpawnState: {
@@ -741,7 +851,6 @@ export default class Game extends THREE.EventDispatcher {
     );
 
     this.score = restored.score || 0;
-    this.combo = restored.combo || 0;
     this.flipCount = restored.flipCount || 0;
     this.steps = restored.steps ? restored.steps.map(step => step.slice()) : [];
     this.currentTableIndex = restored.tableIndex === undefined ? 0 : restored.tableIndex;
@@ -750,9 +859,8 @@ export default class Game extends THREE.EventDispatcher {
     this.falling = Boolean(phase.falling);
     this.pause = Boolean(phase.pause);
 
-    this.scroreText.text = this.score;
-    this.scroreText.mesh.visible = uiState.scoreVisible === undefined ? !this.gameOver : Boolean(uiState.scoreVisible);
     this.gameOverText.mesh.visible = Boolean(uiState.gameOverVisible);
+    this.dispatchEvent({ type: 'score-changed', score: this.score });
 
     this.clearBlocks();
     restored.blocks.forEach(blockState => {
@@ -762,7 +870,6 @@ export default class Game extends THREE.EventDispatcher {
 
     this.cameraController.setTarget(this.currentBlock, this.nextBlock, true);
     this.cameraController.snap(this.bottle);
-
     if (updateRetryCheckpoint) {
       this.lastCheckpoint = cloneCheckpoint(restored);
     }
@@ -805,12 +912,6 @@ export default class Game extends THREE.EventDispatcher {
     this.render();
   }
 
-  addScore(score) {
-    if (score !== 0) {
-      this.scroreText.text = (this.score += score);
-    }
-  }
-
   createTableBlock() {
     const tableCount = this.restaurantTables.length;
     const tableIndex = ((this.currentTableIndex % tableCount) + tableCount) % tableCount;
@@ -832,6 +933,7 @@ export default class Game extends THREE.EventDispatcher {
     block._needsLookAt = table.needsLookAt || false;
     block._cameraOffsetX = table.cameraOffsetX || 0;
     block._cameraOffsetY = table.cameraOffsetY || 0;
+    block._tableIndex = tableIndex;
     this.currentTableIndex += 1;
     block.mesh.visible = false;
     this.blocks.push(block);
@@ -955,14 +1057,12 @@ export default class Game extends THREE.EventDispatcher {
     this.falling = false;
     this.pause = false;
     this.score = 0;
-    this.combo = 0;
     this.flipCount = 0;
     this.time = 0;
     this.steps = [];
     this.currentTableIndex = this.gameMode === 'restaurant' ? this.resolveRestaurantStartTableIndex() : 0;
-    this.scroreText.mesh.visible = true;
     this.gameOverText.mesh.visible = false;
-    this.scroreText.text = 0;
+    this.dispatchEvent({ type: 'score-changed', score: 0 });
     this.clearBlocks();
     this.createBlock();
     this.createBlock().down();
@@ -994,7 +1094,6 @@ export default class Game extends THREE.EventDispatcher {
       this.perspectiveCamera.updateProjectionMatrix();
     }
     this.UI.position.set(FRUSTUM_WIDTH / -2, FRUSTUM_HEIGHT / -2, 0);
-    this.scroreText.text = this.scroreText.text;
     this.render();
   }
 
@@ -1013,7 +1112,18 @@ export default class Game extends THREE.EventDispatcher {
     TWEEN.update();
     this.world.step(1 / 60, dt, 3);
     this.bottle.update();
-    this.cameraController.update(dt, this.bottle);
+    // When debug-orbit freeze is on, skip the camera tween so right-drag
+    // positioning is stable. Still re-bind orbit if the active camera has
+    // switched (ortho<->persp via forceProjection on a transition).
+    const freezeOn = typeof window !== 'undefined'
+      && window.__debug
+      && window.__debug.freezeCam
+      && this.debugOrbitControls;
+    if (freezeOn) {
+      if (this._rebindDebugOrbit) this._rebindDebugOrbit();
+    } else {
+      this.cameraController.update(dt, this.bottle);
+    }
     this.update$.next();
     this.render();
   };

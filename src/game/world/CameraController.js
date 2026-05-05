@@ -1,5 +1,8 @@
 import * as THREE from 'three';
 
+import { debugConfig } from '../config/debug';
+import { TRANSITION_CAMERA_ANGLES } from '../worlds/restaurant';
+
 // === Tunables ============================================================
 // These values are the spec the user signed off on. Constants live up here
 // so the test suite can sanity-check them and so an art pass can re-tune
@@ -71,13 +74,14 @@ const PITCH_TIERS = [
   (36 * Math.PI) / 180,
   (52 * Math.PI) / 180,
   (68 * Math.PI) / 180,
+  (80 * Math.PI) / 180, // tier 3: near-overhead, lets the camera fly over north/east perimeter walls for transitions on wall-adjacent tables
 ];
 const PITCH_ANGLE = PITCH_TIERS[0];
 // Hard cap on lift used by the smoothed/idealPosition path — kept
 // loose so the highest pitch tier can actually clear ceiling-level
 // brick walls. The runtime still clamps to the pitch-tier-specific
 // lift so the cinematic shot never ramps up to overhead.
-const MAX_VERTICAL_LIFT_PER_TIER = [2.6, 4.2, 5.6];
+const MAX_VERTICAL_LIFT_PER_TIER = [2.6, 4.2, 5.6, 7.0];
 // Tiny extra vertical lift so the optical axis hits just above the
 // label band's vertical center — gives the artwork a slightly
 // upward-from-below presentation that reads as more cinematic than
@@ -106,6 +110,15 @@ const AXIS_SLERP_DAMPING = 3.0;
 // re-introduces the brutal-feeling snap; below ~1.0 it drags so long
 // that the next flip can interrupt mid-blend.
 const PROJECTION_BLEND_DAMPING = 1.6;
+
+// Raw-pose blend smoothing. RAW_POSE_DAMPING controls how fast the camera
+// glides into a captured rawPose on entry and back out to the engine's
+// computed pose on exit (~0.5 s settle at 5.0). RAW_POSE_EXIT_S is how
+// long the smoothing keeps running after the rawPose deactivates — long
+// enough that the engine's recomputed pose for the NEXT transition gets
+// approached gradually instead of snapping the moment the override clears.
+const RAW_POSE_DAMPING = 5.0;
+const RAW_POSE_EXIT_S = 1.0;
 
 // Camera-axis collision sweep. Number of horizontal directions sampled
 // around the bottle when the preferred -travelAxis is occluded.
@@ -190,6 +203,15 @@ export default class CameraController {
   _curZoom = IDLE_ZOOM;
   _tarZoom = IDLE_ZOOM;
 
+  // Adaptive idle framing — updated by setTarget() based on the XY gap between
+  // currentBlock and nextBlock. When the gap is wide the camera pulls back and
+  // the lookAt shifts forward so both the bottle and the landing zone stay in frame.
+  // setStateIdle() reads these so the wider view survives the landing→idle cycle.
+  _lookAtShift = 0;
+  _adaptiveIdleDistance = IDLE_DISTANCE;
+  _adaptiveIdleZoom = IDLE_ZOOM;
+  _adaptiveIdleFov = IDLE_FOV;
+
   // failed-state interpolation: 0 = normal, 1 = fully failed.
   _failedT = 0;
 
@@ -224,7 +246,58 @@ export default class CameraController {
   // (i.e. behind the bottle relative to the upcoming flip), which is
   // usually a clear sightline because the gameplay path is laid out
   // along these axes. Defaults to +Y (typical first-block direction).
+  // NOTE: this axis is OVERWRITTEN by per-transition angle overrides so
+  // the camera position can rotate around the bottle independently of
+  // where the next table actually is.
   _travelAxis = new THREE.Vector3(0, 1, 0);
+
+  // Set to true by setTarget() when a per-transition override fires.
+  // Tells _refreshTargetCameraAxis to TRUST the override direction —
+  // it'll escalate pitch / shrink distance to clear walls but won't
+  // flip the camera to a different quadrant. Without this lock, the
+  // sweep can pick a far-from-preferred sample (e.g. east-of-bottle
+  // when override asked for NW-of-bottle) because that sample has a
+  // clearer raycast — defeats the level-designer's framing intent.
+  _lockedToOverrideAxis = false;
+
+  // Per-transition override may pin a specific pitch tier (0..PITCH_TIERS-1)
+  // bypassing the obstacle-sightline sweep. Used when the level designer
+  // already verified the framing visually and we don't want the runtime
+  // sweep to escalate to a different tier just because a chair or table
+  // brushes the ray. -1 means "auto" (use the sweep's choice).
+  _overridePitchTier = -1;
+
+  // Per-transition override may force a specific projection mode (ortho /
+  // persp). null means "auto" (random swap on landing). When set, the
+  // controller calls setProjection() with this value during setTarget so
+  // the user-tuned framing renders in the lens it was tuned for.
+  _overrideProjection = null;
+
+  // Per-transition raw camera pose. When set by an override, the controller
+  // hard-pins the active camera to these world-space values every frame
+  // until setTarget runs without a rawPose. Bypasses the entire
+  // travelAxis/zoom/pitch/lookAt machinery — used for tables where the
+  // derived knobs can't reach the framing the level designer wants
+  // (typically because of wall geometry the obstacle sweep can't navigate
+  // around). Shape:
+  //   { camPos: [x, y, z], lookAt: [x, y, z], fov?: number, zoom?: number }
+  // fov is read when the active camera is perspective; zoom when ortho.
+  _rawPoseOverride = null;
+
+  // Effective zoom floor for the per-frame lerp. Defaults to MIN_ORTHO_ZOOM
+  // so the camera never goes wider than the label stays readable. When a
+  // per-transition override sets `zoomScale` explicitly, setTarget lowers
+  // this floor to honor the designer's intent — without it, the per-frame
+  // update() clamp at line ~829 silently snaps tar/cur back to MIN_ORTHO_ZOOM
+  // and a 0.65 zoomScale produces no visible change vs. the idle baseline.
+  _zoomMinFloor = MIN_ORTHO_ZOOM;
+
+  // Axis from current block toward next block, ALWAYS the geometric
+  // truth (no override). Used by the lookAt-bias path so that
+  // `lookAtShiftScale` shifts the lookAt toward the actual landing zone
+  // even when an override has rotated `_travelAxis` somewhere else for
+  // cinematic camera placement.
+  _lookAtAxis = new THREE.Vector3(0, 1, 0);
 
   // Best camera axis after the obstacle-collision sweep. May differ
   // from -travelAxis when the preferred direction is blocked by a
@@ -334,9 +407,9 @@ export default class CameraController {
 
   setStateIdle() {
     this.state = CAMERA_STATE.IDLE;
-    this._tarDistance = IDLE_DISTANCE;
-    this._tarFov = IDLE_FOV;
-    this._tarZoom = IDLE_ZOOM;
+    this._tarDistance = this._adaptiveIdleDistance;
+    this._tarFov = this._adaptiveIdleFov;
+    this._tarZoom = this._adaptiveIdleZoom;
   }
 
   setStateCharge() {
@@ -404,6 +477,18 @@ export default class CameraController {
   }
 
   _maybeSwapProjection() {
+    // When the active per-transition override pinned a projection, the
+    // post-landing random swap would undo it (snap() in particular calls
+    // setStateLanding → here right after setTarget pinned ortho/persp). Keep
+    // the override sticky so the user-tuned framing renders in the lens it
+    // was tuned for. Untuned transitions still get the random alternation.
+    if (this._overrideProjection) {
+      this.setProjection(this._overrideProjection);
+      const want = (this._overrideProjection === PROJECTION.PERSP) ? 1 : 0;
+      this._targetProjectionBlend = want;
+      this._smoothedProjectionBlend = want;
+      return;
+    }
     const want = this._rand() < 0.5 ? PROJECTION.ORTHO : PROJECTION.PERSP;
     this.setProjection(want);
   }
@@ -480,11 +565,175 @@ export default class CameraController {
       const travel = new THREE.Vector3().subVectors(
         nextBlock.mesh.position, currentBlock.mesh.position
       ).setZ(0);
-      if (travel.lengthSq() > 1e-6) {
-        this._travelAxis.copy(travel.normalize());
+      const gapXY = travel.length();
+      if (gapXY > 1e-3) {
+        this._travelAxis.copy(travel).multiplyScalar(1 / gapXY);
+        // _lookAtAxis is the GEOMETRIC truth and never gets overwritten
+        // by the per-transition override below — the lookAt bias must
+        // always point at the real next table even when the camera has
+        // been orbited to a cinematic angle.
+        this._lookAtAxis.copy(this._travelAxis);
       }
+
+      // Per-transition override wins; per-table fallback covers everything else.
+      // Per-transition lets us tune entry-vs-exit framing independently
+      // (e.g. approaching table 4 from 3 needs different framing than leaving 4 to 5).
+      let angleHint = 0;
+      let angleSource = 'auto';
+      let transitionZoomScale = 1;
+      let transitionLookAtShiftScale = 1;
+      let transitionZoomScaleExplicit = false;
+      let overridePitchTier = -1;
+      let overrideProjection = null;
+      if (currentBlock._tableIndex != null && nextBlock._tableIndex != null) {
+        const key = `${currentBlock._tableIndex}->${nextBlock._tableIndex}`;
+        // Sweep-harness hook: when scripts/sweep-camera-transitions.js sets
+        // window.__sweepOverride = { key, value }, that value wins for this
+        // single transition. Production has window.__sweepOverride === undefined
+        // so the table lookup behaves as before.
+        let override = TRANSITION_CAMERA_ANGLES[key];
+        if (typeof window !== 'undefined' && window.__sweepOverride
+            && window.__sweepOverride.key === key) {
+          override = window.__sweepOverride.value;
+        }
+        // `variants` schema: pick one of the listed override objects at
+        // random on each setTarget call. Lets a single transition cycle
+        // between distinct cinematic flavors (e.g. close-up vs. line shot)
+        // so repeated playthroughs don't always look identical.
+        if (override !== undefined && Array.isArray(override.variants)) {
+          const idx = Math.min(override.variants.length - 1,
+            Math.floor(this._rand() * override.variants.length));
+          override = override.variants[idx];
+        }
+        if (override !== undefined) {
+          if (typeof override === 'number') {
+            angleHint = override;
+            // Numeric-only override (legacy angle-only form): no rawPose to
+            // inherit, so make sure any stale pin from a previous transition
+            // is cleared.
+            this._rawPoseOverride = null;
+          } else {
+            angleHint = override.angle;
+            if (typeof override.zoomScale === 'number') {
+              transitionZoomScale = override.zoomScale;
+              transitionZoomScaleExplicit = true;
+            }
+            if (typeof override.lookAtShiftScale === 'number') {
+              transitionLookAtShiftScale = override.lookAtShiftScale;
+            }
+            if (typeof override.pitchTier === 'number') {
+              overridePitchTier = Math.max(
+                0, Math.min(PITCH_TIERS.length - 1, Math.round(override.pitchTier))
+              );
+            }
+            if (override.forceProjection === PROJECTION.ORTHO ||
+                override.forceProjection === PROJECTION.PERSP) {
+              overrideProjection = override.forceProjection;
+            }
+            if (override.rawPose
+                && Array.isArray(override.rawPose.camPos)
+                && Array.isArray(override.rawPose.lookAt)) {
+              this._rawPoseOverride = {
+                camPos: override.rawPose.camPos.slice(0, 3),
+                lookAt: override.rawPose.lookAt.slice(0, 3),
+                fov: typeof override.rawPose.fov === 'number' ? override.rawPose.fov : null,
+                zoom: typeof override.rawPose.zoom === 'number' ? override.rawPose.zoom : null,
+              };
+            } else {
+              this._rawPoseOverride = null;
+            }
+          }
+          angleSource = 'transition';
+        } else {
+          this._rawPoseOverride = null;
+        }
+      } else {
+        this._rawPoseOverride = null;
+      }
+      if (angleSource !== 'transition') {
+        const fallback = currentBlock._tableAngle || 0;
+        if (Math.abs(fallback) > 1e-4) {
+          angleHint = fallback;
+          angleSource = 'table';
+        }
+      }
+      if (Math.abs(angleHint) > 1e-4) {
+        this._travelAxis.set(Math.cos(angleHint), Math.sin(angleHint), 0);
+      }
+      // Lock the sweep to this axis only when the override came from the
+      // explicit transition table AND specified a non-zero rotation. An
+      // override with `angle: 0` means "I want the zoom/lookAt overrides
+      // but let the sweep pick the camera position freely" — useful for
+      // wall-adjacent tables where any rotation pushes the camera through
+      // a wall and the auto-sweep finds the best clear direction.
+      this._lockedToOverrideAxis = (angleSource === 'transition' && Math.abs(angleHint) > 1e-4);
+      this._overridePitchTier = overridePitchTier;
+      this._overrideProjection = overrideProjection;
+      // When the override pins a projection, apply it now so the camera
+      // we screenshot/render through is the one the framing was tuned for.
+      // Force the blend target as well: setProjection short-circuits when the
+      // current projection already matches, but the per-frame blend lerp
+      // (decoupled from `this.projection` since the projection-blend rewrite)
+      // can still be heading toward the OTHER target if a recent landing
+      // randomized it. Pin both so the camera renders ortho/persp deterministically.
+      if (overrideProjection) {
+        if (overrideProjection !== this.projection) {
+          this.setProjection(overrideProjection);
+        }
+        const want = (overrideProjection === PROJECTION.PERSP) ? 1 : 0;
+        this._targetProjectionBlend = want;
+        this._smoothedProjectionBlend = want;
+      }
+
+      if (debugConfig.logCameraTransitions) {
+        const curIdx = currentBlock._tableIndex;
+        const nxtIdx = nextBlock._tableIndex;
+        const autoDeg = (Math.atan2(travel.y, travel.x) * 180 / Math.PI).toFixed(0);
+        const overrideDesc = angleSource === 'auto'
+          ? 'auto'
+          : `${(angleHint * 180 / Math.PI).toFixed(0)}° (${angleSource})`;
+        console.log(`[CAM] ${curIdx}→${nxtIdx}  travel=${autoDeg}°  override=${overrideDesc}`);
+      }
+
+      // Adaptive framing: when the block gap is large the next landing zone
+      // clips off the top of the ortho frustum. Pull the camera back and
+      // shift the lookAt forward so both the bottle and the target stay in
+      // frame without changing the cinematic feel on close pairs.
+      // Gap range [2, 6] world units → gapT [0, 1].
+      // transitionLookAtShiftScale > 1 biases the lookAt further toward the
+      // next table; useful when wall constraints cap the camera distance and
+      // we still need the next table to read as the focus of the shot.
+      const gapT = Math.max(0, Math.min(1, (gapXY - 2) / 4));
+      this._lookAtShift = gapT * 1.2 * transitionLookAtShiftScale;
+      this._adaptiveIdleDistance = IDLE_DISTANCE + gapT * (5.6 - IDLE_DISTANCE);
+      this._adaptiveIdleZoom = Math.max(MIN_ORTHO_ZOOM, IDLE_ZOOM - gapT * (IDLE_ZOOM - MIN_ORTHO_ZOOM));
+      this._adaptiveIdleFov = IDLE_FOV + gapT * 8;
+      if (transitionZoomScale !== 1) {
+        // When the override EXPLICITLY sets zoomScale (vs. inheriting the
+        // default 1), the level designer has visually verified the framing
+        // they want and we honor that intent below the runtime safety floor.
+        // Without this bypass, a zoomScale of 0.65 against an idle base of
+        // 1.05 silently clamps back to 1.05 and the wider cinematic view the
+        // designer asked for never reaches the camera. Floor at 0.3 keeps
+        // ortho from inverting; that's the only invariant we have to protect.
+        const floor = transitionZoomScaleExplicit ? 0.3 : MIN_ORTHO_ZOOM;
+        this._adaptiveIdleZoom = Math.max(floor, this._adaptiveIdleZoom * transitionZoomScale);
+        this._adaptiveIdleDistance = Math.min(MAX_CAMERA_DISTANCE, this._adaptiveIdleDistance / transitionZoomScale);
+      }
+      // Lower the per-frame zoom floor so update() doesn't snap our tuned
+      // tar/cur zoom back to MIN_ORTHO_ZOOM. Restored to MIN_ORTHO_ZOOM on
+      // any setTarget without an explicit zoomScale, so the floor only stays
+      // relaxed for as long as the override is active.
+      this._zoomMinFloor = transitionZoomScaleExplicit ? 0.3 : MIN_ORTHO_ZOOM;
+      this._tarDistance = this._adaptiveIdleDistance;
+      this._tarZoom = this._adaptiveIdleZoom;
+      this._tarFov = this._adaptiveIdleFov;
     } else {
       this._lookAtTarget.set(0, 0, 0);
+      this._lookAtShift = 0;
+      this._adaptiveIdleDistance = IDLE_DISTANCE;
+      this._adaptiveIdleZoom = IDLE_ZOOM;
+      this._adaptiveIdleFov = IDLE_FOV;
     }
 
     // Defer the obstacle-clear camera-axis sweep to the next update()
@@ -601,8 +850,16 @@ export default class CameraController {
         : this._trackBottle.position;
       this._lookAtTarget.copy(bottlePos);
     } else if (bottle && bottle.getLabelWorldPosition) {
-      // IDLE / CHARGE / LANDING / FAILED: lookAt the label center.
+      // IDLE / CHARGE: look ahead of the label toward the landing zone so
+      // both the bottle and the next table stay in frame on wide gaps.
+      // LANDING / FAILED: no shift — keep the camera centered on the label.
       this._lookAtTarget.copy(labelPos);
+      const applyShift = this.state === CAMERA_STATE.IDLE || this.state === CAMERA_STATE.CHARGE;
+      if (applyShift && this._lookAtShift > 0 && this._lookAtAxis.lengthSq() > 1e-6) {
+        // Bias toward the ACTUAL next table (auto direction), not the
+        // overridden _travelAxis used for camera placement.
+        this._lookAtTarget.addScaledVector(this._lookAtAxis, this._lookAtShift);
+      }
     }
     // else: keep whatever setTarget() last established.
 
@@ -622,7 +879,7 @@ export default class CameraController {
     // nor breathing/lerp overshoot can pull the camera into the walls
     // or shrink the label below the readable threshold.
     const tarDistance = Math.min(tarDistanceRaw, MAX_CAMERA_DISTANCE);
-    const tarZoom = Math.max(tarZoomRaw, MIN_ORTHO_ZOOM);
+    const tarZoom = Math.max(tarZoomRaw, this._zoomMinFloor);
     const tarFov = Math.min(this._tarFov, MAX_PERSP_FOV);
     this._curDistance += (tarDistance - this._curDistance) * t;
     this._curFov += (tarFov - this._curFov) * t;
@@ -630,7 +887,7 @@ export default class CameraController {
     // Belt-and-braces post-clamp in case the lerp overshoots once
     // a frame at very high dt (alt-tab, devtools open, etc).
     if (this._curDistance > MAX_CAMERA_DISTANCE) this._curDistance = MAX_CAMERA_DISTANCE;
-    if (this._curZoom < MIN_ORTHO_ZOOM) this._curZoom = MIN_ORTHO_ZOOM;
+    if (this._curZoom < this._zoomMinFloor) this._curZoom = this._zoomMinFloor;
     if (this._curFov > MAX_PERSP_FOV) this._curFov = MAX_PERSP_FOV;
 
     // 4. Compute ideal camera position.
@@ -698,6 +955,95 @@ export default class CameraController {
     // 8. Score-popup billboarding (preserves original behaviour).
     if (this.addScoreText && this.addScoreText.mesh) {
       this.addScoreText.mesh.lookAt(this.activeCamera.position);
+    }
+
+    // 9. Raw-pose override blend. Runs LAST so it wins over the entire
+    // travelAxis/zoom/pitch/lookAt pipeline and the failed-grade hooks. Used
+    // for transitions where the level designer captured an exact world-space
+    // camera position via the debug-orbit harness and the derived knobs
+    // can't reproduce the framing (e.g. wall-trapped tables 15→16).
+    //
+    // Both ENTRY and EXIT are smoothed: a damped lerp pulls the camera from
+    // whatever pose the engine just computed toward the captured target
+    // (entry), and after the override deactivates the same lerp keeps
+    // running for RAW_POSE_EXIT_S seconds while it tracks the engine's
+    // recomputed pose (exit). Without exit smoothing, the next transition
+    // would snap the camera the moment rawPose cleared. Without entry
+    // smoothing, the held pose would tear the framing on the first frame.
+    // The inactive camera is mirrored so a projection hand-off mid-blend
+    // doesn't pop. Outside the window, the engine pipeline owns the cam
+    // and we only track its pose so the next entry edge starts smoothly.
+    {
+      const rp = this._rawPoseOverride;
+      const cam = this.activeCamera;
+      const exitWindow = this._rawPoseExitTimer || 0;
+      if (rp || exitWindow > 0) {
+        if (!this._blendedRawInit) {
+          this._blendedRawCamPos = new THREE.Vector3().copy(cam.position);
+          const seedDir = new THREE.Vector3();
+          cam.getWorldDirection(seedDir);
+          this._blendedRawLookAt = new THREE.Vector3()
+            .copy(cam.position)
+            .add(seedDir.multiplyScalar(10));
+          this._blendedRawFov = cam.fov != null ? cam.fov : IDLE_FOV;
+          this._blendedRawZoom = cam.zoom != null ? cam.zoom : IDLE_ZOOM;
+          this._blendedRawInit = true;
+        }
+        let targetCamX, targetCamY, targetCamZ;
+        let targetLookX, targetLookY, targetLookZ;
+        let targetFov = null;
+        let targetZoom = null;
+        if (rp) {
+          targetCamX = rp.camPos[0]; targetCamY = rp.camPos[1]; targetCamZ = rp.camPos[2];
+          targetLookX = rp.lookAt[0]; targetLookY = rp.lookAt[1]; targetLookZ = rp.lookAt[2];
+          targetFov = rp.fov;
+          targetZoom = rp.zoom;
+          this._rawPoseExitTimer = RAW_POSE_EXIT_S;
+        } else {
+          targetCamX = cam.position.x; targetCamY = cam.position.y; targetCamZ = cam.position.z;
+          targetLookX = this._currentLookAt.x;
+          targetLookY = this._currentLookAt.y;
+          targetLookZ = this._currentLookAt.z;
+          targetFov = cam.fov;
+          targetZoom = cam.zoom;
+          this._rawPoseExitTimer = Math.max(0, exitWindow - dt);
+        }
+        const t = 1 - Math.exp(-RAW_POSE_DAMPING * dt);
+        this._blendedRawCamPos.x += (targetCamX - this._blendedRawCamPos.x) * t;
+        this._blendedRawCamPos.y += (targetCamY - this._blendedRawCamPos.y) * t;
+        this._blendedRawCamPos.z += (targetCamZ - this._blendedRawCamPos.z) * t;
+        this._blendedRawLookAt.x += (targetLookX - this._blendedRawLookAt.x) * t;
+        this._blendedRawLookAt.y += (targetLookY - this._blendedRawLookAt.y) * t;
+        this._blendedRawLookAt.z += (targetLookZ - this._blendedRawLookAt.z) * t;
+        if (targetFov != null) {
+          this._blendedRawFov += (targetFov - this._blendedRawFov) * t;
+        }
+        if (targetZoom != null) {
+          this._blendedRawZoom += (targetZoom - this._blendedRawZoom) * t;
+        }
+        cam.position.copy(this._blendedRawCamPos);
+        cam.up.set(0, 0, 1);
+        cam.lookAt(this._blendedRawLookAt);
+        if (cam.isPerspectiveCamera && targetFov != null) {
+          cam.fov = this._blendedRawFov;
+          cam.updateProjectionMatrix();
+        }
+        if (cam.isOrthographicCamera && targetZoom != null) {
+          cam.zoom = this._blendedRawZoom;
+          cam.updateProjectionMatrix();
+        }
+        const inactive = (cam === this.orthoCamera) ? this.perspectiveCamera : this.orthoCamera;
+        inactive.position.copy(cam.position);
+        inactive.quaternion.copy(cam.quaternion);
+      } else if (this._blendedRawInit) {
+        // Outside the rawPose window: keep the smoothed pose tracking the
+        // engine's pose so the next entry edge starts from the right
+        // place. No write-back — the engine pipeline owns the framing.
+        this._blendedRawCamPos.copy(cam.position);
+        this._blendedRawLookAt.copy(this._currentLookAt);
+        if (cam.fov != null) this._blendedRawFov = cam.fov;
+        if (cam.zoom != null) this._blendedRawZoom = cam.zoom;
+      }
     }
   }
 
@@ -987,8 +1333,13 @@ export default class CameraController {
 
     if (bottle && bottle.getLabelWorldPosition) {
       const labelPos = bottle.getLabelWorldPosition();
+      // Apply the same forward shift as update() IDLE so the snapped pose
+      // matches what the player will see in steady-state.
       this._lookAtTarget.copy(labelPos);
-      this._currentLookAt.copy(labelPos);
+      if (this._lookAtShift > 0 && this._lookAtAxis.lengthSq() > 1e-6) {
+        this._lookAtTarget.addScaledVector(this._lookAtAxis, this._lookAtShift);
+      }
+      this._currentLookAt.copy(this._lookAtTarget);
       // Run the sweep immediately and snap to the obstacle-clear axis
       // so the snapped pose matches what the eventual idle update lands on.
       this._refreshTargetCameraAxis(bottle);
@@ -1051,6 +1402,69 @@ export default class CameraController {
       this._targetCameraAxis.copy(preferred);
       this._targetPitchIdx = 0;
       this._targetDistanceScale = 1;
+      return;
+    }
+    // When an explicit transition override is active we trust it: the
+    // camera axis stays at `preferred` (i.e. -travelAxis). Pitch escalates
+    // only if the lowest tier is wall-blocked or sightline-occluded. This
+    // prevents the unconstrained sweep from flipping the camera to the
+    // opposite quadrant just because that side has a clearer raycast.
+    if (this._lockedToOverrideAxis) {
+      this._targetCameraAxis.copy(preferred);
+      // Explicit pitchTier in the override pins the camera to that tier
+      // unconditionally — the designer already verified the framing visually
+      // and the obstacle sweep should not second-guess it.
+      if (this._overridePitchTier >= 0) {
+        this._targetPitchIdx = this._overridePitchTier;
+        this._targetDistanceScale = 1;
+        return;
+      }
+      // Default to tier 0 (cinematic low pitch). Only escalate pitch /
+      // shrink distance if the sightline at tier 0 is actually BLOCKED
+      // (not merely wall-hugging — wall-hug just means a wall sits near
+      // the FOV edge, which is fine and often visually desirable for
+      // cinematic indoor shots). Without this default-to-tier-0, the
+      // lock always picks the highest pitch tier that "clears" walls,
+      // which produces a top-down look that loses the orbit-left feel.
+      const sweepDistance = Math.min(this._tarDistance || IDLE_DISTANCE, MAX_CAMERA_DISTANCE);
+      const candidates = this.scene.children.filter(c => {
+        if (!c.visible) return false;
+        if (c === this.orthoCamera || c === this.perspectiveCamera) return false;
+        const t = c.type;
+        if (t === 'DirectionalLight' || t === 'HemisphereLight' ||
+            t === 'AmbientLight' || t === 'PointLight') return false;
+        return true;
+      });
+      const labelPos = bottle.getLabelWorldPosition();
+      let pickedTier = 0;
+      let pickedScale = 1;
+      const pitch0 = PITCH_TIERS[0];
+      const reach0 = Math.max(0.1, sweepDistance * Math.cos(pitch0) - SWEEP_MARGIN);
+      const lift0 = Math.min(sweepDistance * Math.sin(pitch0), MAX_VERTICAL_LIFT_PER_TIER[0]) + Z_LIFT;
+      const vis0 = this._scoreSightline(labelPos, preferred, reach0, lift0, candidates);
+      if (!vis0.clear) {
+        // Sightline at tier 0 is broken (something between camera and bottle).
+        // Try higher pitches; if nothing clears, accept tier 0 with shrunk dist.
+        let escalated = false;
+        for (let tier = 1; tier < PITCH_TIERS.length; tier++) {
+          const pitch = PITCH_TIERS[tier];
+          const reach = Math.max(0.1, sweepDistance * Math.cos(pitch) - SWEEP_MARGIN);
+          const lift = Math.min(sweepDistance * Math.sin(pitch), MAX_VERTICAL_LIFT_PER_TIER[tier]) + Z_LIFT;
+          const vis = this._scoreSightline(labelPos, preferred, reach, lift, candidates);
+          if (vis.clear) {
+            pickedTier = tier;
+            pickedScale = 1;
+            escalated = true;
+            break;
+          }
+        }
+        if (!escalated) {
+          pickedTier = 0;
+          pickedScale = Math.min(1, Math.max(0.55, vis0.clearance / reach0));
+        }
+      }
+      this._targetPitchIdx = pickedTier;
+      this._targetDistanceScale = pickedScale;
       return;
     }
     if (!this._raycaster) {
@@ -1299,6 +1713,8 @@ export const _internals = {
   FAILED_LIGHT_SCALE,
   Z_LIFT,
   PITCH_ANGLE,
+  PITCH_TIERS,
+  MAX_VERTICAL_LIFT_PER_TIER,
   FLIP_FOLLOW_DISTANCE,
   FLIP_LOCKED_DISTANCE,
   FLIP_FOLLOW_FOV,

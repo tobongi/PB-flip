@@ -9,9 +9,11 @@ export const debugConfig = {
   retryFromCheckpointOnFailure: true,
   // Logs each extracted restaurant table index, name, position, and camera angle to the console during scene setup.
   logTablePositions: true,
+  // Logs each camera transition (currentBlock -> nextBlock) with travel direction and override angle.
+  logCameraTransitions: false,
   scene: {
     // Enables debug-only orbit inspection on the canvas. Right mouse drag rotates and the mouse wheel zooms.
-    enableOrbitControls: true,
+    enableOrbitControls: false,
     // Draws an XY grid slightly above the floor so restaurant coordinates are easier to inspect.
     showGrid: true,
     // Total width and height of the debug grid in world units.

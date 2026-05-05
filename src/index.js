@@ -1,9 +1,11 @@
 import BottleFlip from './game';
 import React from 'react';
 import ReactDOM from 'react-dom';
+import * as THREE from 'three';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useGameStore } from './store/gameStore';
 import { connectGameToStore } from './store/gameBridge';
+import GLTFLoader from './gltfLoader';
 import {
   logoFloat,
   logoBreath,
@@ -19,6 +21,10 @@ import {
 const game = connectGameToStore(new BottleFlip());
 game.start();
 window.__game = game;
+// Expose the zustand store so headless harnesses (and dev consoles) can
+// drive the UI state machine — e.g. `__store.getState().startGame()` to
+// skip the JOUER landing overlay.
+window.__store = require('./store/gameStore').useGameStore;
 
 const shellStyle = {
   position: 'fixed',
@@ -102,7 +108,7 @@ class Loading extends React.Component {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.35, duration: 0.6 }}
           style={{
-            fontFamily: '"Josefin Sans", sans-serif',
+            fontFamily: '"Montserrat", sans-serif',
             fontSize: 'clamp(7px, 2.5vw, 11px)',
             fontWeight: 300,
             color: 'rgba(140,179,63,0.7)',
@@ -158,7 +164,7 @@ class Loading extends React.Component {
           transition={{ delay: 0.6, duration: 0.6 }}
           style={{
             marginTop: 'clamp(10px, 4vw, 18px)',
-            fontFamily: '"Josefin Sans", sans-serif',
+            fontFamily: '"Montserrat", sans-serif',
             fontSize: 'clamp(8px, 2.8vw, 12px)',
             fontWeight: 300,
             color: 'rgba(255,255,255,0.25)',
@@ -358,7 +364,7 @@ class Landing extends React.Component {
           >
             <div
               style={{
-                fontFamily: '"Josefin Sans", sans-serif',
+                fontFamily: '"Montserrat", sans-serif',
                 fontSize: 'clamp(7px, 2.4vw, 11px)',
                 fontWeight: 400,
                 color: 'rgba(255,255,255,0.35)',
@@ -395,7 +401,7 @@ class Landing extends React.Component {
             whileHover={{ scale: 1.05, borderColor: 'rgba(212,160,23,0.6)' }}
             whileTap={{ scale: 0.95 }}
             style={{
-              fontFamily: '"Josefin Sans", sans-serif',
+              fontFamily: '"Montserrat", sans-serif',
               fontSize: 'clamp(8px, 2.8vw, 13px)',
               fontWeight: 400,
               color: 'rgba(255,255,255,0.5)',
@@ -423,7 +429,7 @@ class Landing extends React.Component {
           whileTap={{ scale: 0.95 }}
           style={{
             marginTop: highest > 0 ? 'clamp(16px, 7vw, 32px)' : 'clamp(24px, 10vw, 48px)',
-            fontFamily: '"Josefin Sans", sans-serif',
+            fontFamily: '"Montserrat", sans-serif',
             fontWeight: 700,
             fontSize: 'clamp(12px, 4vw, 18px)',
             letterSpacing: 'clamp(3px, 1.5vw, 7px)',
@@ -461,7 +467,7 @@ class Landing extends React.Component {
           style={{
             position: 'absolute',
             bottom: 'clamp(16px, 7vw, 34px)',
-            fontFamily: '"Josefin Sans", sans-serif',
+            fontFamily: '"Montserrat", sans-serif',
             fontSize: 'clamp(6px, 2vw, 10px)',
             fontWeight: 300,
             color: 'rgba(255,255,255,0.2)',
@@ -500,6 +506,110 @@ class GameCanvas extends React.Component {
       />
     );
   }
+}
+
+function Hud() {
+  const score = useGameStore(state => state.score);
+  const highest = useGameStore(state => state.highest);
+
+  return (
+    <div
+      data-id="hud"
+      style={{
+        position: 'absolute',
+        top: 'clamp(18px, 4.8vw, 38px)',
+        left: '50%',
+        transform: 'translateX(-50%)',
+        textAlign: 'center',
+        pointerEvents: 'none',
+        userSelect: 'none',
+        zIndex: 10,
+      }}
+    >
+      {/* Soft spotlight for legibility (not a panel/box) */}
+      <div
+        aria-hidden="true"
+        style={{
+          position: 'absolute',
+          left: '50%',
+          top: '50%',
+          transform: 'translate(-50%, -46%)',
+          width: 'min(88vw, 520px)',
+          height: 'clamp(90px, 18vw, 160px)',
+          background:
+            'radial-gradient(closest-side at 50% 35%, rgba(0,0,0,0.42) 0%, rgba(0,0,0,0.22) 44%, rgba(0,0,0,0.00) 72%)',
+          pointerEvents: 'none',
+          filter: 'blur(0.2px)',
+        }}
+      />
+
+      <motion.div
+        key={score}
+        variants={scorePop}
+        initial="initial"
+        animate="animate"
+        style={{
+          position: 'relative',
+          fontFamily: '"Cormorant Garamond", Georgia, serif',
+          fontSize: 'clamp(44px, 16vw, 90px)',
+          fontWeight: 700,
+          lineHeight: 0.95,
+          letterSpacing: '0.02em',
+          fontVariantNumeric: 'tabular-nums lining-nums',
+          color: '#FFFFFF',
+          backgroundImage:
+            'linear-gradient(180deg, rgba(255,255,255,0.98) 0%, rgba(255,248,236,0.92) 44%, rgba(255,255,255,0.86) 100%)',
+          WebkitBackgroundClip: 'text',
+          backgroundClip: 'text',
+          WebkitTextFillColor: 'transparent',
+          textShadow:
+            '0 1px 0 rgba(0,0,0,0.35), 0 10px 30px rgba(0,0,0,0.33), 0 26px 70px rgba(0,0,0,0.22)',
+          filter:
+            'drop-shadow(0 1px 0 rgba(0,0,0,0.15)) drop-shadow(0 12px 34px rgba(0,0,0,0.26))',
+        }}
+      >
+        {score}
+      </motion.div>
+
+      <div
+        style={{
+          position: 'relative',
+          marginTop: 'clamp(4px, 1.1vw, 10px)',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          gap: 'clamp(8px, 2.6vw, 14px)',
+          fontFamily: '"Montserrat", sans-serif',
+          fontSize: 'clamp(10px, 3.2vw, 14px)',
+          fontWeight: 300,
+          color: 'rgba(255,255,255,0.92)',
+          letterSpacing: 'clamp(1px, 0.55vw, 3px)',
+          textTransform: 'none',
+          textShadow: '0 6px 24px rgba(0,0,0,0.35)',
+        }}
+      >
+        <span
+          aria-hidden="true"
+          style={{
+            width: 'clamp(18px, 5.8vw, 32px)',
+            height: '1px',
+            background: 'linear-gradient(90deg, transparent, rgba(212,160,23,0.82), transparent)',
+            opacity: 0.9,
+          }}
+        />
+        <span style={{ whiteSpace: 'nowrap' }}>Best : {highest}</span>
+        <span
+          aria-hidden="true"
+          style={{
+            width: 'clamp(18px, 5.8vw, 32px)',
+            height: '1px',
+            background: 'linear-gradient(90deg, transparent, rgba(212,160,23,0.82), transparent)',
+            opacity: 0.9,
+          }}
+        />
+      </div>
+    </div>
+  );
 }
 
 class Score extends React.Component {
@@ -575,7 +685,7 @@ class Score extends React.Component {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2, duration: 0.6 }}
             style={{
-              fontFamily: '"Josefin Sans", sans-serif',
+              fontFamily: '"Montserrat", sans-serif',
               fontSize: 'clamp(7px, 2.4vw, 11px)',
               fontWeight: 300,
               color: 'rgba(140,179,63,0.7)',
@@ -621,7 +731,7 @@ class Score extends React.Component {
                 exit={{ opacity: 0, y: -10 }}
                 transition={{ delay: 0.6, duration: 0.5 }}
                 style={{
-                  fontFamily: '"Josefin Sans", sans-serif',
+                  fontFamily: '"Montserrat", sans-serif',
                   fontSize: 'clamp(8px, 2.6vw, 12px)',
                   fontWeight: 600,
                   color: '#D4A017',
@@ -656,7 +766,7 @@ class Score extends React.Component {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.55, duration: 0.6 }}
             style={{
-              fontFamily: '"Josefin Sans", sans-serif',
+              fontFamily: '"Montserrat", sans-serif',
               fontSize: 'clamp(8px, 2.6vw, 12px)',
               fontWeight: 300,
               color: 'rgba(255,255,255,0.35)',
@@ -678,7 +788,7 @@ class Score extends React.Component {
           whileTap={{ scale: 0.95 }}
           style={{
             marginTop: 'clamp(20px, 9vw, 44px)',
-            fontFamily: '"Josefin Sans", sans-serif',
+            fontFamily: '"Montserrat", sans-serif',
             fontWeight: 700,
             fontSize: 'clamp(11px, 3.8vw, 17px)',
             letterSpacing: 'clamp(2px, 1.2vw, 6px)',
@@ -707,7 +817,7 @@ class Score extends React.Component {
             whileTap={{ scale: 0.95 }}
             style={{
               marginTop: 'clamp(10px, 4vw, 20px)',
-              fontFamily: '"Josefin Sans", sans-serif',
+              fontFamily: '"Montserrat", sans-serif',
               fontSize: 'clamp(8px, 2.6vw, 12px)',
               fontWeight: 400,
               color: 'rgba(255,255,255,0.4)',
@@ -731,7 +841,7 @@ class Score extends React.Component {
           style={{
             position: 'absolute',
             bottom: 'clamp(16px, 7vw, 34px)',
-            fontFamily: '"Josefin Sans", sans-serif',
+            fontFamily: '"Montserrat", sans-serif',
             fontSize: 'clamp(6px, 2vw, 10px)',
             fontWeight: 300,
             color: 'rgba(255,255,255,0.15)',
@@ -740,6 +850,361 @@ class Score extends React.Component {
           }}
         >
           La Maison PB
+        </motion.div>
+      </motion.div>
+    );
+  }
+}
+
+// ─── Sauce bottle GLB (real model used in-game) ──────────────────────────────
+const _winBottleSceneCache = {};
+function _loadWinBottleScene(url) {
+  if (!_winBottleSceneCache[url]) {
+    _winBottleSceneCache[url] = new Promise((resolve, reject) => {
+      new GLTFLoader().load(url, gltf => resolve(gltf.scene), undefined, reject);
+    });
+  }
+  return _winBottleSceneCache[url];
+}
+
+class BottleGLB extends React.Component {
+  componentDidMount() {
+    const url = this.props.variant === 'spicy'
+      ? '/models/sauce_verte_spicy.glb'
+      : '/models/sauce_verte_originale.glb';
+
+    const W = 256, H = 560;
+    const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+    renderer.setSize(W, H, false);
+    renderer.setClearColor(0x000000, 0);
+    renderer.domElement.style.width = '100%';
+    renderer.domElement.style.height = '100%';
+    renderer.domElement.style.display = 'block';
+    this.mount.appendChild(renderer.domElement);
+
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(26, W / H, 0.1, 100);
+    camera.position.set(0, 0, 9);
+
+    scene.add(new THREE.AmbientLight(0xffffff, 0.85));
+    const key = new THREE.DirectionalLight(0xffffff, 1.05);
+    key.position.set(2.2, 4.5, 5);
+    scene.add(key);
+    const rim = new THREE.DirectionalLight(0xffe0a8, 0.45);
+    rim.position.set(-3, 1.5, 2);
+    scene.add(rim);
+
+    const group = new THREE.Group();
+    scene.add(group);
+
+    this.renderer = renderer;
+    this.scene = scene;
+    this.camera = camera;
+    this.group = group;
+    this._mounted = true;
+
+    _loadWinBottleScene(url).then(gltfScene => {
+      if (!this._mounted) return;
+      const model = gltfScene.clone(true);
+      // Native model is Y-up which is what we want for DOM-style rendering.
+      const box = new THREE.Box3().setFromObject(model);
+      const size = box.getSize(new THREE.Vector3());
+      const center = box.getCenter(new THREE.Vector3());
+      model.position.sub(center);
+      const fit = 3.4 / Math.max(size.x, size.y, size.z, 1e-6);
+      model.scale.setScalar(fit);
+      model.traverse(child => {
+        if (child.isMesh && child.material) {
+          child.material = child.material.clone();
+        }
+      });
+      group.add(model);
+    }).catch(err => {
+      console.warn('Win bottle GLB failed:', err);
+    });
+
+    const start = performance.now();
+    const tick = () => {
+      if (!this._mounted) return;
+      this.raf = requestAnimationFrame(tick);
+      const t = (performance.now() - start) / 1000;
+      group.rotation.y = t * 0.5 * (this.props.variant === 'spicy' ? -1 : 1);
+      renderer.render(scene, camera);
+    };
+    tick();
+  }
+
+  componentWillUnmount() {
+    this._mounted = false;
+    if (this.raf) cancelAnimationFrame(this.raf);
+    if (this.renderer) {
+      this.renderer.dispose();
+      const el = this.renderer.domElement;
+      if (el && el.parentNode) el.parentNode.removeChild(el);
+    }
+  }
+
+  render() {
+    return (
+      <div
+        ref={el => (this.mount = el)}
+        style={{
+          width: '100%',
+          height: '100%',
+          pointerEvents: 'none',
+        }}
+      />
+    );
+  }
+}
+
+// ─── Win screen ──────────────────────────────────────────────────────────────
+class Win extends React.Component {
+  handleRestart = () => {
+    game.restart();
+    useGameStore.getState().startGame();
+  };
+
+  render() {
+    return (
+      <motion.div
+        data-id="win-screen"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        transition={{ duration: 0.55 }}
+        style={{
+          position: 'absolute', left: 0, right: 0, top: 0, bottom: 0,
+          background: 'linear-gradient(180deg, #8CB33F 0%, #4a7a1e 55%, #2D3319 100%)',
+          color: '#ffffff',
+          display: 'flex', flexDirection: 'column', alignItems: 'center',
+          justifyContent: 'center',
+          padding: 'clamp(8px, 2vmin, 20px)',
+          boxSizing: 'border-box',
+          overflow: 'auto',
+        }}
+      >
+        {/* Corner accents */}
+        {[[['top', 'left'], ['Top', 'Left']], [['top', 'right'], ['Top', 'Right']], [['bottom', 'left'], ['Bottom', 'Left']], [['bottom', 'right'], ['Bottom', 'Right']]].map(([[v, h], [V, H]], i) => (
+          <div key={i} style={{
+            position: 'fixed',
+            [v]: 'clamp(8px, 2vmin, 20px)',
+            [h]: 'clamp(8px, 2vmin, 20px)',
+            width: 'clamp(18px, 4vmin, 40px)',
+            height: 'clamp(18px, 4vmin, 40px)',
+            [`border${V}`]: '2px solid rgba(212,160,23,0.6)',
+            [`border${H}`]: '2px solid rgba(212,160,23,0.6)',
+            pointerEvents: 'none',
+          }} />
+        ))}
+
+        {/* Centered content stack — sized by vmin so it fits any aspect ratio */}
+        <div style={{
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          justifyContent: 'center',
+          width: '100%',
+          maxWidth: 'min(540px, 96vmin)',
+          margin: 'auto',
+          gap: 'clamp(6px, 1.6vmin, 18px)',
+          flex: '0 0 auto',
+        }}>
+          {/* PB Logo with halo */}
+          <motion.div
+            initial={{ opacity: 0, y: -30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2, duration: 0.7 }}
+            style={{
+              position: 'relative',
+              width: 'clamp(120px, 28vmin, 240px)',
+              height: 'clamp(120px, 28vmin, 240px)',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+            }}
+          >
+            <motion.div
+              variants={haloSpin}
+              animate="animate"
+              style={{
+                position: 'absolute', top: '50%', left: '50%',
+                width: '108%', height: '108%',
+                border: '1px solid rgba(255,255,255,0.35)',
+                borderRadius: '50%',
+                borderTopColor: 'rgba(255,255,255,0.7)',
+                transform: 'translate(-50%, -50%)',
+              }}
+            />
+            <motion.img
+              src="/images/sticker-rond-pb.webp"
+              alt="Poulet Braisé"
+              variants={logoBreath}
+              animate="animate"
+              style={{
+                width: '100%',
+                height: '100%',
+                objectFit: 'contain',
+                filter: 'drop-shadow(0 4px 20px rgba(0,0,0,0.35))',
+                display: 'block',
+              }}
+            />
+          </motion.div>
+
+          {/* Title */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.35, duration: 0.6 }}
+            style={{
+              fontFamily: '"Montserrat", sans-serif',
+              fontSize: 'clamp(8px, 1.6vmin, 12px)',
+              fontWeight: 600,
+              letterSpacing: 'clamp(3px, 0.9vmin, 7px)',
+              textTransform: 'uppercase',
+              color: 'rgba(255,255,255,0.75)',
+              textAlign: 'center',
+            }}
+          >
+            Tous les couverts retournés
+          </motion.div>
+
+          {/* Bottles — real GLB models from the game */}
+          <div style={{
+            display: 'flex',
+            gap: 'clamp(12px, 4vmin, 48px)',
+            alignItems: 'flex-end',
+            justifyContent: 'center',
+            width: '100%',
+          }}>
+            {/* Left bottle — flips counterclockwise */}
+            <motion.div
+              initial={{ opacity: 0, y: 60 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.55, duration: 0.55 }}
+              style={{
+                width: 'clamp(64px, 16vmin, 130px)',
+                height: 'clamp(140px, 35vmin, 286px)',
+              }}
+            >
+              <motion.div
+                animate={{ rotate: [0, -360], y: [0, -90, 0] }}
+                transition={{
+                  rotate: { delay: 1.05, duration: 0.75, ease: 'easeInOut' },
+                  y:      { delay: 1.05, duration: 0.75, times: [0, 0.45, 1], ease: 'easeInOut' },
+                }}
+                style={{ transformOrigin: 'center bottom', width: '100%', height: '100%' }}
+              >
+                <BottleGLB variant="originale" />
+              </motion.div>
+            </motion.div>
+
+            {/* Right bottle — flips clockwise */}
+            <motion.div
+              initial={{ opacity: 0, y: 60 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.65, duration: 0.55 }}
+              style={{
+                width: 'clamp(64px, 16vmin, 130px)',
+                height: 'clamp(140px, 35vmin, 286px)',
+              }}
+            >
+              <motion.div
+                animate={{ rotate: [0, 360], y: [0, -90, 0] }}
+                transition={{
+                  rotate: { delay: 1.05, duration: 0.75, ease: 'easeInOut' },
+                  y:      { delay: 1.05, duration: 0.75, times: [0, 0.45, 1], ease: 'easeInOut' },
+                }}
+                style={{ transformOrigin: 'center bottom', width: '100%', height: '100%' }}
+              >
+                <BottleGLB variant="spicy" />
+              </motion.div>
+            </motion.div>
+          </div>
+
+          {/* "Bien joué !" — fades in from below after flip lands */}
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 1.85, duration: 0.65 }}
+            style={{
+              fontFamily: '"Fugaz One", Georgia, serif',
+              fontSize: 'clamp(34px, 8vmin, 68px)',
+              fontWeight: 700,
+              color: '#fff',
+              textShadow: '0 4px 32px rgba(0,0,0,0.25)',
+              letterSpacing: '0.01em',
+              lineHeight: 1,
+              textAlign: 'center',
+            }}
+          >
+            Bien joué&nbsp;!
+          </motion.div>
+
+          {/* Gold divider */}
+          <motion.div
+            initial={{ scaleX: 0, opacity: 0 }}
+            animate={{ scaleX: 1, opacity: 1 }}
+            transition={{ delay: 2.1, duration: 0.5 }}
+            style={{
+              width: 'clamp(40px, 10vmin, 80px)',
+              height: '1px',
+              background: 'linear-gradient(90deg, transparent, rgba(212,160,23,0.8), transparent)',
+              transformOrigin: 'center',
+            }}
+          />
+
+          {/* Recommencer button */}
+          <motion.div
+            onClick={this.handleRestart}
+            initial={{ opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 2.3, duration: 0.6 }}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            style={{
+              fontFamily: '"Montserrat", sans-serif',
+              fontWeight: 700,
+              fontSize: 'clamp(11px, 2.4vmin, 17px)',
+              letterSpacing: 'clamp(2px, 0.8vmin, 6px)',
+              textTransform: 'uppercase',
+              color: '#fff',
+              background: 'linear-gradient(180deg, #E8750A 0%, #C45F00 100%)',
+              padding: 'clamp(10px, 2.4vmin, 18px) clamp(34px, 8vmin, 72px)',
+              borderRadius: '999px',
+              cursor: 'pointer',
+              border: '1px solid rgba(212,160,23,0.4)',
+              boxShadow: '0 6px 30px rgba(232,117,10,0.4), inset 0 1px 0 rgba(255,255,255,0.2)',
+              textShadow: '0 1px 2px rgba(0,0,0,0.3)',
+              marginTop: 'clamp(4px, 1.2vmin, 12px)',
+            }}
+          >
+            Recommencer
+          </motion.div>
+        </div>
+
+        {/* Footer */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 2.7, duration: 0.8 }}
+          style={{
+            position: 'fixed',
+            left: 0,
+            right: 0,
+            bottom: 'clamp(10px, 2.4vmin, 28px)',
+            textAlign: 'center',
+            fontFamily: '"Montserrat", sans-serif',
+            fontSize: 'clamp(6px, 1.4vmin, 10px)',
+            fontWeight: 300,
+            color: 'rgba(255,255,255,0.25)',
+            letterSpacing: 'clamp(1px, 0.5vmin, 4px)',
+            textTransform: 'uppercase',
+            pointerEvents: 'none',
+          }}
+        >
+          Poulet Braisé depuis 2009
         </motion.div>
       </motion.div>
     );
@@ -783,9 +1248,12 @@ class App extends React.Component {
         return <Loading key="loading" />;
       case 'gameover':
         return <Score key="gameover" />;
+      case 'won':
+        return <Win key="won" />;
       case 'landing':
         return <Landing key="landing" />;
       case 'game':
+        return <Hud key="hud" />;
       default:
         return null;
     }
