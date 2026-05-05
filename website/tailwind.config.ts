@@ -27,8 +27,8 @@ export default {
         },
       },
       fontFamily: {
-        display: ['"Cormorant Garamond"', 'Georgia', 'serif'],
-        sans: ['"Josefin Sans"', 'system-ui', 'sans-serif'],
+        display: ['"Fugaz One"', 'Georgia', 'serif'],
+        sans: ['"Montserrat"', 'system-ui', 'sans-serif'],
       },
       fontSize: {
         '2xs': ['0.6875rem', { lineHeight: '1rem' }],

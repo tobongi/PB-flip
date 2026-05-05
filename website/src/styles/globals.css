@@ -23,11 +23,13 @@
     @apply bg-olive-900 text-cream font-sans antialiased;
     background-color: #1a1f0e;
     color: #F5F0E8;
+    font-family: 'Montserrat', system-ui, sans-serif;
   }
 
   h1, h2, h3 {
     @apply font-display;
-    font-feature-settings: "kern" 1, "liga" 1;
+    font-family: 'Fugaz One', Georgia, serif;
+    font-feature-settings: "kern" 1;
   }
 
   ::selection {

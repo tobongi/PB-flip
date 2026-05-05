@@ -15,17 +15,17 @@ const FEATURES = [
   {
     icon: '🍽️',
     title: 'Restaurant Mode',
-    body: 'Navigate the full restaurant — 28 tables, escalating difficulty, increasing bottle sizes.',
+    body: 'Navigate all 28 tables of a real PB dining room. Gaps grow, landing zones shrink — générosité in every flip.',
   },
   {
     icon: '∞',
     title: 'Freeplay',
-    body: 'Endless mode with procedurally generated platforms. Unlock after clearing the restaurant.',
+    body: 'Endless mode with procedurally generated platforms. No ceiling, no stress — just passion.',
   },
   {
     icon: '⚗️',
-    title: 'Physics Engine',
-    body: 'CANNON.js rigid-body physics with custom velocity curves for satisfying, skill-based flips.',
+    title: 'Real Physics',
+    body: 'Rigid-body simulation, not scripted animation. Every bottle is authentic — qualité you can feel.',
   },
 ];
 
@@ -33,17 +33,17 @@ const STEPS = [
   {
     n: '01',
     title: 'Tap to flip',
-    body: 'Hold and release anywhere on screen. The longer you hold, the higher the flip arc.',
+    body: 'Hold anywhere on screen, then release. The longer you hold, the higher the arc.',
   },
   {
     n: '02',
-    title: 'Land the bottle',
-    body: 'The bottle must land upright on the platform. Combo flips score double, then triple.',
+    title: 'Land it upright',
+    body: 'The bottle must stand on the platform. Consecutive clean landings multiply your score.',
   },
   {
     n: '03',
-    title: 'Clear the restaurant',
-    body: 'Progress through 28 tables. Each table is harder — bigger gaps, smaller landing zones.',
+    title: 'Clear the room',
+    body: '28 tables, one restaurant. Each table demands more precision than the last.',
   },
 ];
 
@@ -60,7 +60,7 @@ const FeaturesSection = forwardRef<HTMLElement>(function FeaturesSection(_props,
           viewport={{ once: true, margin: '-100px' }}
           transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
         >
-          What you're getting into
+          Boldly authentic.
         </motion.h2>
         <motion.p
           className="font-sans text-xs uppercase tracking-widest text-cream/30 text-center mb-16"
@@ -69,7 +69,7 @@ const FeaturesSection = forwardRef<HTMLElement>(function FeaturesSection(_props,
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.1 }}
         >
-          Two modes · Authentic physics · Zero ads
+          Two modes · Real physics · Sauce included
         </motion.p>
 
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-px bg-olive-700/30">
@@ -210,7 +210,7 @@ export default function LandingPage() {
           animate="show"
           className="relative mt-6 font-sans text-sm sm:text-base uppercase tracking-widest text-cream/50 max-w-xs"
         >
-          The bottle flip game you never knew you needed
+          Générosité in every flip.
         </motion.p>
 
         <motion.div

@@ -13,17 +13,19 @@ const fadeUp = {
 const SECTIONS = [
   {
     heading: 'What is this',
-    body: 'PB Flip is a browser game built as a digital expression of the Poulet Braisé brand. It started as an internal experiment — a bottle flip mechanic inside a 3D restaurant — and grew into something worth sharing.',
+    body: 'PB Flip is a browser game built as a digital expression of the Poulet Braisé brand — a French restaurant chain specializing in braised chicken since 2009. It started as an internal experiment and grew into something worth sharing with everyone.',
   },
   {
     heading: 'How it works',
-    body: 'The game uses Three.js for 3D rendering and CANNON.js for rigid-body physics. The restaurant world is a custom scene with 28 tables arranged across a stylized dining room. Every flip is simulated in real physics — no scripted animations.',
+    body: 'Three.js renders a faithful 3D replica of a PB dining room. CANNON.js runs full rigid-body physics — every flip is simulated, never scripted. The sauce bottles are the real ones.',
   },
   {
     heading: 'Two modes',
-    body: 'Restaurant Mode challenges you to navigate the full dining room in order. Freeplay Mode, unlocked after beating the restaurant, is an endless procedurally generated mode with no ceiling on your score.',
+    body: 'Restaurant Mode: navigate all 28 tables in order, gap by gap, until you\'ve served the whole room. Freeplay Mode, unlocked after that, is endless — no ceiling on your score, no closing time.',
   },
 ];
+
+const VALUES = ['Qualité', 'Générosité', 'Convivialité', 'Innovation', 'Passion'];
 
 export default function AboutPage() {
   return (
@@ -73,10 +75,10 @@ export default function AboutPage() {
           />
           <div>
             <p className="font-sans text-xs uppercase tracking-widest text-brass mb-1">
-              Poulet Braisé
+              Poulet Braisé · Since 2009
             </p>
             <p className="font-sans text-sm text-cream/50">
-              A rotisserie chicken restaurant that takes itself just seriously enough.
+              Braised chicken, gourmet sauces, and a dining room worth flipping bottles in.
             </p>
           </div>
         </motion.div>
@@ -100,6 +102,26 @@ export default function AboutPage() {
             </motion.div>
           ))}
         </div>
+
+        <motion.div
+          custom={6}
+          variants={fadeUp}
+          initial="hidden"
+          animate="show"
+          className="mt-12 pt-10 border-t border-olive-700/30"
+        >
+          <p className="font-sans text-xs uppercase tracking-widest text-brass mb-5">Brand values</p>
+          <div className="flex flex-wrap gap-3">
+            {VALUES.map((v) => (
+              <span
+                key={v}
+                className="font-sans text-xs uppercase tracking-widest px-4 py-2 border border-olive-700/50 text-cream/50 hover:border-brass hover:text-brass transition-colors duration-200"
+              >
+                {v}
+              </span>
+            ))}
+          </div>
+        </motion.div>
 
         <motion.div
           custom={7}
