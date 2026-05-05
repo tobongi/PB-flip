@@ -388,14 +388,6 @@ export default class Bottle {
           this.bottle.remove(this.bottle.children[i]);
         }
         this.bottle.add(model);
-
-        // Tell any listening renderer to pre-compile the new material(s) so
-        // we don't pay a 50–100 ms GLSL compile stall on the first frame the
-        // model is rendered (which would land mid-flip and look like a
-        // skipped frame). The window event is consumed by GameController.
-        if (typeof window !== 'undefined' && window.dispatchEvent && window.CustomEvent) {
-          window.dispatchEvent(new window.CustomEvent('pb-flip:compile-needed'));
-        }
       })
       .catch(err => {
         console.warn('Bottle GLB load failed, keeping current mesh:', err);

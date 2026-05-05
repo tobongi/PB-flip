@@ -128,14 +128,6 @@ export default class Game extends THREE.EventDispatcher {
     );
     this.cameraController.captureBaseline();
 
-    if (typeof window !== 'undefined' && window.addEventListener) {
-      window.addEventListener('pb-flip:compile-needed', () => {
-        if (this.renderer && this.renderer.compile && this.scene && this.cameraController) {
-          this.renderer.compile(this.scene, this.cameraController.activeCamera);
-        }
-      });
-    }
-
     if (isDebugEnabled() && debugConfig.scene && debugConfig.scene.enableOrbitControls) {
       // Debug-orbit workflow:
       //   - Right-drag rotates the active camera around its target.
@@ -1084,12 +1076,6 @@ export default class Game extends THREE.EventDispatcher {
     this.cameraController.snap(this.bottle);
     this.saveRetryCheckpoint('restart');
     this._markShadowsDirty();
-    // Pre-compile every material in the scene now so the first flip doesn't
-    // hit a one-time GLSL compile stall (~100 ms on mobile GPUs). Cheap to
-    // do at restart, paid once.
-    if (this.renderer && this.renderer.compile) {
-      this.renderer.compile(this.scene, this.cameraController.activeCamera);
-    }
     return cloneCheckpoint(this.lastCheckpoint);
   }
 
