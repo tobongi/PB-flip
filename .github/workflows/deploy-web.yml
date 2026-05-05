@@ -46,6 +46,16 @@ jobs:
           # Index assets at /static/ already include the homepage prefix from the build; no rewrite needed.
           grep -c '/PB-flip/models/' out/static/js/main.*.js || true
 
+      - name: Cache-bust the JS/CSS in index.html
+        # Force browsers (and any stale SW) to fetch fresh by appending a build-time query.
+        run: |
+          set -eux
+          STAMP=$(date +%s)
+          sed -i \
+            -e "s|\(static/js/main\.[a-f0-9]\+\.js\)|\1?v=${STAMP}|g" \
+            -e "s|\(static/css/main\.[a-f0-9]\+\.css\)|\1?v=${STAMP}|g" \
+            out/index.html
+
       - name: Add SPA fallback (404.html)
         run: cp out/index.html out/404.html
 
