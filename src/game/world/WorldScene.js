@@ -60,11 +60,14 @@ export default function createWorldScene() {
   const UI = new THREE.Group();
 
   renderer.setSize(SCREEN_WIDTH, SCREEN_HEIGHT);
-  // Pin DPR to 1 — at DPR 2 we'd be drawing 4x the pixels per frame, at DPR 3
-  // we'd be drawing 9x. The browser upscales the canvas; the visual cost is
-  // minor, the framerate cost is enormous. This is the single biggest knob
-  // for "60+ fps on any device".
-  renderer.setPixelRatio(1);
+  // DPR strategy: render at 1.5× when the device is retina, native otherwise.
+  // The 1.5× canvas gets downsampled by the browser, which is essentially
+  // free supersample anti-aliasing — far cheaper than MSAA. At native DPR 2
+  // a phone draws 2.25× pixels of DPR=1 (vs 4× for DPR=2), and at native
+  // DPR 3 we still cap at 2.25× (vs 9× full DPR=3). On a DPR=1 monitor the
+  // cap is a no-op, no perf penalty.
+  const nativeDpr = window.devicePixelRatio || 1;
+  renderer.setPixelRatio(Math.min(1.5, nativeDpr));
 
   // --- Color management ---
   // Linear-to-sRGB conversion is essentially free (per-fragment swizzle);

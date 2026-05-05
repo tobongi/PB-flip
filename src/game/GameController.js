@@ -1118,13 +1118,14 @@ export default class Game extends THREE.EventDispatcher {
     this.time = time;
 
     TWEEN.update();
-    // Physics is cheap (single dynamic body, sleeping otherwise) but the
-    // catch-up substeps were the actual mid-flip stutter on mobile. With
-    // maxSubSteps=3 a single 50 ms frame would do 3 physics steps, making
-    // the next frame even slower — classic death spiral. Step at the
-    // arcade-friendly 30 Hz with at most one substep so each frame's
-    // physics cost is bounded and predictable.
-    this.world.step(1 / 30, dt, 1);
+    // Physics only matters during the failed-landing fall (bottle is the
+    // only dynamic body; everything else is static). Block press/bounce and
+    // bottle flip are tween-driven, not physics-driven. Skip the world step
+    // entirely when nothing's actually simulating — saves a few ms per frame
+    // and removes catch-up substep risk during steady-state play.
+    if (this.flipping || this.falling || this.bottle.connected) {
+      this.world.step(1 / 30, dt, 1);
+    }
     this.bottle.update();
     // While the bottle is in motion (flipping or falling), the shadow needs
     // to follow it. When idle/landed, the shadow stays cached — this is the
