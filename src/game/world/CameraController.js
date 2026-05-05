@@ -122,7 +122,12 @@ const RAW_POSE_EXIT_S = 1.0;
 
 // Camera-axis collision sweep. Number of horizontal directions sampled
 // around the bottle when the preferred -travelAxis is occluded.
-const SWEEP_SAMPLES = 24;
+// 12 samples = 30° resolution around the bottle, plenty for picking a
+// clean camera direction. Was 24 (15°), which doubled raycast work for
+// imperceptible quality gain. The sweep runs once per turn so cost is
+// per-tap, not per-frame, but on mobile the synchronous burst caused the
+// post-release stutter.
+const SWEEP_SAMPLES = 12;
 // Margin under MAX_CAMERA_DISTANCE for the collision raycast — gives
 // the camera a small buffer so it isn't kissing the wall.
 const SWEEP_MARGIN = 0.4;
@@ -161,7 +166,13 @@ const OCCLUDE_FAN_DISTANCE = 6.0;     // how far fan rays extend
 const OCCLUDE_BLOCKING_COOLDOWN = 0.6;
 // Only run the full raycast every N frames to keep per-frame cost low.
 // The fade animation still runs every frame for smooth visuals.
-const OCCLUDE_RAYCAST_INTERVAL = 4;
+// Occlusion raycasts are heavy (the comment on _updateOcclusionFading
+// quotes ~60 ms / 241 meshes). Detection used to run every 4 frames; on a
+// long flip with 6+ detection windows that single overhead exceeded the
+// frame budget repeatedly. 8 frames halves the cost. Detection is also
+// fully skipped during FLIP state — the camera is tween-driven on a known
+// arc, occlusion fade-in mid-flight reads as a flicker, not as a UX win.
+const OCCLUDE_RAYCAST_INTERVAL = 8;
 
 // Mid-flip behaviour modes. Only FOLLOW is used for all flips since it provides
 // the most reliable tracking with active obstacle avoidance.
@@ -771,7 +782,14 @@ export default class CameraController {
     // 0. Run the obstacle sweep if it's dirty (set on every setTarget).
     //    Done before computing labelPos so the sweep uses the same
     //    label position as the rest of the frame.
-    if (this._sweepDirty && bottle) {
+    // Defer the obstacle sweep until the camera is no longer in FLIP state.
+    // setTarget is called immediately before setStateFlip in releaseFlipCharge,
+    // so without this gate the sweep's 12-sample raycast would run on the very
+    // first frame after release — exactly when the user perceives the freeze.
+    // The flip's camera trajectory is tween-driven and overrides the swept
+    // axis anyway, so the result is only needed when the camera settles into
+    // LANDING/IDLE for the next round.
+    if (this._sweepDirty && bottle && this.state !== CAMERA_STATE.FLIP) {
       this._refreshTargetCameraAxis(bottle);
       this._sweepDirty = false;
       if (this._sweepSnap) {
@@ -1131,7 +1149,13 @@ export default class CameraController {
     if (!this.scene || !labelPos) return;
 
     this._occFrameCounter++;
-    const runDetection = this._occFrameCounter % OCCLUDE_RAYCAST_INTERVAL === 0;
+    // Skip detection entirely during the flip. The cooldown timers continue
+    // to tick (cheap) so any blocking meshes from a prior detection window
+    // still fade out smoothly, but we don't pay the ~60 ms raycast cost
+    // mid-flight where the user perceives it as stutter.
+    const runDetection =
+      this.state !== CAMERA_STATE.FLIP &&
+      this._occFrameCounter % OCCLUDE_RAYCAST_INTERVAL === 0;
 
     // Always tick cooldowns and apply fading (cheap).
     // Only run raycasts on detection frames.
@@ -1147,12 +1171,22 @@ export default class CameraController {
       if (totalDist < 0.1) { this._applyOcclusionFade(dt); return; }
       this._occRayDir.multiplyScalar(1 / totalDist);
 
-      const up = new THREE.Vector3(0, 0, 1);
-      const right = new THREE.Vector3().crossVectors(this._occRayDir, up).normalize();
+      // Cache the per-detection scratch vectors. Was 5 fresh Vector3 allocs
+      // per detection frame — on a long flip with multiple detections that's
+      // pure GC churn.
+      if (!this._occUp) {
+        this._occUp = new THREE.Vector3(0, 0, 1);
+        this._occRight = new THREE.Vector3();
+        this._occCamUp = new THREE.Vector3();
+        this._occTmpDir = new THREE.Vector3();
+        this._occTmpTarget = new THREE.Vector3();
+      }
+      const up = this._occUp;
+      const right = this._occRight.crossVectors(this._occRayDir, up).normalize();
       if (right.lengthSq() < 1e-6) right.set(1, 0, 0);
-      const camUp = new THREE.Vector3().crossVectors(right, this._occRayDir).normalize();
-      const tmpDir = new THREE.Vector3();
-      const tmpTarget = new THREE.Vector3();
+      const camUp = this._occCamUp.crossVectors(right, this._occRayDir).normalize();
+      const tmpDir = this._occTmpDir;
+      const tmpTarget = this._occTmpTarget;
 
       const meshes = this._getOccluderMeshes();
 
@@ -1215,12 +1249,19 @@ export default class CameraController {
 
   _collectProximityOccluders(camPos, labelPos, meshes) {
     const radiusSq = OCCLUDE_PROXIMITY_RADIUS * OCCLUDE_PROXIMITY_RADIUS;
-    const camToLabel = new THREE.Vector3().subVectors(labelPos, camPos);
+    if (!this._proxCamToLabel) {
+      this._proxCamToLabel = new THREE.Vector3();
+      this._proxViewDir = new THREE.Vector3();
+      this._proxTmpBox = new THREE.Box3();
+      this._proxTmpPoint = new THREE.Vector3();
+      this._proxTmpRel = new THREE.Vector3();
+    }
+    const camToLabel = this._proxCamToLabel.subVectors(labelPos, camPos);
     const camToLabelDist = Math.max(1e-3, camToLabel.length());
-    const viewDir = camToLabel.clone().multiplyScalar(1 / camToLabelDist);
-    const tmpBox = new THREE.Box3();
-    const tmpPoint = new THREE.Vector3();
-    const tmpRel = new THREE.Vector3();
+    const viewDir = this._proxViewDir.copy(camToLabel).multiplyScalar(1 / camToLabelDist);
+    const tmpBox = this._proxTmpBox;
+    const tmpPoint = this._proxTmpPoint;
+    const tmpRel = this._proxTmpRel;
     // Reject only when the bbox's CLOSEST point to the camera sits behind
     // the view plane. Big walls (e.g. perimeter brick) have a center that
     // can land behind the camera while the wall surface still wraps the
@@ -1471,9 +1512,9 @@ export default class CameraController {
       this._raycaster = new THREE.Raycaster();
       this._raycaster.near = 0.001;
     }
-    if (this.scene.updateMatrixWorld) {
-      this.scene.updateMatrixWorld(true);
-    }
+    // The renderer's previous frame already walked scene.updateMatrixWorld;
+    // calling it again here was a redundant ~ms of pointless tree traversal
+    // that landed right after release on a long-jump frame.
     const labelPos = bottle.getLabelWorldPosition();
     const sweepDistance = Math.min(this._tarDistance || IDLE_DISTANCE, MAX_CAMERA_DISTANCE);
 
@@ -1492,14 +1533,29 @@ export default class CameraController {
       return true;
     });
 
-    // Sort directions by alignment with the preferred axis. Same list is
-    // reused across all pitch tiers — the only thing that changes per
-    // tier is the pitch / lift / horizontal reach.
-    const samples = [];
+    // Cache the SWEEP_SAMPLES direction vectors statically — they're a
+    // function of the constant SWEEP_SAMPLES only. Was rebuilt every sweep,
+    // allocating SWEEP_SAMPLES * Vector3 + the wrapper objects.
+    if (!CameraController._sweepDirsCache) {
+      CameraController._sweepDirsCache = [];
+      for (let i = 0; i < SWEEP_SAMPLES; i++) {
+        const angle = (i / SWEEP_SAMPLES) * Math.PI * 2;
+        CameraController._sweepDirsCache.push(
+          new THREE.Vector3(Math.cos(angle), Math.sin(angle), 0)
+        );
+      }
+    }
+    const sweepDirs = CameraController._sweepDirsCache;
+    if (!this._sweepSampleScratch || this._sweepSampleScratch.length !== SWEEP_SAMPLES) {
+      this._sweepSampleScratch = new Array(SWEEP_SAMPLES);
+      for (let i = 0; i < SWEEP_SAMPLES; i++) {
+        this._sweepSampleScratch[i] = { dir: sweepDirs[i], score: 0 };
+      }
+    }
+    const samples = this._sweepSampleScratch;
     for (let i = 0; i < SWEEP_SAMPLES; i++) {
-      const angle = (i / SWEEP_SAMPLES) * Math.PI * 2;
-      const dir = new THREE.Vector3(Math.cos(angle), Math.sin(angle), 0);
-      samples.push({ dir, score: preferred.dot(dir) });
+      samples[i].dir = sweepDirs[i];
+      samples[i].score = preferred.dot(sweepDirs[i]);
     }
     samples.sort((a, b) => b.score - a.score);
 
