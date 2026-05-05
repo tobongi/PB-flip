@@ -1079,20 +1079,13 @@ export default class Game extends THREE.EventDispatcher {
     return cloneCheckpoint(this.lastCheckpoint);
   }
 
-  // Manually drive shadow-map updates so they don't run every frame. Marked
-  // dirty by setWorld / restart / createBlock; consumed once on the next
-  // render. shadowMap.autoUpdate is disabled in WorldScene.
-  _markShadowsDirty() {
-    if (this.renderer && this.renderer.shadowMap) {
-      this.renderer.shadowMap.needsUpdate = true;
-    }
-  }
+  // Shadows are disabled in WorldScene for the runtime perf budget; this is
+  // intentionally a no-op so the call sites can stay if shadows ever come
+  // back behind a settings flag.
+  _markShadowsDirty() {}
 
   render() {
     this.renderer.render(this.scene, this.cameraController.activeCamera);
-    if (this.renderer && this.renderer.shadowMap && this.renderer.shadowMap.needsUpdate) {
-      this.renderer.shadowMap.needsUpdate = false;
-    }
   }
 
   resize() {

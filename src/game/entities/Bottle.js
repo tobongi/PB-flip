@@ -269,17 +269,9 @@ export default class Bottle {
     // so we shrink overall to keep similar in-game footprint.
     this.bottle.scale.set(0.4, 0.4, 0.4);
 
-    // Cast shadows only from the major silhouette parts (lathe body + cap
-    // + nozzle). Trim rings, threads, and inner shells contribute nothing to
-    // the visible shadow but multiply the shadow-pass draw count by ~10.
-    this.bottle.traverse(child => {
-      if (child.isMesh) {
-        const isTorusOrThread = child.geometry && child.geometry.type === 'TorusGeometry';
-        const isInnerShell = child.material === innerMat;
-        child.castShadow = !isTorusOrThread && !isInnerShell;
-        child.receiveShadow = true;
-      }
-    });
+    // Shadows are disabled in WorldScene; leave castShadow/receiveShadow at
+    // their defaults (false). The contact-shadow blob below grounds the
+    // bottle visually without a real shadow pass.
 
     this.mesh.add(this.bottle);
     this.mesh.position.z = 1;
@@ -389,25 +381,8 @@ export default class Bottle {
         model.position.z -= scaledBox.min.z;
         model.position.z += this.boundingBox.min.z / parentScale;
 
-        // Only the largest meshes cast shadows — small props (cap rings,
-        // tip details) inflate the shadow draw count without changing the
-        // visible shadow silhouette.
-        const meshes = [];
-        model.traverse(child => {
-          if (child.isMesh) {
-            child.receiveShadow = true;
-            meshes.push(child);
-          }
-        });
-        const _tmpSize = new THREE.Vector3();
-        const meshSize = mesh => {
-          if (!mesh.geometry) return 0;
-          if (!mesh.geometry.boundingBox) mesh.geometry.computeBoundingBox();
-          return mesh.geometry.boundingBox.getSize(_tmpSize).length();
-        };
-        meshes.sort((a, b) => meshSize(b) - meshSize(a));
-        meshes.slice(0, 3).forEach(mesh => { mesh.castShadow = true; });
-        meshes.slice(3).forEach(mesh => { mesh.castShadow = false; });
+        // Shadows are disabled globally (WorldScene); leave the cast/receive
+        // flags at their defaults.
 
         for (let i = this.bottle.children.length - 1; i >= 0; i--) {
           this.bottle.remove(this.bottle.children[i]);
