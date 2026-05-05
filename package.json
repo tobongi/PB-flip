@@ -1,6 +1,6 @@
 {
   "name": "game",
-  "homepage": ".",
+  "homepage": "https://tobongi.github.io/PB-flip",
   "version": "0.1.0",
   "private": true,
   "dependencies": {

@@ -1,5 +1,12 @@
 ![Play](./screenshots/0.play.gif)
 
+## Play
+
+- 🌐 Web: **https://tobongi.github.io/PB-flip/**
+- 📱 Android APK: download from the latest [build run](https://github.com/tobongi/PB-flip/actions/workflows/build-android.yml) (artifact: `bottle-flip-debug-apk`) and sideload
+
+Hosting / distribution details: [docs/HOSTING.md](./docs/HOSTING.md).
+
 ## Start
 
 ```bash

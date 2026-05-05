@@ -2,6 +2,11 @@
 
 > Goal: best perceived performance on phones, **zero hosting cost**, **no game-logic rewrite**.
 
+## Live targets
+
+- **Web (live):** https://tobongi.github.io/PB-flip/ — auto-deployed from `master` by `.github/workflows/deploy-web.yml`. Free, served from GitHub Pages CDN, zero bandwidth cap.
+- **Android APK (live):** auto-built on every push to `master` by `.github/workflows/build-android.yml`. Download the `bottle-flip-debug-apk` artifact from the Actions tab → most recent green run. Sideload on any Android phone (enable "Install from unknown sources").
+
 ## TL;DR
 
 | Channel | Free? | Phone perf | Effort | What it is |
@@ -119,6 +124,18 @@ KTX2 textures are GPU-native (no decompress step), often 5–10× smaller, and s
 This is left as an opt-in step because it touches asset pipelines; the Capacitor wrapper alone already gives the biggest device-side perf jump.
 
 ---
+
+## Upgrading the web host to Cloudflare Pages later
+
+GitHub Pages is the free autonomous default. To switch the web host to Cloudflare Pages (more POPs, faster TTFB in some regions, same $0):
+
+1. Cloudflare Dashboard → Pages → Connect to Git → pick `tobongi/PB-flip`
+2. Build command: `npm install --legacy-peer-deps && CI=false NODE_OPTIONS=--openssl-legacy-provider npm run build`
+3. Output dir: `build`
+4. Set env vars: `NODE_VERSION=16`
+5. Done — `public/_headers` and `public/_redirects` are already in this repo and Cloudflare will pick them up automatically.
+
+You can keep both hosts running in parallel; GitHub Pages keeps deploying from the workflow, Cloudflare deploys from its own Git integration.
 
 ## Recommended rollout
 
