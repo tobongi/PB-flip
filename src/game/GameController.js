@@ -461,6 +461,7 @@ export default class Game extends THREE.EventDispatcher {
     this.nextBlock.down();
     this.cameraController.setTarget(this.currentBlock, this.nextBlock);
     this.saveRetryCheckpoint('turn-start');
+    this._markShadowsDirty();
   }
 
   handleWin() {
@@ -909,6 +910,7 @@ export default class Game extends THREE.EventDispatcher {
     this.ambientLight.color.set(world.ambient);
     this.ambientLight.intensity = world.ambientIntensity;
 
+    this._markShadowsDirty();
     this.render();
   }
 
@@ -1073,11 +1075,24 @@ export default class Game extends THREE.EventDispatcher {
     this.cameraController.setTarget(this.currentBlock, this.nextBlock, true);
     this.cameraController.snap(this.bottle);
     this.saveRetryCheckpoint('restart');
+    this._markShadowsDirty();
     return cloneCheckpoint(this.lastCheckpoint);
+  }
+
+  // Manually drive shadow-map updates so they don't run every frame. Marked
+  // dirty by setWorld / restart / createBlock; consumed once on the next
+  // render. shadowMap.autoUpdate is disabled in WorldScene.
+  _markShadowsDirty() {
+    if (this.renderer && this.renderer.shadowMap) {
+      this.renderer.shadowMap.needsUpdate = true;
+    }
   }
 
   render() {
     this.renderer.render(this.scene, this.cameraController.activeCamera);
+    if (this.renderer && this.renderer.shadowMap && this.renderer.shadowMap.needsUpdate) {
+      this.renderer.shadowMap.needsUpdate = false;
+    }
   }
 
   resize() {
@@ -1112,6 +1127,12 @@ export default class Game extends THREE.EventDispatcher {
     TWEEN.update();
     this.world.step(1 / 60, dt, 3);
     this.bottle.update();
+    // While the bottle is in motion (flipping or falling), the shadow needs
+    // to follow it. When idle/landed, the shadow stays cached — this is the
+    // single biggest mobile-frame-time saving in the loop.
+    if (this.flipping || this.falling) {
+      this._markShadowsDirty();
+    }
     // When debug-orbit freeze is on, skip the camera tween so right-drag
     // positioning is stable. Still re-bind orbit if the active camera has
     // switched (ortho<->persp via forceProjection on a transition).

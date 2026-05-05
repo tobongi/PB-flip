@@ -63,7 +63,11 @@ export default class Bottle {
     // Profile uses a single continuous LatheGeometry for the body so there are
     // no material seams along the silhouette. Cap, threaded collar, label band,
     // and base ring are separate meshes for distinct materials.
-    const segments = 64;
+    // Halve segment count on mobile — visually identical at 0.4 world scale,
+    // halves vertex count + halves shadow-pass cost.
+    const isMobile = typeof navigator !== 'undefined'
+      && /Android|iPhone|iPad|iPod|IEMobile|Opera Mini|Mobile Safari/i.test(navigator.userAgent || '');
+    const segments = isMobile ? 32 : 64;
     const rotMatrix = new THREE.Matrix4().makeRotationX(-Math.PI / 2);
     const rotateGeo = geo => {
       geo.applyMatrix(rotMatrix);
@@ -265,10 +269,14 @@ export default class Bottle {
     // so we shrink overall to keep similar in-game footprint.
     this.bottle.scale.set(0.4, 0.4, 0.4);
 
-    // Cast shadows on every part of the bottle
+    // Cast shadows only from the major silhouette parts (lathe body + cap
+    // + nozzle). Trim rings, threads, and inner shells contribute nothing to
+    // the visible shadow but multiply the shadow-pass draw count by ~10.
     this.bottle.traverse(child => {
       if (child.isMesh) {
-        child.castShadow = true;
+        const isTorusOrThread = child.geometry && child.geometry.type === 'TorusGeometry';
+        const isInnerShell = child.material === innerMat;
+        child.castShadow = !isTorusOrThread && !isInnerShell;
         child.receiveShadow = true;
       }
     });
@@ -381,12 +389,25 @@ export default class Bottle {
         model.position.z -= scaledBox.min.z;
         model.position.z += this.boundingBox.min.z / parentScale;
 
+        // Only the largest meshes cast shadows — small props (cap rings,
+        // tip details) inflate the shadow draw count without changing the
+        // visible shadow silhouette.
+        const meshes = [];
         model.traverse(child => {
           if (child.isMesh) {
-            child.castShadow = true;
             child.receiveShadow = true;
+            meshes.push(child);
           }
         });
+        const _tmpSize = new THREE.Vector3();
+        const meshSize = mesh => {
+          if (!mesh.geometry) return 0;
+          if (!mesh.geometry.boundingBox) mesh.geometry.computeBoundingBox();
+          return mesh.geometry.boundingBox.getSize(_tmpSize).length();
+        };
+        meshes.sort((a, b) => meshSize(b) - meshSize(a));
+        meshes.slice(0, 3).forEach(mesh => { mesh.castShadow = true; });
+        meshes.slice(3).forEach(mesh => { mesh.castShadow = false; });
 
         for (let i = this.bottle.children.length - 1; i >= 0; i--) {
           this.bottle.remove(this.bottle.children[i]);

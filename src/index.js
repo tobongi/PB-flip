@@ -18,6 +18,23 @@ import {
   newRecordGlow,
 } from './animations/variants';
 
+// Unregister any service worker left over from previous builds. Old deploys
+// shipped a sw-precache worker that pinned clients to a stale bundle; the
+// killswitch in /service-worker.js handles the install path, but this also
+// cleans up any registration that lingers under a different scope.
+if (typeof navigator !== 'undefined' && 'serviceWorker' in navigator) {
+  navigator.serviceWorker.getRegistrations().then(
+    regs => regs.forEach(reg => reg.unregister().catch(() => {})),
+    () => {}
+  );
+  if (typeof caches !== 'undefined' && caches.keys) {
+    caches.keys().then(
+      keys => keys.forEach(key => caches.delete(key).catch(() => {})),
+      () => {}
+    );
+  }
+}
+
 const game = connectGameToStore(new BottleFlip());
 game.start();
 window.__game = game;

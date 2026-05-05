@@ -21,9 +21,31 @@ function createGradientBackground(topColor, bottomColor) {
   return texture;
 }
 
+// Mobile detection — used to scale renderer cost (DPR cap, antialias,
+// shadow-map size, shadow type). Conservative regex: any UA hint of a phone
+// or tablet, plus a coarse-pointer fallback for Android tablets that don't
+// advertise "Mobile".
+function detectMobile() {
+  if (typeof navigator === 'undefined') return false;
+  const ua = navigator.userAgent || '';
+  if (/Android|iPhone|iPad|iPod|IEMobile|Opera Mini|Mobile Safari/i.test(ua)) return true;
+  if (typeof matchMedia === 'function' && matchMedia('(pointer: coarse)').matches) {
+    return /Mac|Win|Linux/.test(navigator.platform || '') ? false : true;
+  }
+  return false;
+}
+
 export default function createWorldScene() {
   const world = new CANNON.World();
-  const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: false });
+  const isMobile = detectMobile();
+  const renderer = new THREE.WebGLRenderer({
+    // Antialias is the single biggest mobile-GPU cost in this scene; the DPR
+    // bump on retina screens already does most of the visual smoothing.
+    antialias: !isMobile,
+    alpha: false,
+    powerPreference: 'high-performance',
+    stencil: false,
+  });
   const scene = new THREE.Scene();
   const sceneDebugConfig = debugConfig.scene || {};
   const camera = new THREE.OrthographicCamera(
@@ -47,7 +69,10 @@ export default function createWorldScene() {
   const UI = new THREE.Group();
 
   renderer.setSize(SCREEN_WIDTH, SCREEN_HEIGHT);
-  renderer.setPixelRatio(Math.min(2, window.devicePixelRatio));
+  // Cap DPR aggressively on mobile (1.5) — at native DPR=3 we'd render at 9x
+  // pixel work which destroys framerate on every phone. Desktop keeps 2.
+  const dprCap = isMobile ? 1.5 : 2;
+  renderer.setPixelRatio(Math.min(dprCap, window.devicePixelRatio || 1));
 
   // --- Color management & tone mapping (r89 API) ---
   renderer.gammaInput = true;
@@ -58,7 +83,14 @@ export default function createWorldScene() {
 
   // --- Soft shadows ---
   renderer.shadowMap.enabled = true;
-  renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+  // PCF (no soft) on mobile — soft shadows do an extra blur pass that mobile
+  // GPUs choke on. Desktop keeps the soft variant.
+  renderer.shadowMap.type = isMobile ? THREE.PCFShadowMap : THREE.PCFSoftShadowMap;
+  // The scene is static between flips; redraw the shadow map only when
+  // explicitly asked (CameraController / Game mark `light.shadow.needsUpdate`
+  // after restart and after each new block lands).
+  renderer.shadowMap.autoUpdate = false;
+  renderer.shadowMap.needsUpdate = true;
   renderer.localClippingEnabled = true;
 
   // --- Sky gradient background ---
@@ -93,10 +125,13 @@ export default function createWorldScene() {
   const light = new THREE.DirectionalLight(0xFFF1D6, 1.05);
   light.position.set(6, -8, 14);
   light.castShadow = true;
-  light.shadow.mapSize.width = 2048;
-  light.shadow.mapSize.height = 2048;
+  // 2048² costs 16 MB of shadow texture and is invisible on a phone screen.
+  // 1024² is the sweet spot on mobile; desktop keeps 2048.
+  const shadowSize = isMobile ? 1024 : 2048;
+  light.shadow.mapSize.width = shadowSize;
+  light.shadow.mapSize.height = shadowSize;
   light.shadow.bias = -0.0005;
-  light.shadow.radius = 4;
+  light.shadow.radius = isMobile ? 2 : 4;
   // Configure orthographic shadow camera large enough to cover gameplay area
   const shadowCam = light.shadow.camera;
   shadowCam.left = -12;
