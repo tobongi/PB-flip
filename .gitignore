@@ -7,7 +7,7 @@
 /coverage
 
 # production
-/build
+# /build is now committed so Vercel can serve the prebuilt CRA bundle
 
 # misc
 .DS_Store
