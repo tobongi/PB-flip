@@ -1,15 +1,9 @@
 {
-  "version": 2,
-  "builds": [
-    {
-      "src": "build/**",
-      "use": "@vercel/static"
-    }
-  ],
-  "routes": [
-    {
-      "src": "/(.*)",
-      "dest": "/build/$1"
-    }
+  "buildCommand": "cd website && npm install && npm run build",
+  "outputDirectory": "website/dist",
+  "installCommand": "echo skip-root-install",
+  "framework": null,
+  "rewrites": [
+    { "source": "/(.*)", "destination": "/index.html" }
   ]
 }
