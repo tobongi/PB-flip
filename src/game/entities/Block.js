@@ -35,32 +35,46 @@ export default class Block {
     this.cubeId = cube.id;
     this.scale = scale;
     const model = cube.model.clone();
-    model.position.set(0, 0, 0);
-    model.traverse(child => {
-      if (child.isMesh) {
-        child.castShadow = true;
-        child.receiveShadow = true;
-      }
-    });
+    // Shadows are disabled in WorldScene, so don't traverse — saves ~5-30
+    // mesh visits per Block construction on every landing.
     this.mesh.add(model);
     this.mesh.scale.set(scale, scale, 1);
-    this.mesh.updateMatrixWorld(true);
 
-    // Measure the prop's actual silhouette after scaling. Some props extend
-    // below mesh-local z=0 (lathe geometries, etc.); shift the model up so
-    // its base sits at z=0, then build the collider from real dimensions.
-    let bbox = new THREE.Box3().setFromObject(this.mesh);
-    if (isFinite(bbox.min.z) && bbox.min.z !== 0) {
-      model.position.z = -bbox.min.z;
-      this.mesh.updateMatrixWorld(true);
-      bbox = new THREE.Box3().setFromObject(this.mesh);
+    // Cache the prop's intrinsic (unit-scale) dimensions once per cube
+    // definition. Was running two THREE.Box3.setFromObject walks of the
+    // mesh hierarchy per Block construction — cumulative ~mesh-count × 2
+    // mesh visits dropped right onto the landing frame. Now: one walk
+    // total per cube ID, ever.
+    if (!cube._cachedDims) {
+      const probeMesh = new THREE.Group();
+      probeMesh.add(cube.model.clone());
+      probeMesh.updateMatrixWorld(true);
+      let probeBox = new THREE.Box3().setFromObject(probeMesh);
+      let baseShift = 0;
+      if (isFinite(probeBox.min.z) && probeBox.min.z !== 0) {
+        baseShift = -probeBox.min.z;
+        probeMesh.children[0].position.z = baseShift;
+        probeMesh.updateMatrixWorld(true);
+        probeBox = new THREE.Box3().setFromObject(probeMesh);
+      }
+      const probeSize = probeBox.getSize(new THREE.Vector3());
+      cube._cachedDims = {
+        baseShift,
+        height: Math.max(probeSize.z, 0.05),
+        halfX: probeSize.x / 2,
+        halfY: probeSize.y / 2,
+      };
     }
-    const size = bbox.getSize ? bbox.getSize(new THREE.Vector3()) : bbox.max.clone().sub(bbox.min);
-    this.height = Math.max(size.z, 0.05);
-    this.halfX = size.x / 2;
-    this.halfY = size.y / 2;
-    // Default the landing pad to the prop's own footprint; restaurant
-    // mode overwrites this with the table's surface dims after construction.
+    const dims = cube._cachedDims;
+    if (dims.baseShift) {
+      model.position.z = dims.baseShift;
+    }
+    // Apply the runtime scale. The cube's cached dims are at unit scale, so
+    // halfX/halfY scale linearly; height keeps its z=1 scaling (the mesh's
+    // z scale is fixed at 1 above, so the base height is preserved).
+    this.height = dims.height;
+    this.halfX = dims.halfX * scale;
+    this.halfY = dims.halfY * scale;
     this.padHalfX = this.halfX;
     this.padHalfY = this.halfY;
 

@@ -753,6 +753,12 @@ export default class CameraController {
     // called at every block transition so the sweep runs once per turn.
     this._sweepDirty = true;
     this._sweepSnap = !!snap;
+    // Wait this many frames after the dirty flag is raised before running
+    // the heavy 12-raycast sweep. Pushes the cost off the post-landing /
+    // post-restart frame onto a quiet one. Snap=true overrides this so
+    // restart still gets a synchronous sweep (camera needs to be in place
+    // before the loading screen lifts).
+    this._sweepHoldFrames = snap ? 0 : 4;
 
     if (snap) {
       this._currentLookAt.copy(this._lookAtTarget);
@@ -782,19 +788,24 @@ export default class CameraController {
     // 0. Run the obstacle sweep if it's dirty (set on every setTarget).
     //    Done before computing labelPos so the sweep uses the same
     //    label position as the rest of the frame.
-    // Defer the obstacle sweep until the camera is no longer in FLIP state.
-    // setTarget is called immediately before setStateFlip in releaseFlipCharge,
-    // so without this gate the sweep's 12-sample raycast would run on the very
-    // first frame after release — exactly when the user perceives the freeze.
-    // The flip's camera trajectory is tween-driven and overrides the swept
-    // axis anyway, so the result is only needed when the camera settles into
-    // LANDING/IDLE for the next round.
+    // The obstacle sweep is the heaviest synchronous work the camera does
+    // (12 raycasts × every mesh in the restaurant model). Two guards:
+    //   1. Skip during FLIP — the flip's camera trajectory is tween-driven
+    //      and overrides the swept axis anyway.
+    //   2. Hold off for SWEEP_HOLD_FRAMES after the dirty flag is raised, so
+    //      the sweep doesn't land on the same frame as the post-landing
+    //      block construction / particle emit / etc. By the time the camera
+    //      is actually animating toward its idle pose, the sweep has run
+    //      in a quiet frame and the target axis is ready.
     if (this._sweepDirty && bottle && this.state !== CAMERA_STATE.FLIP) {
-      this._refreshTargetCameraAxis(bottle);
-      this._sweepDirty = false;
-      if (this._sweepSnap) {
-        this._smoothedCameraAxis.copy(this._targetCameraAxis);
-        this._sweepSnap = false;
+      this._sweepHoldFrames = (this._sweepHoldFrames || 0) - 1;
+      if (this._sweepHoldFrames <= 0 || this._sweepSnap) {
+        this._refreshTargetCameraAxis(bottle);
+        this._sweepDirty = false;
+        if (this._sweepSnap) {
+          this._smoothedCameraAxis.copy(this._targetCameraAxis);
+          this._sweepSnap = false;
+        }
       }
     }
 
