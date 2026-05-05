@@ -1,7 +1,7 @@
 {
-  "buildCommand": null,
+  "buildCommand": "echo skip-build",
   "outputDirectory": "build",
-  "installCommand": null,
+  "installCommand": "echo skip-install",
   "framework": null,
   "cleanUrls": true,
   "rewrites": [
