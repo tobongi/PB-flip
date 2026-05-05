@@ -32,6 +32,24 @@ jobs:
           PUBLIC_URL: /PB-flip
         run: npm run build
 
+      - name: Rewrite hardcoded absolute asset paths to /PB-flip prefix
+        run: |
+          set -eux
+          # CRA's PUBLIC_URL only rewrites paths referenced via process.env.PUBLIC_URL.
+          # Source code uses raw absolute strings like "/models/foo.glb" which break on a project Pages site.
+          # Rewrite them in the built JS/CSS bundles.
+          find build/static -type f \( -name '*.js' -o -name '*.css' \) -print0 | xargs -0 sed -i \
+            -e 's|"/models/|"/PB-flip/models/|g' \
+            -e "s|'/models/|'/PB-flip/models/|g" \
+            -e 's|"/images/|"/PB-flip/images/|g' \
+            -e "s|'/images/|'/PB-flip/images/|g" \
+            -e 's|"/dna/|"/PB-flip/dna/|g' \
+            -e "s|'/dna/|'/PB-flip/dna/|g" \
+            -e 's|"/sauce-label.png"|"/PB-flip/sauce-label.png"|g' \
+            -e "s|'/sauce-label.png'|'/PB-flip/sauce-label.png'|g"
+          # Sanity: confirm rewrites landed
+          grep -c '/PB-flip/models/' build/static/js/main.*.js || true
+
       - name: Add SPA fallback (404.html)
         run: cp build/index.html build/404.html
 
