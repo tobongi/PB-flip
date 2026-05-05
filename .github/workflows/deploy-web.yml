@@ -24,14 +24,11 @@ jobs:
           node-version: '16'
 
       - name: Install
-        env:
-          NODE_OPTIONS: --openssl-legacy-provider
         run: npm install --legacy-peer-deps --no-audit --no-fund
 
       - name: Build
         env:
           CI: 'false'
-          NODE_OPTIONS: --openssl-legacy-provider
           PUBLIC_URL: /PB-flip
         run: npm run build
 

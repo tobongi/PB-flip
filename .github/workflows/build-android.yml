@@ -22,7 +22,6 @@ jobs:
       - name: Install web deps + build bundle (relative paths for APK)
         env:
           CI: 'false'
-          NODE_OPTIONS: --openssl-legacy-provider
           PUBLIC_URL: '.'
         run: |
           npm install --legacy-peer-deps --no-audit --no-fund
