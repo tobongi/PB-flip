@@ -460,7 +460,13 @@ export default class Game extends THREE.EventDispatcher {
     this.createBlock();
     this.nextBlock.down();
     this.cameraController.setTarget(this.currentBlock, this.nextBlock);
-    this.saveRetryCheckpoint('turn-start');
+    // saveRetryCheckpoint serializes the entire scene (blocks, bottle, camera,
+    // UI) and JSON-clones it twice. The result is only consumed by the debug
+    // "retry from last checkpoint on failure" feature; in production it's
+    // pure overhead landing right on the per-turn frame the user just felt.
+    if (isDebugEnabled() && debugConfig.retryFromCheckpointOnFailure) {
+      this.saveRetryCheckpoint('turn-start');
+    }
     this._markShadowsDirty();
   }
 
@@ -1074,9 +1080,11 @@ export default class Game extends THREE.EventDispatcher {
     this.resetBottleForTurn();
     this.cameraController.setTarget(this.currentBlock, this.nextBlock, true);
     this.cameraController.snap(this.bottle);
-    this.saveRetryCheckpoint('restart');
+    if (isDebugEnabled() && debugConfig.retryFromCheckpointOnFailure) {
+      this.saveRetryCheckpoint('restart');
+    }
     this._markShadowsDirty();
-    return cloneCheckpoint(this.lastCheckpoint);
+    return this.lastCheckpoint ? cloneCheckpoint(this.lastCheckpoint) : null;
   }
 
   // Shadows are disabled in WorldScene for the runtime perf budget; this is

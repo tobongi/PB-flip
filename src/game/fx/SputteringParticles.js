@@ -45,31 +45,35 @@ export default class SputteringParticles {
   emit() {
     this.mesh.visible = true;
     const particles = this.mesh.children;
-    particles.forEach(particle => {
+    const height = 0.3;
+    // Was allocating 3 Vector3s per particle (direction + 2 clones) plus the
+    // tween-target objects, hitting the GC right at the landing frame. We
+    // only need the scalar end coords now — no Vector3 allocations.
+    for (let i = 0; i < particles.length; i++) {
+      const particle = particles[i];
       particle.visible = true;
 
-      const direction = new THREE.Vector3(
-        Math.cos(Math.random() * 2 * Math.PI),
-        Math.sin(Math.random() * 2 * Math.PI),
-        0
-      );
-      const start = direction.clone().multiplyScalar(0.15);
-      const end = direction.clone().multiplyScalar(0.25);
-      const height = 0.3;
+      const angle = Math.random() * 2 * Math.PI;
+      const dx = Math.cos(angle);
+      const dy = Math.sin(angle);
+      const startX = dx * 0.15;
+      const startY = dy * 0.15;
+      const endX = dx * 0.25;
+      const endY = dy * 0.25;
 
       particle.scale.set(0.02, 0.02, 0.02);
-      particle.position.copy(start);
+      particle.position.set(startX, startY, 0);
       const up = new TWEEN.Tween(particle.position).to({ z: height }, this.duration / 2);
-      const down = new TWEEN.Tween(particle.position).to({ z: end.z }, this.duration / 2);
+      const down = new TWEEN.Tween(particle.position).to({ z: 0 }, this.duration / 2);
       const move = new TWEEN.Tween(particle.position)
-        .to({ x: end.x, y: end.y }, this.duration)
+        .to({ x: endX, y: endY }, this.duration)
         .onComplete(() => {
           particle.visible = false;
         });
 
       up.chain(down).start();
       move.start();
-    });
+    }
   }
 
   stop() {
