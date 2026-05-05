@@ -1,0 +1,3030 @@
+{
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\config\\env.js": {
+    "mtime": 1777541143.725617,
+    "hash": "ab2192138c5aea4bf1f4f999328afa48"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\config\\paths.js": {
+    "mtime": 1777541143.7226193,
+    "hash": "cf59f9a3ab652ae659ac16e563b14395"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\config\\polyfills.js": {
+    "mtime": 1777541143.72662,
+    "hash": "79b08096a903d3bd543c79a920c500da"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\config\\webpack.config.dev.js": {
+    "mtime": 1777572458.2125983,
+    "hash": "644f535022d9e6bdbee2b98117c33bfb"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\config\\webpack.config.prod.js": {
+    "mtime": 1777572458.214723,
+    "hash": "e409eb538774dab6ca6804dfd9f27978"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\config\\webpackDevServer.config.js": {
+    "mtime": 1777541143.72662,
+    "hash": "a6d12c647a01b658572d5d01842545bb"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\config\\jest\\cssTransform.js": {
+    "mtime": 1777541143.7286208,
+    "hash": "3a4662717da9c433d01c295be27c23fd"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\config\\jest\\fileTransform.js": {
+    "mtime": 1777541143.7286208,
+    "hash": "954318098f9d5cac59f48154161df8fa"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera\\CameraController.planv2.bak.js": {
+    "mtime": 1777595754.018821,
+    "hash": "d27f71c625f5479923c8ab5d773242b3"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera\\CameraController.test.planv2.bak.js": {
+    "mtime": 1777597370.587468,
+    "hash": "2623ee51e2812ce28aa1906c8c17b75c"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\scripts\\annotate-screenshot.py": {
+    "mtime": 1777887215.2569704,
+    "hash": "86b8a500de393f89d1eff48f6148a7f9"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\scripts\\auto-tune-iteration.js": {
+    "mtime": 1777931490.1197128,
+    "hash": "c339fbfc0e2a12a495188b4ae68b2e88"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\scripts\\build.js": {
+    "mtime": 1777541143.9646218,
+    "hash": "3bc078d0c9b4c7a5a293bc1123489c6e"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\scripts\\camera-quality-metrics.js": {
+    "mtime": 1777917893.4514885,
+    "hash": "7befdb2e411842227f42eea5d29d0d62"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\scripts\\compare-to-refs.js": {
+    "mtime": 1777930909.715668,
+    "hash": "938d2579a0aece0ee887f09a3bb504b5"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\scripts\\extract-tables.js": {
+    "mtime": 1777886055.9624405,
+    "hash": "33eadfb02bf15ff5451ee35d7c594f27"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\scripts\\generate-floor-map.js": {
+    "mtime": 1777976291.062364,
+    "hash": "a3f46d3c70678cb34820b52894935a7e"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\scripts\\probe-15-occluder.js": {
+    "mtime": 1777975718.3059332,
+    "hash": "fc5c707b7c4b914a8a5dcaeca14c7d82"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\scripts\\probe-25-26-divider.js": {
+    "mtime": 1777972807.8881896,
+    "hash": "aa348d77b06a528604710fdfd34711da"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\scripts\\probe-4to5-v2-pitch.js": {
+    "mtime": 1777962590.1355388,
+    "hash": "ba8dff9ff28b3cb26e3975e1453c7fd5"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\scripts\\save-references.js": {
+    "mtime": 1777930731.9369974,
+    "hash": "b48235d755f040ef067edd5671327325"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\scripts\\screenshot-4to5-variants.js": {
+    "mtime": 1777962582.927498,
+    "hash": "6f97cb7256b4437d7d4189bb3a88d665"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\scripts\\screenshot-camera-transitions.js": {
+    "mtime": 1777975269.5786326,
+    "hash": "ced4d3af2df05146f42fffc81512ee61"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\scripts\\start.js": {
+    "mtime": 1777541143.9646218,
+    "hash": "0c0e2253d235f5a6f76075f9365a3839"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\scripts\\sweep-camera-transitions.js": {
+    "mtime": 1777932477.825223,
+    "hash": "b0b77f035ca32e77a78865e73a8a3a93"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\scripts\\test.js": {
+    "mtime": 1777541143.9656208,
+    "hash": "a1260b2fd1d225324bacad845afc2b05"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\scripts\\wall-blocking-detector.js": {
+    "mtime": 1777919333.2166827,
+    "hash": "30f7fdd573f084b676fdfa7f88a31f8d"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\scripts\\wide-sweep-15-16.js": {
+    "mtime": 1777932521.955926,
+    "hash": "a48296adb0bbcaaedd47ab1c9390b356"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\src\\flexible.js": {
+    "mtime": 1777541143.9972558,
+    "hash": "98bcd221b437d7af0a6cd4117f297d7d"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\src\\game.js": {
+    "mtime": 1777541144.0128992,
+    "hash": "e6207c36634cb929597e50ea0cf9000b"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\src\\gltfLoader.js": {
+    "mtime": 1777541144.0128992,
+    "hash": "2e3ddb39b3ef64571c8e0319435b5edf"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\src\\index.js": {
+    "mtime": 1777986606.441082,
+    "hash": "f32e6e9386ae00614694d65e3229748c"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\src\\orbitControls.js": {
+    "mtime": 1777541144.0138998,
+    "hash": "f1a868245471a3028a3987b818ef3dad"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\src\\TextTexture.js": {
+    "mtime": 1777541143.993257,
+    "hash": "1cca5bd6bffe8b31540f7e2a7c9b42a8"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\src\\utils.js": {
+    "mtime": 1777541144.0149007,
+    "hash": "d09555c3f2b5e681a9e87543c26117db"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\src\\animations\\variants.js": {
+    "mtime": 1777572458.2219048,
+    "hash": "51c42e66506224228a19cbf0229e22a3"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\src\\game\\GameController.js": {
+    "mtime": 1777985430.240871,
+    "hash": "1c89888898414c55ae81d9c6f171316b"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\src\\game\\index.js": {
+    "mtime": 1777541144.0012863,
+    "hash": "4cf4d29d82513f8d3ff37ce2db6e89ef"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\src\\game\\config\\constants.js": {
+    "mtime": 1777572458.22717,
+    "hash": "ec509e3fbddb845d36b8948e50b1acaf"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\src\\game\\config\\debug.js": {
+    "mtime": 1777986135.1460526,
+    "hash": "f21ad766b813b61f02c8f0f6794c34ac"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\src\\game\\entities\\Block.js": {
+    "mtime": 1777985355.1110363,
+    "hash": "7bd6a801c826b8049fd28c7cdcbf3a82"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\src\\game\\entities\\blockCatalog.js": {
+    "mtime": 1777985355.1140485,
+    "hash": "c203d1814a868fad04370bf87aa41a80"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\src\\game\\entities\\Bottle.js": {
+    "mtime": 1777572458.2291746,
+    "hash": "629f083188ba0d7c95733c638d85edf4"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\src\\game\\fx\\PolymericParticles.js": {
+    "mtime": 1777541143.9992554,
+    "hash": "2ba1147584dca7532acb7a2321dbf452"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\src\\game\\fx\\SputteringParticles.js": {
+    "mtime": 1777541143.9992554,
+    "hash": "654370db0f04e0e5e1392f9beb514fa8"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\src\\game\\fx\\Waves.js": {
+    "mtime": 1777541144.000252,
+    "hash": "392f087170da476485ee401bff776791"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\src\\game\\input\\InputController.js": {
+    "mtime": 1777541144.0022824,
+    "hash": "f713849e85b7dcaff89a6a9bc29910cd"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\src\\game\\ui\\ScoreText.js": {
+    "mtime": 1777541144.0082839,
+    "hash": "a5e9143782ec5b845e612d20a285370e"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\src\\game\\ui\\Text.js": {
+    "mtime": 1777541144.0082839,
+    "hash": "703fcb03597dbf97ae51e7574aebaf45"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\src\\game\\world\\CameraController.js": {
+    "mtime": 1777985916.9553216,
+    "hash": "e1b582f60b88658507b7365549624357"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\src\\game\\world\\WorldScene.js": {
+    "mtime": 1777572458.2331696,
+    "hash": "94b27ab5aafff17e593f98448156a45e"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\src\\game\\worlds\\restaurant.js": {
+    "mtime": 1777986126.9447098,
+    "hash": "2f5dfa5cc0268386a5139783a2209405"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\src\\r3f\\bottleCapStack.js": {
+    "mtime": 1777572458.2403336,
+    "hash": "a8167c5380f286ecda6b210950333b61"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\src\\r3f\\r3fAdapter.js": {
+    "mtime": 1777572458.2409046,
+    "hash": "45d873b05a78a2e26a96c353cbf4db97"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\src\\r3f\\sceneDSL.js": {
+    "mtime": 1777572458.2409046,
+    "hash": "bef66aa3424c9a48e3c81ce296dd2516"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\src\\r3f\\__tests__\\bottleCapStack.test.js": {
+    "mtime": 1777572458.2383306,
+    "hash": "b413aea00e76c64b576d150156871525"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\src\\r3f\\__tests__\\camera-quality-metrics.test.js": {
+    "mtime": 1777918066.6457524,
+    "hash": "057926e41ad0ba466eb6e42bf72d6eb6"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\src\\r3f\\__tests__\\CameraController.test.js": {
+    "mtime": 1777985355.1225543,
+    "hash": "414936e41a2d76c7e4eda54167aad8e3"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\src\\r3f\\__tests__\\cameraTransitionDump.test.js": {
+    "mtime": 1777973312.8933475,
+    "hash": "fda05b07f07470c4a4a1930e3fc62b0f"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\src\\r3f\\__tests__\\compare-to-refs.test.js": {
+    "mtime": 1777931007.8849187,
+    "hash": "38980e748fbaebc071591f3a042f17b5"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\src\\r3f\\__tests__\\sceneDSL.test.js": {
+    "mtime": 1777572458.2393296,
+    "hash": "da171a1ce2a559c58a97ea873f4752a3"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\src\\r3f\\__tests__\\scoring.test.js": {
+    "mtime": 1777964067.530947,
+    "hash": "13309aa1083eadcf5020b39db3912977"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\src\\store\\gameBridge.js": {
+    "mtime": 1777985355.1240547,
+    "hash": "dd87719ca6e4e5debd82d6035c414f61"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\src\\store\\gameStore.js": {
+    "mtime": 1777985355.126053,
+    "hash": "051c1c59ef303a3bfc75c8463226601c"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\viz\\remotion.config.js": {
+    "mtime": 1777886208.660111,
+    "hash": "1e7afa148904536a8af6d22d5faf86c7"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\viz\\src\\FloorMap.jsx": {
+    "mtime": 1777886201.3495054,
+    "hash": "ef3e334f5eea225a0e6572b0e75b6092"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\viz\\src\\index.jsx": {
+    "mtime": 1777890950.3956535,
+    "hash": "32243b2ff59fa764564df32fc2c575b7"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\viz\\src\\SessionSummary.jsx": {
+    "mtime": 1777890931.779826,
+    "hash": "31b5926c17ead3b834966c31df79b80d"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\viz\\src\\tableData.js": {
+    "mtime": 1777887179.0423105,
+    "hash": "9b099845a4e9f678163545f77a9fd351"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\website\\postcss.config.js": {
+    "mtime": 1777892164.9462533,
+    "hash": "4acb6a30c0858e1e9ceb649da060dca5"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\website\\tailwind.config.ts": {
+    "mtime": 1777985355.1360745,
+    "hash": "71c383920ba84bb7b155dc1b901cd67e"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\website\\vite.config.ts": {
+    "mtime": 1777892163.6666265,
+    "hash": "dca47d0efccda502b9ef64eefd124c73"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\website\\src\\App.tsx": {
+    "mtime": 1777892184.232134,
+    "hash": "886cef081c1acf4c9d78922755459812"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\website\\src\\main.tsx": {
+    "mtime": 1777892181.6415296,
+    "hash": "6bc094109221b4c082a7e404f9ef07b2"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\website\\src\\vite-env.d.ts": {
+    "mtime": 1777892393.8455474,
+    "hash": "0352474ba2918efe13895edbc3780d94"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\website\\src\\components\\Footer.tsx": {
+    "mtime": 1777892257.7427318,
+    "hash": "97b17ac5174c56f9facef15c531242db"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\website\\src\\components\\GameIframe.tsx": {
+    "mtime": 1777892275.2351491,
+    "hash": "46ff8003015209b2d531e483fe8528a9"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\website\\src\\components\\Nav.tsx": {
+    "mtime": 1777892254.9510243,
+    "hash": "3b26c81cef87b78a8db7dfd391bcf653"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\website\\src\\lib\\utils.ts": {
+    "mtime": 1777892180.0943894,
+    "hash": "8595c2f874aa1ff8c7cc28df2999f354"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\website\\src\\pages\\AboutPage.tsx": {
+    "mtime": 1777985355.1305695,
+    "hash": "56d73201c72e201270d4c46a9bb84968"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\website\\src\\pages\\HowToPlayPage.tsx": {
+    "mtime": 1777892345.8477132,
+    "hash": "b731826cb91889a110f43b10152cd911"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\website\\src\\pages\\LandingPage.tsx": {
+    "mtime": 1777985355.1325731,
+    "hash": "9802eabfda64b88137de8898ca4369f2"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\website\\src\\pages\\PlayPage.tsx": {
+    "mtime": 1777892277.0771644,
+    "hash": "950eafee4f6b4e7650bd22f1982cc4ab"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\CLAUDE.md": {
+    "mtime": 1777889969.9856694,
+    "hash": "2ed67c68f28bc1ef95ac24167431d7e8"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\README.md": {
+    "mtime": 1777541137.4033039,
+    "hash": "8f8a29f4ff1fb86e693b18342c8ccc6e"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\phase-3-r3f-migration.md": {
+    "mtime": 1777572458.215811,
+    "hash": "2a3542bab1ac268727ce84155ed7aa98"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\TUNING_LOG.md": {
+    "mtime": 1777976354.9737227,
+    "hash": "6150cda365a6602c7fd57743fd113109"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\superpowers\\plans\\2026-04-30-adaptive-camera-zoom.md": {
+    "mtime": 1777572458.217388,
+    "hash": "3982137d9124abe9553983e1f45b2e7e"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\superpowers\\plans\\2026-05-01-seamless-projection-blend.md": {
+    "mtime": 1777654732.695541,
+    "hash": "f8fc1c037b56b10dbcff6803c921d0e0"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\superpowers\\plans\\2026-05-04-pb-website.md": {
+    "mtime": 1777891954.597114,
+    "hash": "b5013ef066ca667e4b1ca764efc9a563"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\public\\index.html": {
+    "mtime": 1777985355.1035354,
+    "hash": "6d8ba440e64df98a2be2a30a873b90fb"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\website\\index.html": {
+    "mtime": 1777985355.128559,
+    "hash": "28e579fb3648de06eb0b1770c3e2002a"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\annotated-tables.png": {
+    "mtime": 1777887218.0282962,
+    "hash": "afac0222a0c98d2b6d203ee9130b739d"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\floor-map.svg": {
+    "mtime": 1777976301.5587642,
+    "hash": "fdd5993998fec2afb5b8ea2835dab3f5"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\playtest-after-jouer.png": {
+    "mtime": 1777589013.5769162,
+    "hash": "1d51666cbf678456bf8d2afcc52388b2"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\playtest-start.png": {
+    "mtime": 1777589000.4744077,
+    "hash": "5d215261a40c438df594b73ac1d4ad30"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\03_on_table_3_facing_4.png": {
+    "mtime": 1777976108.2418704,
+    "hash": "6cfd5608ca34deb19355f64fc7eeb09c"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\04_on_table_4_facing_5.png": {
+    "mtime": 1777976113.762983,
+    "hash": "ae80c1c48fb6f90af4b5824e67be503e"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\04_on_table_4_facing_5_v1.png": {
+    "mtime": 1777961939.6157286,
+    "hash": "fce8b9448815b0320804269ff9f02afd"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\04_on_table_4_facing_5_v2.png": {
+    "mtime": 1777961945.2697408,
+    "hash": "a4157a892692507061205367f69d555f"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\14_on_table_14_facing_15.png": {
+    "mtime": 1777976119.3496664,
+    "hash": "79af24e554918d9f457b2543d63a3100"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\15_on_table_15_facing_16.png": {
+    "mtime": 1777976125.0406144,
+    "hash": "8c444eeb533fae49158a4f42bd52287f"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\16_on_table_16_facing_17.png": {
+    "mtime": 1777976130.767293,
+    "hash": "85aa00593f828a85263d0ee8284ca257"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\17_on_table_17_facing_18.png": {
+    "mtime": 1777976136.3590715,
+    "hash": "51fc48ae2836945334e691988a94471b"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\18_on_table_18_facing_19.png": {
+    "mtime": 1777976142.033775,
+    "hash": "99032e3fdfe822f7a972daeeee997488"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\24_on_table_24_facing_25.png": {
+    "mtime": 1777976147.7352884,
+    "hash": "575068326c7b0c828c51c889038dd9dd"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\25_on_table_25_facing_26.png": {
+    "mtime": 1777976153.4077387,
+    "hash": "37cacaa63f3228eafe3fbab768699c17"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\26_on_table_26_facing_27.png": {
+    "mtime": 1777976158.9503622,
+    "hash": "b412e7d397865ac429579a7c03ac2ad9"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\27_on_table_27_facing_28.png": {
+    "mtime": 1777976164.4937012,
+    "hash": "340cf10660a984ebd08c213080251cb8"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\probe\\4to5_v2_pitch0.png": {
+    "mtime": 1777959404.103583,
+    "hash": "5ebe01f39a633b004b9f0a7f809c5acc"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\probe\\4to5_v2_pitch1.png": {
+    "mtime": 1777959409.8712027,
+    "hash": "8383b0151a6a9cde320bdb17d1caa919"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\probe\\4to5_v2_pitch2.png": {
+    "mtime": 1777959415.6721075,
+    "hash": "2ff2429a27efcd5bf27d76c3fccde989"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\probe\\4to5_v2_pitch3.png": {
+    "mtime": 1777959421.5579252,
+    "hash": "d7977cf7e9f2f83436325274dbadb2ef"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\refs\\14_to_15_v1.png": {
+    "mtime": 1777918864.195039,
+    "hash": "e31a1c185a522db895c581e041132ade"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\refs\\14_to_15_v2.png": {
+    "mtime": 1777918840.7901673,
+    "hash": "6a144d69607f489b05fee4ec1178fa4a"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\refs\\15_to_16.png": {
+    "mtime": 1777928401.9395888,
+    "hash": "3c4be1fa2d3f56f18023197da3dca64c"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\refs\\16_to_17.png": {
+    "mtime": 1777916996.8721387,
+    "hash": "a3166dfed86cde1e30c5af794a468796"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\refs\\3_to_4_v1.png": {
+    "mtime": 1777918751.7518525,
+    "hash": "b2cae65922b9876977caa1ac8dfb0ba5"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\refs\\3_to_4_v2.png": {
+    "mtime": 1777918734.0906749,
+    "hash": "f6522d7669f6e94a90790d857856987d"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\refs\\4_to_5_v1.png": {
+    "mtime": 1777919211.232414,
+    "hash": "8657da888fe761d3065b9f99e301dc26"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\refs\\4_to_5_v2.png": {
+    "mtime": 1777919350.9934366,
+    "hash": "457d217144868deb5e1d5da6f503b1db"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\14_to_15\\0.580_a-10_z0.65_s2.png": {
+    "mtime": 1777918939.9445374,
+    "hash": "423a8d2222e64a3b32e484569f4e4b4b"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\14_to_15\\0.580_a-10_z0.75_s2.png": {
+    "mtime": 1777918974.812802,
+    "hash": "6be4d15ee74e796ad41c950fa8ef7429"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\14_to_15\\0.580_a-10_z0.7_s2.5.png": {
+    "mtime": 1777918962.9567933,
+    "hash": "82d3a21003fe8c79e0b995ee9d348df0"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\14_to_15\\0.580_a-10_z0.7_s2.png": {
+    "mtime": 1777918957.2291687,
+    "hash": "3b7e21b1620f5dd516d24ef4682096c1"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\14_to_15\\0.580_a10_z0.65_s1.5.png": {
+    "mtime": 1777918881.9802687,
+    "hash": "490ae92be8de5087cbc2a0259a6f1b61"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\14_to_15\\0.580_a10_z0.65_s2.png": {
+    "mtime": 1777918887.9503355,
+    "hash": "5d20596276b8f5542b2477e34faa242b"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\14_to_15\\0.580_a10_z0.75_s1.5.png": {
+    "mtime": 1777918917.0624626,
+    "hash": "d5598d0a956a59cb56d4b44e8af96ebe"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\14_to_15\\0.580_a10_z0.75_s2.5.png": {
+    "mtime": 1777918928.478465,
+    "hash": "3488380dc0dadd45eed6ae9f73df5271"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\14_to_15\\0.580_a10_z0.7_s1.5.png": {
+    "mtime": 1777918899.5765784,
+    "hash": "6155aaedec0eecd0d7484920a6a4c283"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\14_to_15\\0.580_a10_z0.7_s2.5.png": {
+    "mtime": 1777918911.3550296,
+    "hash": "05e4f5db037d0f3bc8a26f44c391dcb5"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\14_to_15\\0.594_a-10_z0.65_s2.5.png": {
+    "mtime": 1777918945.8453412,
+    "hash": "ea7638a56767b730aa155074b5ff0bfd"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\14_to_15\\0.594_a-10_z0.75_s2.5.png": {
+    "mtime": 1777918980.7297127,
+    "hash": "bc67b03cc793b0bd1dd90746d7bd441d"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\14_to_15\\0.598_a0_z0.65_s2.5.png": {
+    "mtime": 1777918840.7901673,
+    "hash": "6a144d69607f489b05fee4ec1178fa4a"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\14_to_15\\0.606_a0_z0.65_s2.png": {
+    "mtime": 1777918834.8330896,
+    "hash": "09f4dd9172a08b12529bbccc8b290ec4"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\14_to_15\\0.610_a10_z0.65_s2.5.png": {
+    "mtime": 1777918893.8911602,
+    "hash": "3bae70460cb4dfc92a11ada475ecbe66"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\14_to_15\\0.615_a0_z0.75_s1.5.png": {
+    "mtime": 1777918864.195039,
+    "hash": "e31a1c185a522db895c581e041132ade"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\14_to_15\\0.621_a0_z0.65_s1.5.png": {
+    "mtime": 1777918828.981983,
+    "hash": "d3da2c3db4ddaece1457a71be2199c49"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\14_to_15\\0.629_a10_z0.75_s2.png": {
+    "mtime": 1777918922.8448246,
+    "hash": "44f530c877b3efb99a43c25d1d5724c8"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\14_to_15\\0.630_a10_z0.7_s2.png": {
+    "mtime": 1777918905.478552,
+    "hash": "57b0144f08181311d5f2c84712136366"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\14_to_15\\0.650_a-10_z0.65_s1.5.png": {
+    "mtime": 1777918934.4269571,
+    "hash": "2836698319a3bf91554e2e1657121da2"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\14_to_15\\0.650_a-10_z0.75_s1.5.png": {
+    "mtime": 1777918968.988174,
+    "hash": "16eb83a60ac0e171c7d965dddf9f51e5"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\14_to_15\\0.650_a-10_z0.7_s1.5.png": {
+    "mtime": 1777918951.6116781,
+    "hash": "3d343922a209b7770cd37906a925e2b0"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\14_to_15\\0.693_a0_z0.7_s1.5.png": {
+    "mtime": 1777918846.6285713,
+    "hash": "75b583edbb5e50628511633a22c48288"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\14_to_15\\0.694_a0_z0.75_s2.5.png": {
+    "mtime": 1777918876.1108577,
+    "hash": "a7237e47053ebaf6f84fafcef18b9f32"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\14_to_15\\0.699_a0_z0.7_s2.5.png": {
+    "mtime": 1777918858.2801247,
+    "hash": "9675e2f6e8fbeac69a7720d4376dc327"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\14_to_15\\0.718_a0_z0.7_s2.png": {
+    "mtime": 1777918852.4356341,
+    "hash": "6cb55eba303e3b2fa9d050ada7dff4a5"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\14_to_15\\0.722_a0_z0.75_s2.png": {
+    "mtime": 1777918870.3180587,
+    "hash": "2438af72012cfe6712229a77e70cac92"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\14_to_15\\0.860_a0_z0.7_s2.png": {
+    "mtime": 1777917317.3244395,
+    "hash": "a17eca92887cbec66bb93dd77bd1e709"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\14_to_15\\1.000_a0_z0.7_s2.png": {
+    "mtime": 1777916635.4410012,
+    "hash": "0201c9c24cef6f1a5b934e9bc0630c67"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16\\0.410_a-30_z0.65_s3.png": {
+    "mtime": 1777928199.053652,
+    "hash": "75d01b643237a099a271b8d86af357ae"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16\\0.419_a-45_z0.6_s3.png": {
+    "mtime": 1777928233.5901127,
+    "hash": "27caf20e3a2800c0006a8f823587042d"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16\\0.428_a-30_z0.7_s5.png": {
+    "mtime": 1777928227.9159675,
+    "hash": "4fa7922c33370e7db0aca442b90b7f64"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16\\0.433_a-30_z0.65_s5.png": {
+    "mtime": 1777928210.6937912,
+    "hash": "9fbb33d1fbcd2f27fb83ceb22eb706f4"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16\\0.442_a-30_z0.7_s3.png": {
+    "mtime": 1777928216.4091678,
+    "hash": "f3594b0da66de5aef8ea71da34c35353"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16\\0.511_a-45_z0.7_s3.png": {
+    "mtime": 1777919124.5625427,
+    "hash": "d96bfc669c43a82e36316fc7763580d1"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16\\0.512_a-45_z0.7_s5.png": {
+    "mtime": 1777919135.8596122,
+    "hash": "c9e6440410cdecbfff969c24e963d31b"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16\\0.520_a-45_z0.7_s5.png": {
+    "mtime": 1777918205.4132273,
+    "hash": "59ef24d98bab75a662764f02945bf252"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16\\0.531_a-45_z0.65_s5.png": {
+    "mtime": 1777919118.7194295,
+    "hash": "a667402b05257858d94c4c49866ce121"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16\\0.537_a-45_z0.65_s5.png": {
+    "mtime": 1777918188.362826,
+    "hash": "6c70a5aa449bd2a0fedd2b45690eefe4"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16\\0.569_a-20_z0.65_s4.png": {
+    "mtime": 1777919061.768807,
+    "hash": "b0b0fb695c3c51106cdbce384543864f"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16\\0.578_a-20_z0.6_s3.png": {
+    "mtime": 1777919038.6556785,
+    "hash": "6a452b065b5cd1bbc7f8bcab0c1746b0"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16\\0.580_a-30_z0.65_s3.png": {
+    "mtime": 1777919003.6046643,
+    "hash": "f5150acebc5b157516e81de18a2936cf"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16\\0.580_a-30_z0.6_s3.png": {
+    "mtime": 1777918986.5616043,
+    "hash": "ebc74693c9d64c10b340e8842a51564d"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16\\0.580_a-30_z0.7_s3.png": {
+    "mtime": 1777918142.6287446,
+    "hash": "31942bf63c7d93dd69925bf8b265220b"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16\\0.580_a-45_z0.65_s3.png": {
+    "mtime": 1777928250.757554,
+    "hash": "ea402ad31ce060fd56039dbf1f0bf101"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16\\0.580_a-45_z0.65_s4.png": {
+    "mtime": 1777928256.6474972,
+    "hash": "eae6c628e20799884dbeedd6af919083"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16\\0.580_a-45_z0.65_s5.png": {
+    "mtime": 1777928262.518087,
+    "hash": "3b84e9ccb4d26444eca613e20689b5d5"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16\\0.580_a-45_z0.7_s3.png": {
+    "mtime": 1777928268.2189944,
+    "hash": "8855f8252d9771b3ccbbd3bbe8215576"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16\\0.580_a-45_z0.7_s5.png": {
+    "mtime": 1777928279.6512818,
+    "hash": "e0d1f3104908460c4b0d8ad1d2a9fe9b"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16\\0.580_a-60_z0.65_s3.png": {
+    "mtime": 1777919158.7576919,
+    "hash": "6bd75cd6588f7ac81925b5a08486d8cd"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16\\0.580_a-60_z0.6_s3.png": {
+    "mtime": 1777919141.7023382,
+    "hash": "f9c9eb9479366a5b84017517e39236cd"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16\\0.580_a30_z0.65_s3.png": {
+    "mtime": 1777928302.8608189,
+    "hash": "66f88bcec5c639e2bbd57b826c530953"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16\\0.580_a30_z0.65_s4.png": {
+    "mtime": 1777928309.9427938,
+    "hash": "0bdd7e256f2267016374182622db9549"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16\\0.580_a30_z0.65_s5.png": {
+    "mtime": 1777928315.6691556,
+    "hash": "f376577a733ea5b87a28c7393e3281f1"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16\\0.580_a30_z0.6_s3.png": {
+    "mtime": 1777928285.398926,
+    "hash": "65e3f2f31a1dcb5636ceed4f9a5cc03f"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16\\0.580_a30_z0.6_s4.png": {
+    "mtime": 1777928291.1883056,
+    "hash": "0a8f3f4c57ba85e8a3f5ab5a497a4f2d"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16\\0.580_a30_z0.7_s3.png": {
+    "mtime": 1777928321.4973743,
+    "hash": "1493bc8da04cbb72dc104d56c727e348"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16\\0.580_a30_z0.7_s4.png": {
+    "mtime": 1777928327.397762,
+    "hash": "d3b27e3f4ac3051bfc8f50f34df8a49f"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16\\0.580_a30_z0.7_s5.png": {
+    "mtime": 1777928333.1928551,
+    "hash": "a9d4924f65032b17606554f1227dd67d"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16\\0.580_a45_z0.65_s3.png": {
+    "mtime": 1777928356.352116,
+    "hash": "a3455faedcfb3f6883ba60e236daf650"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16\\0.580_a45_z0.65_s4.png": {
+    "mtime": 1777928362.1548004,
+    "hash": "f98b7c6db140630b400110a19b3cec5a"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16\\0.580_a45_z0.6_s3.png": {
+    "mtime": 1777928339.0763686,
+    "hash": "328f6c673746ce00505d06cece3275c0"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16\\0.580_a45_z0.6_s4.png": {
+    "mtime": 1777928344.9025855,
+    "hash": "38430ac7c81c9e04b282a6ca98eb7e2f"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16\\0.580_a45_z0.7_s3.png": {
+    "mtime": 1777928373.4756103,
+    "hash": "f90ebc0649c4d30de5666e8445b7ef1c"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16\\0.580_a45_z0.7_s4.png": {
+    "mtime": 1777928379.2022974,
+    "hash": "fa4c2f1d91c88348997ac1428cf2cf18"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16\\0.580_a45_z0.7_s5.png": {
+    "mtime": 1777928384.873186,
+    "hash": "91cd003c349df25c4349809eb7b4201d"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16\\0.580_a60_z0.65_s3.png": {
+    "mtime": 1777928407.781901,
+    "hash": "40836dcdea53cc1e5bcd8488e66cff38"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16\\0.580_a60_z0.65_s4.png": {
+    "mtime": 1777928413.6062095,
+    "hash": "2819770e06d1576a7c7598f978845b4d"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16\\0.580_a60_z0.6_s3.png": {
+    "mtime": 1777928390.4232545,
+    "hash": "97c0b710bf3bc1cebe2904294d64ea96"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16\\0.580_a60_z0.6_s4.png": {
+    "mtime": 1777928395.987563,
+    "hash": "f7d3281f59c1d68edbe4f961875aede7"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16\\0.583_a-20_z0.6_s4.png": {
+    "mtime": 1777919044.4454646,
+    "hash": "dd2a44f112115596bedee2eef04cd5eb"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16\\0.585_a-30_z0.65_s3.png": {
+    "mtime": 1777918125.2784536,
+    "hash": "8ea82ff9261728aeec2506ab12c85fc7"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16\\0.586_a-60_z0.6_s3.png": {
+    "mtime": 1777918211.1860652,
+    "hash": "1fbd4b3b039c133517b4560b459711e4"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16\\0.586_a-60_z0.7_s3.png": {
+    "mtime": 1777919176.280733,
+    "hash": "e97e164925ae76e5f70a128dadfe6a18"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16\\0.587_a-60_z0.65_s4.png": {
+    "mtime": 1777918234.6400363,
+    "hash": "7113f6b1bfb2f638f038adaa95e6228d"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16\\0.587_a-60_z0.6_s4.png": {
+    "mtime": 1777919147.386737,
+    "hash": "ac741c4b4252bd760c1ac5df0fb15660"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16\\0.587_a-60_z0.7_s4.png": {
+    "mtime": 1777919182.0793064,
+    "hash": "dc8b8df583f3ccd6200fa6d33ae97413"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16\\0.588_a-20_z0.7_s3.png": {
+    "mtime": 1777919073.3015256,
+    "hash": "4d80673746e9a89a21d5608091560852"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16\\0.589_a-45_z0.65_s3.png": {
+    "mtime": 1777919107.4490263,
+    "hash": "8cab4933430e49d3b964d1c358c4a3e6"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16\\0.589_a-45_z0.6_s3.png": {
+    "mtime": 1777919090.703164,
+    "hash": "bda1f0939cf5dc74d3567ba1a3769d23"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16\\0.589_a-45_z0.7_s3.png": {
+    "mtime": 1777918194.032266,
+    "hash": "adea0ecf8e1f034e04f5acf1e634d8cc"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16\\0.590_a-20_z0.65_s3.png": {
+    "mtime": 1777919055.9893632,
+    "hash": "c003602da42b49b319b19c390cfa8d47"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16\\0.591_a-20_z0.65_s5.png": {
+    "mtime": 1777919067.5259752,
+    "hash": "e1924dcd675456d6aaf5d22c8b754602"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16\\0.591_a-20_z0.6_s5.png": {
+    "mtime": 1777919050.2527182,
+    "hash": "37e32f7c3fdab514a4d922c973a8c80b"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16\\0.592_a-20_z0.7_s5.png": {
+    "mtime": 1777919084.9236484,
+    "hash": "08e1a4038054defb44bccb64b39196ef"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16\\0.595_a-60_z0.7_s4.png": {
+    "mtime": 1777918252.0215197,
+    "hash": "41e6204c5adb0ad51471bedc8e71d4b4"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16\\0.599_a-30_z0.65_s4.png": {
+    "mtime": 1777918130.969359,
+    "hash": "31f5943a9acaf7828313c23d4ae0f2e1"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16\\0.599_a-30_z0.6_s4.png": {
+    "mtime": 1777918113.3074157,
+    "hash": "a67367f3c725caef6bf8a97c24c82925"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16\\0.599_a-30_z0.7_s4.png": {
+    "mtime": 1777918148.2808368,
+    "hash": "2a99285e64eb97ae71aa816eb35d6af8"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16\\0.600_a-30_z0.6_s4.png": {
+    "mtime": 1777918992.2499125,
+    "hash": "1dfc292ca639893cd3c9ab0f030a1703"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16\\0.601_a-30_z0.7_s3.png": {
+    "mtime": 1777919020.822889,
+    "hash": "62b49930ad35d9c78882823cbfb97473"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16\\0.601_a-45_z0.65_s4.png": {
+    "mtime": 1777919113.004182,
+    "hash": "170f927c8286e33c61de962f0adae3bd"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16\\0.601_a30_z0.6_s5.png": {
+    "mtime": 1777928297.0701487,
+    "hash": "fb3d405ca77e492f99480f298fa5bfa5"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16\\0.602_a-30_z0.6_s4.png": {
+    "mtime": 1777928187.3440847,
+    "hash": "fed03a44d61d595c20ef2e3bca08d4ed"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16\\0.602_a-45_z0.6_s4.png": {
+    "mtime": 1777918165.4029295,
+    "hash": "3b77d1b2176f326a1925e972bdf022b5"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16\\0.602_a45_z0.65_s5.png": {
+    "mtime": 1777928367.7579176,
+    "hash": "c18f1355d6324fdac2ef1192fed53cf6"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16\\0.602_a45_z0.6_s5.png": {
+    "mtime": 1777928350.671955,
+    "hash": "c71c11d1d0e91c3f8ed2a2290c8224df"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16\\0.603_a-30_z0.65_s4.png": {
+    "mtime": 1777919009.3403666,
+    "hash": "9d65320d60fc2c8848b2b3b1242d0237"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16\\0.603_a-30_z0.6_s3.png": {
+    "mtime": 1777918107.387667,
+    "hash": "a3ee03937b27e099cf4e1efb28a3f45d"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16\\0.604_a-60_z0.65_s4.png": {
+    "mtime": 1777919164.6530132,
+    "hash": "0385e06f082b99da1db35572bd30ffb3"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16\\0.604_a-60_z0.6_s4.png": {
+    "mtime": 1777918216.900118,
+    "hash": "8e9abf9f20d439c1434eb5dcd16ce5b4"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16\\0.605_a-30_z0.7_s4.png": {
+    "mtime": 1777919026.624096,
+    "hash": "1f690498bf55d008316d36ab5c32f56f"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16\\0.608_a-45_z0.7_s4.png": {
+    "mtime": 1777919130.2396965,
+    "hash": "2ae491ac2364e916f2fd615c58b1d212"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16\\0.609_a-45_z0.6_s4.png": {
+    "mtime": 1777919096.2878428,
+    "hash": "8f5b0ca3a6cb377788de4a080cd1bb08"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16\\0.610_a-20_z0.7_s4.png": {
+    "mtime": 1777919079.0905619,
+    "hash": "e521ce27dc6dd4f2af80145168fd31ca"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16\\0.611_a-30_z0.6_s3.png": {
+    "mtime": 1777928180.865715,
+    "hash": "caca61c1b91e3962bc109e6b46840700"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16\\0.611_a60_z0.6_s5.png": {
+    "mtime": 1777928401.9395888,
+    "hash": "3c4be1fa2d3f56f18023197da3dca64c"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16\\0.615_a-45_z0.7_s4.png": {
+    "mtime": 1777928273.8796694,
+    "hash": "017cabb443abec3329778d7f4194b139"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16\\0.616_a-30_z0.65_s5.png": {
+    "mtime": 1777918136.8414493,
+    "hash": "787ce5d3e5ef073229704f7ff109517d"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16\\0.617_a-30_z0.7_s5.png": {
+    "mtime": 1777919032.67495,
+    "hash": "e01cc0f38a8ca7f341100bbbc9a64dd8"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16\\0.622_a-45_z0.6_s5.png": {
+    "mtime": 1777928245.0890014,
+    "hash": "c2f7212c5aade9e1722911a91f21d870"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16\\0.624_a-60_z0.6_s5.png": {
+    "mtime": 1777918222.9339535,
+    "hash": "38775ea36252a126f4da28501a59b2cd"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16\\0.627_a-30_z0.6_s5.png": {
+    "mtime": 1777928193.3004425,
+    "hash": "1474813d7c869ccab61cecfd79af7d34"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16\\0.632_a-30_z0.65_s4.png": {
+    "mtime": 1777928204.9396405,
+    "hash": "7f36e3159d29263eef9c7ee30641d57c"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16\\0.633_a-30_z0.6_s5.png": {
+    "mtime": 1777918998.0122924,
+    "hash": "a1bd8d42c520d08be1e566dc4273449f"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16\\0.634_a-60_z0.65_s5.png": {
+    "mtime": 1777919170.5041387,
+    "hash": "f3f136e0257c978c444f2f2c54459e78"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16\\0.635_a-60_z0.6_s5.png": {
+    "mtime": 1777919153.0786784,
+    "hash": "8ea975d79e15ea93759ab66dc2a63bd1"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16\\0.635_a-60_z0.7_s5.png": {
+    "mtime": 1777918257.7890048,
+    "hash": "cdcb823424a287382915d7c356259ae7"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16\\0.640_a-45_z0.6_s5.png": {
+    "mtime": 1777918171.146389,
+    "hash": "636abb7b8729860f277b507fe16a6cce"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16\\0.642_a-60_z0.7_s5.png": {
+    "mtime": 1777919187.9164226,
+    "hash": "6dbf370cbc7c796befe329963a6b39b3"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16\\0.644_a-30_z0.65_s5.png": {
+    "mtime": 1777919015.1287115,
+    "hash": "8e2d0e5a4ff75aa09bc9b775502baf0f"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16\\0.644_a-30_z0.6_s5.png": {
+    "mtime": 1777918119.362237,
+    "hash": "09055b0b0d45a9cd0e10c3a0adbba95c"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16\\0.644_a-60_z0.65_s5.png": {
+    "mtime": 1777918240.3829045,
+    "hash": "c41395b4c5fc89844b5a7a73e8120bac"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16\\0.647_a-45_z0.6_s5.png": {
+    "mtime": 1777917385.6411326,
+    "hash": "629b23b203a5e4ed4d90a763d806cdcc"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16\\0.650_a-45_z0.6_s4.png": {
+    "mtime": 1777928239.304113,
+    "hash": "7aa44e68a20d1ee10bfd953ee506ff86"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16\\0.655_a-45_z0.6_s5.png": {
+    "mtime": 1777919101.8132966,
+    "hash": "fbacbead2da9d10bce28f6df7d1f27a3"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16\\0.657_a-45_z0.65_s5.png": {
+    "mtime": 1777916719.5819738,
+    "hash": "597760f0101aadf359ad2d0ff5c7e767"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16\\0.657_a-45_z0.7_s4.png": {
+    "mtime": 1777916730.6754396,
+    "hash": "50b30ce63fd520992cc37e0401ff991b"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16\\0.657_a-45_z0.7_s5.png": {
+    "mtime": 1777916736.2878952,
+    "hash": "7e57f49f05116753411362a984cbed9d"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16\\0.680_a-45_z0.6_s4.png": {
+    "mtime": 1777917380.000896,
+    "hash": "9d97e8aa63565fc441d95782ec39618c"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16\\0.684_a-45_z0.65_s4.png": {
+    "mtime": 1777916714.1666188,
+    "hash": "7b66567daedf6208d0059aa89cf3f86c"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16\\0.684_a-45_z0.6_s3.png": {
+    "mtime": 1777917374.4392908,
+    "hash": "bb99a299d2c8f627397217bc9f5a6e40"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16\\0.689_a-45_z0.6_s4.png": {
+    "mtime": 1777916697.6740358,
+    "hash": "8ca81b628630db757b41bf7876f0284e"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16\\0.740_a-45_z0.65_s3.png": {
+    "mtime": 1777917391.258648,
+    "hash": "bad7cebfaeeb50d1bdf7f077b7cc4fb3"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16\\0.790_a-30_z0.65_s3.png": {
+    "mtime": 1777916658.1115372,
+    "hash": "8e4f452aeba2d2dedf5eeb2b097ae5ef"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16\\0.790_a-30_z0.65_s4.png": {
+    "mtime": 1777916663.7789564,
+    "hash": "ba667c3f3a43817852ab291b589ca2a1"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16\\0.790_a-30_z0.65_s5.png": {
+    "mtime": 1777916669.4034455,
+    "hash": "b7b8b0d1ebe0dfcfccea2db27087943a"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16\\0.790_a-30_z0.6_s3.png": {
+    "mtime": 1777917323.0584507,
+    "hash": "5e12c631956928018a5be70fdc3a0a8f"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16\\0.790_a-30_z0.6_s4.png": {
+    "mtime": 1777917328.764027,
+    "hash": "97dfe55cccefd4f3d70f9ec4ee4480cd"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16\\0.790_a-30_z0.6_s5.png": {
+    "mtime": 1777917334.4959984,
+    "hash": "9b329765e4666b840be3708083a26221"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16\\0.790_a-30_z0.7_s3.png": {
+    "mtime": 1777916675.0824778,
+    "hash": "513ec95c7175145e002e681fdd208f5b"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16\\0.790_a-30_z0.7_s4.png": {
+    "mtime": 1777917363.0943668,
+    "hash": "a929be79779c0e1f1cf3a6490c9007b6"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16\\0.790_a-30_z0.7_s5.png": {
+    "mtime": 1777917368.8160944,
+    "hash": "b19f9272b35261386565ecf91ac410db"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16\\0.790_a-60_z0.65_s4.png": {
+    "mtime": 1777916764.6604147,
+    "hash": "48379b09e20dbcc2d5c2c137886a611c"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16\\0.790_a-60_z0.65_s5.png": {
+    "mtime": 1777917454.011234,
+    "hash": "73f41e5e794c36e4257a1443c524de88"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16\\0.790_a-60_z0.6_s3.png": {
+    "mtime": 1777917425.2811334,
+    "hash": "31ad38731edb2500a223900e56312d57"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16\\0.790_a-60_z0.6_s4.png": {
+    "mtime": 1777917431.1210456,
+    "hash": "201821a94a662084cfa1358bd3f8fbbe"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16\\0.790_a-60_z0.6_s5.png": {
+    "mtime": 1777917436.8379,
+    "hash": "3dfdab42a7116f1142b0f7589f64f1d0"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16\\0.790_a-60_z0.7_s3.png": {
+    "mtime": 1777916775.8449793,
+    "hash": "1c52f859e81fb6d49ffbd040a46b8b80"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16\\0.790_a-60_z0.7_s4.png": {
+    "mtime": 1777917465.358327,
+    "hash": "4c1aefc23ef40099af29d89635697689"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16\\0.790_a-60_z0.7_s5.png": {
+    "mtime": 1777917471.131405,
+    "hash": "3ae1e5f4cbf08fcdf4eb02ec624b663c"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16\\0.968_a-30_z0.65_s5.png": {
+    "mtime": 1777917351.6334257,
+    "hash": "c7100fee27add5db27ed6474480c6c03"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16\\0.987_a-30_z0.65_s4.png": {
+    "mtime": 1777917345.8935206,
+    "hash": "a0e32a6c4c32de1f9a01f886b6570e3d"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16\\1.000_a-30_z0.65_s3.png": {
+    "mtime": 1777917340.1619217,
+    "hash": "d0f0194dc1a9097d4ed3c396fa73e9e1"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16\\1.000_a-30_z0.6_s3.png": {
+    "mtime": 1777916641.1086192,
+    "hash": "42568487ff38f95b678e84ce37c4df7c"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16\\1.000_a-30_z0.6_s4.png": {
+    "mtime": 1777916646.8578827,
+    "hash": "e13b4ec71f27d68bd8a0af9a80435a59"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16\\1.000_a-30_z0.7_s3.png": {
+    "mtime": 1777917357.384595,
+    "hash": "8a719b7b8e2dd1cb911e3fbaed53c200"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16\\1.000_a-30_z0.7_s4.png": {
+    "mtime": 1777916680.7980525,
+    "hash": "1b12555334c46990bf20564a52c7d2fc"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16\\1.000_a-30_z0.7_s5.png": {
+    "mtime": 1777916686.504564,
+    "hash": "9e335288d30eb087e2f1f208f5e41747"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16\\1.000_a-45_z0.65_s3.png": {
+    "mtime": 1777916708.6644292,
+    "hash": "34dc102efd88cd6e200c7cc884673402"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16\\1.000_a-45_z0.65_s4.png": {
+    "mtime": 1777917396.8639052,
+    "hash": "27d8d837750f605b3c7237149da8e608"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16\\1.000_a-45_z0.65_s5.png": {
+    "mtime": 1777917402.5765624,
+    "hash": "f89f278a8b17b9ad92dcf7b48a0b1cc6"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16\\1.000_a-45_z0.6_s3.png": {
+    "mtime": 1777916692.1732173,
+    "hash": "fd1af1a6490e81e119797e324b88a08f"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16\\1.000_a-45_z0.7_s3.png": {
+    "mtime": 1777917408.2079012,
+    "hash": "ba4d28aa4ba61be24f8c9f869f66ed35"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16\\1.000_a-45_z0.7_s4.png": {
+    "mtime": 1777917413.8712356,
+    "hash": "64e6026e6c077b921468a570b5da2209"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16\\1.000_a-45_z0.7_s5.png": {
+    "mtime": 1777917419.5765052,
+    "hash": "9f6301c99a16d0a743387b263cf83ce4"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16\\1.000_a-60_z0.65_s3.png": {
+    "mtime": 1777917442.5744357,
+    "hash": "35ebeb495acd66b946bea006eb76c4bc"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16\\1.000_a-60_z0.65_s4.png": {
+    "mtime": 1777917448.308798,
+    "hash": "a1ee473979fa8aff2d5a0cc09330f5db"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16\\1.000_a-60_z0.65_s5.png": {
+    "mtime": 1777916770.2373435,
+    "hash": "2bc4f30c25fe848b37db0ef92fbb8a08"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16\\1.000_a-60_z0.6_s3.png": {
+    "mtime": 1777916741.9461408,
+    "hash": "d881c0b029d1cd23fd631cda4d9d4a84"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16\\1.000_a-60_z0.6_s5.png": {
+    "mtime": 1777916753.3970218,
+    "hash": "458b45094f8ada870af9943e61e9194a"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16\\1.000_a-60_z0.7_s3.png": {
+    "mtime": 1777917459.7160797,
+    "hash": "7e604351a06d665aa31a00521db4fbc4"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16\\1.000_a-60_z0.7_s4.png": {
+    "mtime": 1777916781.5418532,
+    "hash": "aaf7e48ea3b1a8f7989fa61bc4d3d682"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16_wide\\0.444_a-120_z0.65_s3.png": {
+    "mtime": 1777932589.3543868,
+    "hash": "d440155f781421e30b0ba16c27ff9390"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16_wide\\0.455_a-120_z0.6_s3.png": {
+    "mtime": 1777932566.2014842,
+    "hash": "9b47e2d640f7c11464b5436215b335c4"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16_wide\\0.458_a-120_z0.7_s3.png": {
+    "mtime": 1777932612.6126285,
+    "hash": "2c10daafd842cf21f8c01e0d2550ae92"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16_wide\\0.459_a-45_z0.7_s6.png": {
+    "mtime": 1777933000.9024522,
+    "hash": "f74697f28e72c0ab2c2f5d9648802132"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16_wide\\0.460_a-45_z0.55_s6.png": {
+    "mtime": 1777932931.5308723,
+    "hash": "bfdbd8a70398d102e455b17f831bc207"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16_wide\\0.463_a-45_z0.7_s3.png": {
+    "mtime": 1777932983.657411,
+    "hash": "187c1b664679640cc35648672a65216b"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16_wide\\0.468_a-100_z0.7_s3.png": {
+    "mtime": 1777932705.538372,
+    "hash": "0b1745146b1d3103e17f820df3519474"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16_wide\\0.469_a-45_z0.65_s6.png": {
+    "mtime": 1777932977.8760827,
+    "hash": "93af481a9c4c23d4ff4a68a053b618d5"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16_wide\\0.469_a-45_z0.6_s6.png": {
+    "mtime": 1777932954.7661223,
+    "hash": "8d94e5ae096e695684875f559ad44ac3"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16_wide\\0.470_a-120_z0.55_s3.png": {
+    "mtime": 1777932542.8544621,
+    "hash": "5a7f7aafc4e1ba7728d02698e4b31171"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16_wide\\0.472_a-100_z0.55_s3.png": {
+    "mtime": 1777932635.9119534,
+    "hash": "e883d66c91e29a9856e46e55a04394f4"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16_wide\\0.473_a-120_z0.7_s4.png": {
+    "mtime": 1777932618.3406003,
+    "hash": "333131cd0a5f7904eb91a8a44e18f776"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16_wide\\0.477_a-45_z0.7_s5.png": {
+    "mtime": 1777932995.1124544,
+    "hash": "18ebae954a808219cc4bbedbc475f190"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16_wide\\0.479_a-45_z0.65_s5.png": {
+    "mtime": 1777932972.0409062,
+    "hash": "7346eb7c0ed52db8e6d093b2c4ceb36d"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16_wide\\0.481_a-45_z0.55_s5.png": {
+    "mtime": 1777932925.781149,
+    "hash": "94c1462a9fca1446470cb39efdbc27bf"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16_wide\\0.482_a-80_z0.55_s3.png": {
+    "mtime": 1777932728.592269,
+    "hash": "e9136dc51e1434b23cde55b6bf06e414"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16_wide\\0.483_a-100_z0.7_s6.png": {
+    "mtime": 1777932722.9447854,
+    "hash": "a8bb0ac56920913e64b5e8687a2f3e4b"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16_wide\\0.484_a-80_z0.65_s6.png": {
+    "mtime": 1777932793.021429,
+    "hash": "9e0ccedb40cc71fea97e0f8f740282b4"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16_wide\\0.485_a-120_z0.65_s6.png": {
+    "mtime": 1777932606.695431,
+    "hash": "a0bde941f8d3a23a39a5508d89e827fb"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16_wide\\0.485_a-80_z0.65_s3.png": {
+    "mtime": 1777932775.7443495,
+    "hash": "9325d321e1bc882cecb15d47e9bf6012"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16_wide\\0.486_a-120_z0.55_s6.png": {
+    "mtime": 1777932560.3779943,
+    "hash": "18062cba9bbf24f1529bfcf19cdbb45f"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16_wide\\0.487_a-100_z0.6_s3.png": {
+    "mtime": 1777932659.1100273,
+    "hash": "339b7377ab7761b430b45186b6589448"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16_wide\\0.487_a-45_z0.6_s5.png": {
+    "mtime": 1777932948.7105832,
+    "hash": "d3da3cbbe91cc041c11e3b3378956829"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16_wide\\0.487_a-80_z0.7_s3.png": {
+    "mtime": 1777932798.7568135,
+    "hash": "29ef18db2d3c3e2d39fea8b016cd39ec"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16_wide\\0.487_a60_z0.55_s3.png": {
+    "mtime": 1777933287.0929008,
+    "hash": "d25241e66621240166eea78cb130395d"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16_wide\\0.488_a-100_z0.65_s6.png": {
+    "mtime": 1777932699.8902895,
+    "hash": "b8007e6906171ec41bde35ecc20976d4"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16_wide\\0.490_a-45_z0.7_s4.png": {
+    "mtime": 1777932989.3714464,
+    "hash": "4871c8c2e1ec0ebcf33c5f5c5daa347c"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16_wide\\0.490_a45_z0.7_s3.png": {
+    "mtime": 1777933263.7020571,
+    "hash": "9273406bbb2fa71ffe8bf5b409dce65b"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16_wide\\0.491_a-100_z0.7_s4.png": {
+    "mtime": 1777932711.4216237,
+    "hash": "f4723d3d4797971c682c5af256234499"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16_wide\\0.493_a-45_z0.55_s4.png": {
+    "mtime": 1777932920.0798836,
+    "hash": "23cd150422fcde927b0dc2abcdd5c0dc"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16_wide\\0.493_a60_z0.7_s4.png": {
+    "mtime": 1777933363.3107712,
+    "hash": "2a5c18f3c15cc07cb19b57f1ad168358"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16_wide\\0.494_a-100_z0.6_s6.png": {
+    "mtime": 1777932676.5429294,
+    "hash": "deb71a73ffc94b17dbb48a2ea9e94057"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16_wide\\0.494_a-120_z0.55_s4.png": {
+    "mtime": 1777932548.6097555,
+    "hash": "a73a6407aac5f8dcdb4c2ef769e28131"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16_wide\\0.494_a90_z0.7_s3.png": {
+    "mtime": 1777933544.6825857,
+    "hash": "e1fd0a9e32bc4588221723880bdd122e"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16_wide\\0.495_a-100_z0.65_s4.png": {
+    "mtime": 1777932688.3564003,
+    "hash": "a6a16240c2634a7f139b8179c5dbd47b"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16_wide\\0.496_a-100_z0.65_s3.png": {
+    "mtime": 1777932682.3831708,
+    "hash": "d6da1bde5749329686b95e3ec6def945"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16_wide\\0.496_a-45_z0.65_s4.png": {
+    "mtime": 1777932966.252947,
+    "hash": "489a7393830b8a4a802ca5bcc97df57f"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16_wide\\0.496_a45_z0.6_s6.png": {
+    "mtime": 1777933234.396413,
+    "hash": "2966fc62c8e984e8ef3d40f4ff26ab6a"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16_wide\\0.496_a75_z0.65_s5.png": {
+    "mtime": 1777933439.6109772,
+    "hash": "8721eea729ae6d51483370a2a65f7df5"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16_wide\\0.497_a60_z0.65_s3.png": {
+    "mtime": 1777933334.2206674,
+    "hash": "7f24b9fed846ea6f62253add104673cc"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16_wide\\0.498_a-60_z0.65_s3.png": {
+    "mtime": 1777932868.513394,
+    "hash": "7cbba934da77d210608346a13ce3819f"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16_wide\\0.498_a90_z0.7_s6.png": {
+    "mtime": 1777933562.2177856,
+    "hash": "96850b1f004fb7050d1e9d3420ccf6e1"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16_wide\\0.499_a-120_z0.6_s6.png": {
+    "mtime": 1777932583.6254277,
+    "hash": "cfe361fa8d6955fd94dc11a6a5937884"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16_wide\\0.500_a-100_z0.6_s4.png": {
+    "mtime": 1777932665.0219662,
+    "hash": "c27c9c508db0b1ba219b0d071b4e2e26"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16_wide\\0.500_a-30_z0.55_s6.png": {
+    "mtime": 1777933024.1426446,
+    "hash": "e944dd26942c0e9d2e32622f7c863ee3"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16_wide\\0.500_a45_z0.55_s6.png": {
+    "mtime": 1777933210.7925856,
+    "hash": "5f4b382dde2e3b63e0867f183dfe6f15"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16_wide\\0.500_a75_z0.6_s6.png": {
+    "mtime": 1777933421.9856246,
+    "hash": "82727a99a90bafa6bc245ad861e00a95"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16_wide\\0.501_a-120_z0.65_s4.png": {
+    "mtime": 1777932595.0882998,
+    "hash": "58b3ac98f453a37350de49670efe61a8"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16_wide\\0.501_a-45_z0.55_s3.png": {
+    "mtime": 1777932914.4710693,
+    "hash": "08e3e4aa7dccfeef45efdf960db9ee6d"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16_wide\\0.501_a-80_z0.65_s4.png": {
+    "mtime": 1777932781.4658258,
+    "hash": "6e33ded0916950430de1cf914f7cb5c9"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16_wide\\0.501_a60_z0.55_s4.png": {
+    "mtime": 1777933292.9543138,
+    "hash": "f890e3ec819ce6360efbb9f9448121e4"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16_wide\\0.501_a75_z0.7_s6.png": {
+    "mtime": 1777933468.8397183,
+    "hash": "f26cbb9b3c8eb6790b59ac2f85702a3e"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16_wide\\0.502_a-45_z0.6_s4.png": {
+    "mtime": 1777932942.8679051,
+    "hash": "ad8f422de97ecea1fa50be332e145298"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16_wide\\0.503_a-80_z0.6_s3.png": {
+    "mtime": 1777932752.5043163,
+    "hash": "a6564c2b555d5d243a15620c564f498c"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16_wide\\0.503_a90_z0.6_s3.png": {
+    "mtime": 1777933498.1321461,
+    "hash": "b07475575d2dd5c07792b4ea7ff90da9"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16_wide\\0.504_a-100_z0.55_s4.png": {
+    "mtime": 1777932641.582533,
+    "hash": "23ce8af6174930e01b163e22b5781867"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16_wide\\0.506_a-120_z0.6_s4.png": {
+    "mtime": 1777932572.0775907,
+    "hash": "bbdc02258001cd09aa613f214caf2aa6"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16_wide\\0.506_a-60_z0.7_s3.png": {
+    "mtime": 1777932891.736899,
+    "hash": "94421d02bb782b89b9b23d18fb9b63ee"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16_wide\\0.507_a-60_z0.7_s4.png": {
+    "mtime": 1777932897.4759395,
+    "hash": "3c0b5506c2e6d2a7d8b1bc90c4721921"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16_wide\\0.507_a45_z0.65_s3.png": {
+    "mtime": 1777933240.3864977,
+    "hash": "2b318ec0836fe63a44d1736e6e22cd4f"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16_wide\\0.507_a75_z0.7_s3.png": {
+    "mtime": 1777933451.2738392,
+    "hash": "2dcaa1ffe0dfc33723fc4accc7550093"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16_wide\\0.508_a-45_z0.65_s3.png": {
+    "mtime": 1777932960.512659,
+    "hash": "3a8c382cc76642e8eb0e064e2005f939"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16_wide\\0.508_a45_z0.6_s5.png": {
+    "mtime": 1777933228.4692647,
+    "hash": "3bca18474ceba1caeefb3c98c36574f5"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16_wide\\0.509_a-45_z0.6_s3.png": {
+    "mtime": 1777932937.2736335,
+    "hash": "0eecc9a4ef33126fc67f55fe0fc42f42"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16_wide\\0.509_a-60_z0.7_s6.png": {
+    "mtime": 1777932908.8309777,
+    "hash": "4bf32bd53c85c13a9aa7c36906ad5d34"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16_wide\\0.509_a75_z0.55_s3.png": {
+    "mtime": 1777933380.9048579,
+    "hash": "af34a643f084ae2bc12e4fd170f41d94"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16_wide\\0.509_a75_z0.6_s3.png": {
+    "mtime": 1777933404.3867326,
+    "hash": "d8529b70554672e926a8ba9d1b6a45df"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16_wide\\0.510_a45_z0.7_s5.png": {
+    "mtime": 1777933275.4449725,
+    "hash": "af1b8bf514e969ec899715b32520fdb4"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16_wide\\0.511_a75_z0.55_s6.png": {
+    "mtime": 1777933398.551855,
+    "hash": "581dbaf53f6cf1d25e42128e71e28cf2"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16_wide\\0.511_a90_z0.55_s3.png": {
+    "mtime": 1777933474.7847705,
+    "hash": "49439ad40223eebb178489c269f15eba"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16_wide\\0.512_a-60_z0.55_s3.png": {
+    "mtime": 1777932822.170291,
+    "hash": "3c344b683ad0a94f635ab480b801eab8"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16_wide\\0.513_a60_z0.6_s3.png": {
+    "mtime": 1777933310.5473819,
+    "hash": "abd5bb90699ccde0cd3783eb7af3f345"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16_wide\\0.514_a-30_z0.7_s4.png": {
+    "mtime": 1777933082.7966661,
+    "hash": "63acd7247c2a3146efc3055e70f69b9d"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16_wide\\0.514_a90_z0.65_s3.png": {
+    "mtime": 1777933521.4878623,
+    "hash": "8cd8cc8b9bc26e1033956dadc4b31d95"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16_wide\\0.515_a75_z0.65_s3.png": {
+    "mtime": 1777933427.77917,
+    "hash": "83d1deaf6f3359eafb27cbaa7b21fd0a"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16_wide\\0.516_a30_z0.7_s3.png": {
+    "mtime": 1777933169.9687757,
+    "hash": "0bc7a7e875da413ab2b0092b8bfe6ee1"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16_wide\\0.516_a60_z0.7_s5.png": {
+    "mtime": 1777933369.243017,
+    "hash": "6d254a579f2bf8fe3d950303fa97ac46"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16_wide\\0.516_a90_z0.55_s6.png": {
+    "mtime": 1777933492.3781357,
+    "hash": "bf444c529e3cc2276ab39d6119522f35"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16_wide\\0.517_a90_z0.65_s6.png": {
+    "mtime": 1777933538.8495612,
+    "hash": "27bdd56dc078d97114f17b0ddcca5d09"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16_wide\\0.519_a-60_z0.6_s3.png": {
+    "mtime": 1777932845.5164354,
+    "hash": "e379d8ca721caeb45995d68e5b962f4b"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16_wide\\0.519_a-60_z0.6_s4.png": {
+    "mtime": 1777932851.1877043,
+    "hash": "eb3a483f50d0e1e5cb253756997ec03c"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16_wide\\0.519_a60_z0.65_s6.png": {
+    "mtime": 1777933351.6997292,
+    "hash": "017ced0f86a4f11878b5ad5dc9a04cb7"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16_wide\\0.520_a-100_z0.55_s6.png": {
+    "mtime": 1777932653.2990422,
+    "hash": "76b105cfb356d83d22de14898cdde704"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16_wide\\0.520_a-30_z0.55_s4.png": {
+    "mtime": 1777933012.443012,
+    "hash": "b6c62e293481df3d9780706963f95c82"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16_wide\\0.520_a30_z0.65_s6.png": {
+    "mtime": 1777933164.107732,
+    "hash": "1d3d646a8d0b02ddb991a48bd69d2196"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16_wide\\0.521_a-30_z0.65_s3.png": {
+    "mtime": 1777933053.3820176,
+    "hash": "057517358b65db10c41c3c6b9c0bd321"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16_wide\\0.521_a-60_z0.55_s5.png": {
+    "mtime": 1777932833.7323358,
+    "hash": "dc97fb52b683856764b5428ee11f4716"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16_wide\\0.521_a-60_z0.6_s6.png": {
+    "mtime": 1777932862.7136967,
+    "hash": "0cc4980ea12fb0f6a0cf7d08165299ac"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16_wide\\0.521_a30_z0.6_s6.png": {
+    "mtime": 1777933140.9033968,
+    "hash": "31988f3826cec0a80016b4cc5475ba11"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16_wide\\0.522_a-30_z0.55_s3.png": {
+    "mtime": 1777933006.6897423,
+    "hash": "ce08adc00054302b2c5a2bebf8c6029c"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16_wide\\0.522_a-30_z0.65_s4.png": {
+    "mtime": 1777933059.159308,
+    "hash": "f44f1c5ff980d067278a9f7519d9f86f"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16_wide\\0.522_a30_z0.7_s6.png": {
+    "mtime": 1777933187.2290545,
+    "hash": "f9c58802e58b9b6d5408b545283f18d9"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16_wide\\0.522_a45_z0.6_s4.png": {
+    "mtime": 1777933222.4799232,
+    "hash": "3ef8546ba15bde76eb704c3265df088e"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16_wide\\0.523_a-100_z0.55_s5.png": {
+    "mtime": 1777932647.324885,
+    "hash": "9ab71a872ae71cd1fba3caf05f6a6894"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16_wide\\0.523_a75_z0.6_s5.png": {
+    "mtime": 1777933416.1947143,
+    "hash": "f89d808bcd874e040f5de5f77c6b2dcf"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16_wide\\0.525_a75_z0.7_s4.png": {
+    "mtime": 1777933457.088294,
+    "hash": "3cc3067ecaa919619c97411e4ab062c5"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16_wide\\0.527_a-60_z0.65_s5.png": {
+    "mtime": 1777932880.0325496,
+    "hash": "2ebb893ee72a8145f7d0ba8b18dda916"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16_wide\\0.527_a-60_z0.7_s5.png": {
+    "mtime": 1777932903.1490204,
+    "hash": "4d9768f94b63472c027c5cdaa1f8c84d"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16_wide\\0.527_a75_z0.7_s5.png": {
+    "mtime": 1777933462.9048479,
+    "hash": "5304c7a5e09ff46e11c282ac1fd534c4"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16_wide\\0.528_a-80_z0.7_s6.png": {
+    "mtime": 1777932816.2965212,
+    "hash": "f93ac3e6b619803441d0c03771517953"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16_wide\\0.528_a75_z0.55_s4.png": {
+    "mtime": 1777933386.7896564,
+    "hash": "06dc4617ac338653c2a4acdd04d030a1"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16_wide\\0.528_a75_z0.6_s4.png": {
+    "mtime": 1777933410.3523397,
+    "hash": "b6c580b0b41bda7fae6034a9e9046ec9"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16_wide\\0.529_a75_z0.55_s5.png": {
+    "mtime": 1777933392.6275232,
+    "hash": "2911210e742e75e3c758659aac12c273"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16_wide\\0.530_a30_z0.55_s3.png": {
+    "mtime": 1777933100.2584872,
+    "hash": "d7129f975af8cbdb50e46db0d8f18ce8"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16_wide\\0.533_a-80_z0.6_s4.png": {
+    "mtime": 1777932758.2984915,
+    "hash": "dee772c382e64ff70850e123059ae8c3"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16_wide\\0.533_a-80_z0.7_s5.png": {
+    "mtime": 1777932810.4113636,
+    "hash": "33c63a8bda332d35361e1560ad5f61f8"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16_wide\\0.534_a-80_z0.55_s6.png": {
+    "mtime": 1777932746.5652428,
+    "hash": "15cbbe8943de044a516ca51fb793d61d"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16_wide\\0.534_a60_z0.6_s4.png": {
+    "mtime": 1777933316.5403218,
+    "hash": "297a86a6eee6be084e5c7775999d5565"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16_wide\\0.535_a-100_z0.65_s5.png": {
+    "mtime": 1777932694.1514502,
+    "hash": "a64c5bb6e8a5670e3381950a087aaca7"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16_wide\\0.535_a-120_z0.7_s5.png": {
+    "mtime": 1777932624.1485212,
+    "hash": "37c79c68741af398cc174f664199be7b"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16_wide\\0.535_a30_z0.55_s6.png": {
+    "mtime": 1777933117.632332,
+    "hash": "57e3eba635e55263ef9df9f4e0a94d5a"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16_wide\\0.535_a30_z0.6_s3.png": {
+    "mtime": 1777933123.4077976,
+    "hash": "07744846e599b2ffe8dfcb7c9228ccbc"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16_wide\\0.536_a90_z0.55_s4.png": {
+    "mtime": 1777933480.5484712,
+    "hash": "119cf905c2268a58a60e2750e090730b"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16_wide\\0.537_a-30_z0.7_s3.png": {
+    "mtime": 1777933077.0622752,
+    "hash": "4943a0bb2dfaa685e155c3d75bc1c3b3"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16_wide\\0.537_a-80_z0.7_s4.png": {
+    "mtime": 1777932804.577602,
+    "hash": "1a47a2823706dbfefa2d872588c58ed9"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16_wide\\0.539_a-100_z0.7_s5.png": {
+    "mtime": 1777932717.2270932,
+    "hash": "7ae4dc762d77faa22e64f184798c7dbf"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16_wide\\0.540_a-30_z0.6_s3.png": {
+    "mtime": 1777933030.0921657,
+    "hash": "43d3fd783c44ea085ea3462ae62f6c4a"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16_wide\\0.540_a-80_z0.55_s4.png": {
+    "mtime": 1777932734.438723,
+    "hash": "363fd6eefebba4254105dd10f77e5f99"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16_wide\\0.541_a90_z0.7_s4.png": {
+    "mtime": 1777933550.5082223,
+    "hash": "af289133bb97d09f431253c6bb0eeb17"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16_wide\\0.542_a-120_z0.65_s5.png": {
+    "mtime": 1777932600.9692965,
+    "hash": "48185af342062a1815da7bd31dde9e55"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16_wide\\0.543_a-120_z0.55_s5.png": {
+    "mtime": 1777932554.5883384,
+    "hash": "9a3c83229ba6f6733af3ec69659eb132"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16_wide\\0.543_a90_z0.55_s5.png": {
+    "mtime": 1777933486.459926,
+    "hash": "8efa6028709130e223d3fea2f918c079"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16_wide\\0.544_a30_z0.65_s3.png": {
+    "mtime": 1777933146.7184255,
+    "hash": "7fb6272e19872a49c6e9012511dbbf53"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16_wide\\0.545_a-60_z0.55_s4.png": {
+    "mtime": 1777932828.0128593,
+    "hash": "e27c76dfc32e35c06c0fed6d63541b9a"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16_wide\\0.547_a-30_z0.7_s6.png": {
+    "mtime": 1777933094.4461155,
+    "hash": "2700b1049e7af2df05e8998b0798cd47"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16_wide\\0.547_a-80_z0.55_s5.png": {
+    "mtime": 1777932740.3763263,
+    "hash": "f3dea02809c9d91901f6f1d6176e293d"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16_wide\\0.547_a45_z0.55_s4.png": {
+    "mtime": 1777933198.9421935,
+    "hash": "76b79cbe38751ee0dab5d1984ae82fc3"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16_wide\\0.548_a-100_z0.6_s5.png": {
+    "mtime": 1777932670.8838367,
+    "hash": "e941ec60e4acd29a67eb9e3307aba029"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16_wide\\0.549_a-80_z0.65_s5.png": {
+    "mtime": 1777932787.272055,
+    "hash": "48a90a303f1ee3722e31efe112a75c9b"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16_wide\\0.549_a-80_z0.6_s6.png": {
+    "mtime": 1777932770.0719447,
+    "hash": "dcf723e27380954416275c357b0d7fbc"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16_wide\\0.549_a90_z0.65_s4.png": {
+    "mtime": 1777933527.2155063,
+    "hash": "5498f246110593b51f015b7f3a3bac87"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16_wide\\0.552_a45_z0.65_s4.png": {
+    "mtime": 1777933246.2039006,
+    "hash": "1a5e874a41acb4925d777a9d25876ad1"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16_wide\\0.552_a75_z0.65_s4.png": {
+    "mtime": 1777933433.643702,
+    "hash": "3cdcd6d0bd04df294f8d2fa99e06ca4b"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16_wide\\0.553_a-120_z0.7_s6.png": {
+    "mtime": 1777932630.0650158,
+    "hash": "ae7a6994921145281b8d3fe182d8f274"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16_wide\\0.554_a-120_z0.6_s5.png": {
+    "mtime": 1777932577.9855082,
+    "hash": "8ec8de47bb5058cba6fb717f42b057cf"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16_wide\\0.555_a-30_z0.65_s6.png": {
+    "mtime": 1777933070.964391,
+    "hash": "5f90371baa24defe85ecb1d7351f77c0"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16_wide\\0.555_a60_z0.7_s3.png": {
+    "mtime": 1777933357.4115956,
+    "hash": "f15a39e2fcd104a1cb1a8e5330f527f9"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16_wide\\0.556_a-30_z0.7_s5.png": {
+    "mtime": 1777933088.6167338,
+    "hash": "e1af30f0730e69714ffccf3c1e4f40f0"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16_wide\\0.556_a90_z0.6_s4.png": {
+    "mtime": 1777933503.918085,
+    "hash": "655352c734367108a8df9844646b20d6"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16_wide\\0.557_a45_z0.7_s6.png": {
+    "mtime": 1777933281.2950616,
+    "hash": "b9554297fdb616c49920fd68f18aaa7e"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16_wide\\0.559_a-80_z0.6_s5.png": {
+    "mtime": 1777932764.2236366,
+    "hash": "9769d8147da772ddca1d663eed0d60cd"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16_wide\\0.559_a30_z0.7_s5.png": {
+    "mtime": 1777933181.4316585,
+    "hash": "da54a1f8f2e884b659a013a3bad5b431"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16_wide\\0.560_a45_z0.6_s3.png": {
+    "mtime": 1777933216.5183587,
+    "hash": "10a4122534b83fce9bb7733d7c9521d0"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16_wide\\0.561_a-60_z0.65_s6.png": {
+    "mtime": 1777932885.9270456,
+    "hash": "77494b3da6b35eadbd1702086137a5ab"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16_wide\\0.561_a75_z0.65_s6.png": {
+    "mtime": 1777933445.533929,
+    "hash": "45eee9a7bc6eb56bfcc074616b4fa002"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16_wide\\0.562_a-30_z0.55_s5.png": {
+    "mtime": 1777933018.319306,
+    "hash": "2a86203f21245b16b414f494ba767ef4"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16_wide\\0.562_a45_z0.7_s4.png": {
+    "mtime": 1777933269.6219797,
+    "hash": "0ba2d56a261b79caab155621a5fbd71d"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16_wide\\0.563_a-60_z0.65_s4.png": {
+    "mtime": 1777932874.3189974,
+    "hash": "81d8fc6300cf0ebd417d07cca5a2418a"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16_wide\\0.564_a30_z0.7_s4.png": {
+    "mtime": 1777933175.628559,
+    "hash": "f141e92d009f7f6cfec88bc2558420f3"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16_wide\\0.564_a45_z0.55_s3.png": {
+    "mtime": 1777933193.0989857,
+    "hash": "f07e911548cd670c55e07360f6c5baa0"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16_wide\\0.565_a-30_z0.6_s4.png": {
+    "mtime": 1777933035.931518,
+    "hash": "a4d6064f3528d061cdfe48611cf1b160"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16_wide\\0.567_a90_z0.65_s5.png": {
+    "mtime": 1777933532.973409,
+    "hash": "b113c8a874caf338da178422c8a8401a"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16_wide\\0.567_a90_z0.7_s5.png": {
+    "mtime": 1777933556.2644603,
+    "hash": "8a201f960ecc94ad734186cf975f6a61"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16_wide\\0.568_a90_z0.6_s5.png": {
+    "mtime": 1777933509.771494,
+    "hash": "2d113c3f1df76edd8881b2aa4d456f86"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16_wide\\0.569_a30_z0.6_s4.png": {
+    "mtime": 1777933129.3038492,
+    "hash": "24ad33f30183c20b7508f5b8404f1a42"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16_wide\\0.571_a30_z0.55_s4.png": {
+    "mtime": 1777933106.048304,
+    "hash": "8ed6a1a4de06b1bac0afc131487636b8"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16_wide\\0.573_a30_z0.6_s5.png": {
+    "mtime": 1777933135.1030285,
+    "hash": "ba585e581a4f76ad119b7df3b469b259"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16_wide\\0.575_a45_z0.65_s6.png": {
+    "mtime": 1777933257.8441145,
+    "hash": "1929a3cfbb8ed7260414212e9014b065"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16_wide\\0.578_a-30_z0.6_s6.png": {
+    "mtime": 1777933047.631786,
+    "hash": "408168281e303000fc4bf037402ec23a"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16_wide\\0.579_a90_z0.6_s6.png": {
+    "mtime": 1777933515.6603067,
+    "hash": "75771cfd863ba407306b112c49d0ec50"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16_wide\\0.581_a-60_z0.55_s6.png": {
+    "mtime": 1777932839.6375542,
+    "hash": "1dd3ca15a800cc4c26209dcc7b46459f"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16_wide\\0.582_a-60_z0.6_s5.png": {
+    "mtime": 1777932856.96934,
+    "hash": "c58072e2ec054cda74c3feb39dc5ed14"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16_wide\\0.584_a60_z0.65_s4.png": {
+    "mtime": 1777933340.0935338,
+    "hash": "85b8cba620734a7db90e55add73cee44"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16_wide\\0.585_a30_z0.65_s4.png": {
+    "mtime": 1777933152.5013108,
+    "hash": "8baa117fc62578229b2e10d76d9d7798"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16_wide\\0.587_a60_z0.55_s5.png": {
+    "mtime": 1777933298.8596523,
+    "hash": "714edf095e07bf218e6ef30b6b1e4635"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16_wide\\0.589_a60_z0.7_s6.png": {
+    "mtime": 1777933375.1283977,
+    "hash": "2217e6295a2ed55e5dc15273ee36440a"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16_wide\\0.596_a-30_z0.65_s5.png": {
+    "mtime": 1777933065.1199152,
+    "hash": "8feadc42762d8a0ac5c3721886a9094b"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16_wide\\0.596_a45_z0.55_s5.png": {
+    "mtime": 1777933204.9145424,
+    "hash": "39908af8edf4961fb191e5b28a11452a"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16_wide\\0.598_a60_z0.6_s5.png": {
+    "mtime": 1777933322.4294264,
+    "hash": "0757a33d5eb2e262e9b3e9a9f1075b4f"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16_wide\\0.599_a-30_z0.6_s5.png": {
+    "mtime": 1777933041.783945,
+    "hash": "c935f5ab40643d3fe0eadc7715b50b59"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16_wide\\0.600_a30_z0.55_s5.png": {
+    "mtime": 1777933111.8399427,
+    "hash": "d7486ae685fe596ee9db017321703283"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16_wide\\0.601_a60_z0.65_s5.png": {
+    "mtime": 1777933345.8839147,
+    "hash": "752936f9e6e711a6a87489b9375d7a61"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16_wide\\0.604_a60_z0.6_s6.png": {
+    "mtime": 1777933328.2750227,
+    "hash": "9053e91d3b5fba5d384ac59472a81c46"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16_wide\\0.608_a60_z0.55_s6.png": {
+    "mtime": 1777933304.5507789,
+    "hash": "f244e537d0edd584ceef74c83de1d980"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16_wide\\0.615_a45_z0.65_s5.png": {
+    "mtime": 1777933252.0098896,
+    "hash": "2e527050b4f79f785928410f0e1bd3b2"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\15_to_16_wide\\0.622_a30_z0.65_s5.png": {
+    "mtime": 1777933158.2944932,
+    "hash": "83d0c00b9b17914398e1e818a10b58ae"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\16_to_17\\0.280_a-15_z0.65_s2.5.png": {
+    "mtime": 1777928265.1429808,
+    "hash": "acbbb8bae7909cdce33659562084a9b8"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\16_to_17\\0.280_a-15_z0.6_s2.5.png": {
+    "mtime": 1777928248.3212843,
+    "hash": "a007290e2a5c521c5871e442326bd2de"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\16_to_17\\0.299_a-15_z0.65_s3.png": {
+    "mtime": 1777928270.7452934,
+    "hash": "8432cd6d8a31cd69ff2229aa3888fe1f"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\16_to_17\\0.299_a-30_z0.7_s3.png": {
+    "mtime": 1777928237.1962335,
+    "hash": "9b1203e7c8d5be324d2ac0ec59736294"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\16_to_17\\0.353_a-15_z0.6_s3.5.png": {
+    "mtime": 1777928259.5860298,
+    "hash": "206e651d90a4757754bde154ef49f2b8"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\16_to_17\\0.354_a-30_z0.7_s3.5.png": {
+    "mtime": 1777928242.6990087,
+    "hash": "3890402cd7e1d35fc0e1d847220657e5"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\16_to_17\\0.363_a-15_z0.65_s3.5.png": {
+    "mtime": 1777928276.259071,
+    "hash": "1220ef6666a8fe2387d9b8595efa577d"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\16_to_17\\0.571_a15_z0.6_s3.png": {
+    "mtime": 1777928305.9371638,
+    "hash": "27d79e876c5273b9987dda387cf1ac0b"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\16_to_17\\0.572_a-15_z0.7_s3.png": {
+    "mtime": 1777928288.12441,
+    "hash": "b002c8aa0218a468f0763f60731fb480"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\16_to_17\\0.578_a-15_z0.7_s2.5.png": {
+    "mtime": 1777928282.128041,
+    "hash": "0f4369faacccafa35979fc3f7d0835af"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\16_to_17\\0.580_a-15_z0.65_s2.5.png": {
+    "mtime": 1777919488.223834,
+    "hash": "a0b45fb2239b7ec9f40e89ed9c8177d6"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\16_to_17\\0.580_a-15_z0.65_s3.5.png": {
+    "mtime": 1777919499.626016,
+    "hash": "8292271df2a56f668fafbc11c37beed1"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\16_to_17\\0.580_a-15_z0.65_s3.png": {
+    "mtime": 1777919493.923957,
+    "hash": "b2a2d0823d72a1d0fbfef7c151818b88"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\16_to_17\\0.580_a-15_z0.6_s2.5.png": {
+    "mtime": 1777918523.100748,
+    "hash": "97ed87eab551c9bd8ed60145c6761f94"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\16_to_17\\0.580_a-15_z0.6_s3.png": {
+    "mtime": 1777919476.8512444,
+    "hash": "e5f3f4e10566159063a3d6acb6e356e0"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\16_to_17\\0.580_a-15_z0.7_s3.5.png": {
+    "mtime": 1777918568.7780976,
+    "hash": "05d20b0d0f9ee9b837aef265186c1041"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\16_to_17\\0.580_a-15_z0.7_s3.png": {
+    "mtime": 1777919511.1750746,
+    "hash": "d802540938bbec43ab3148bf2b515d9e"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\16_to_17\\0.580_a-30_z0.65_s2.5.png": {
+    "mtime": 1777919646.8114686,
+    "hash": "c13942829e80714691aaf55c6bad6e42"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\16_to_17\\0.580_a-30_z0.65_s3.5.png": {
+    "mtime": 1777919658.6036558,
+    "hash": "cb4da703c44f1f82ec6ba45ffbad4d7d"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\16_to_17\\0.580_a-30_z0.65_s3.png": {
+    "mtime": 1777919652.6943645,
+    "hash": "1842cd94c33511a386631cdf93c841e5"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\16_to_17\\0.580_a-30_z0.6_s2.5.png": {
+    "mtime": 1777919629.2375233,
+    "hash": "6f8e4797365fa5f7bd4189984838e81b"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\16_to_17\\0.580_a-30_z0.6_s3.5.png": {
+    "mtime": 1777919640.8354592,
+    "hash": "f8fa9468c9207b4e91557cb8331784c4"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\16_to_17\\0.580_a-30_z0.7_s2.5.png": {
+    "mtime": 1777919664.779051,
+    "hash": "48c87d7bb933890118d48816866fbb77"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\16_to_17\\0.580_a-30_z0.7_s3.5.png": {
+    "mtime": 1777919676.4809492,
+    "hash": "fcdc743f29ecd77264155bdb0de887bd"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\16_to_17\\0.580_a0_z0.65_s2.5.png": {
+    "mtime": 1777919540.3754406,
+    "hash": "91ecd7cd3ec23206694743b867136d15"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\16_to_17\\0.580_a0_z0.65_s3.5.png": {
+    "mtime": 1777919552.167657,
+    "hash": "f13a72948bd5def4cbb7c61d1af387c3"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\16_to_17\\0.580_a0_z0.65_s3.png": {
+    "mtime": 1777919546.3782978,
+    "hash": "08340e8031abd5447c30263a1c541d08"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\16_to_17\\0.580_a0_z0.6_s2.5.png": {
+    "mtime": 1777919522.63893,
+    "hash": "2cd6df2c1e5633965fa907b1a60b8d9a"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\16_to_17\\0.580_a0_z0.6_s3.5.png": {
+    "mtime": 1777919534.5725358,
+    "hash": "624d56f48dc1fa7241fcae9b05274967"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\16_to_17\\0.580_a0_z0.6_s3.png": {
+    "mtime": 1777919528.7103453,
+    "hash": "4fff4e07d14a8efdbf521ed725f0402f"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\16_to_17\\0.580_a0_z0.7_s2.5.png": {
+    "mtime": 1777919557.7918508,
+    "hash": "fa71584cc45f6d31e792dc56009eb620"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\16_to_17\\0.580_a0_z0.7_s3.5.png": {
+    "mtime": 1777919569.6329534,
+    "hash": "79ca27898c7a00114557d4154e0e6d55"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\16_to_17\\0.580_a0_z0.7_s3.png": {
+    "mtime": 1777919563.7654374,
+    "hash": "fbddd2cf5b2bcb84a599d9ab3f974af2"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\16_to_17\\0.580_a15_z0.65_s3.5.png": {
+    "mtime": 1777919605.8102555,
+    "hash": "8b60e4f764e5c2b01e5cf5e610135a32"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\16_to_17\\0.580_a15_z0.65_s3.png": {
+    "mtime": 1777919599.72157,
+    "hash": "999f2b3b0c89d1ea93f3e83fa96defa4"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\16_to_17\\0.580_a15_z0.6_s2.5.png": {
+    "mtime": 1777917681.725578,
+    "hash": "8464be919467e373738976f7b980de2e"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\16_to_17\\0.580_a15_z0.6_s3.5.png": {
+    "mtime": 1777919587.7460306,
+    "hash": "da4c4b0a02700389ff06fbc9b1e467a0"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\16_to_17\\0.580_a15_z0.6_s3.png": {
+    "mtime": 1777919581.6448777,
+    "hash": "f8c36f77927d580ad0dd1edb6346a38f"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\16_to_17\\0.580_a15_z0.7_s2.5.png": {
+    "mtime": 1777917715.9085174,
+    "hash": "40b69c74a8d2724dd1793afcd4f1da63"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\16_to_17\\0.580_a15_z0.7_s3.5.png": {
+    "mtime": 1777919623.4885275,
+    "hash": "563cbb105bf7714010e344c3e807eb8a"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\16_to_17\\0.580_a15_z0.7_s3.png": {
+    "mtime": 1777919617.651738,
+    "hash": "9dbcf1eb0b54a70ab097b574c54c3b8b"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\16_to_17\\0.580_a30_z0.65_s2.5.png": {
+    "mtime": 1777919699.8739138,
+    "hash": "c6404f2d20a60509411e61e138953521"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\16_to_17\\0.580_a30_z0.65_s3.5.png": {
+    "mtime": 1777919711.3001077,
+    "hash": "5684f1edbfe6b2e4a4cd3398b1313b37"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\16_to_17\\0.580_a30_z0.65_s3.png": {
+    "mtime": 1777919705.6076894,
+    "hash": "75ca77557262232ab9e49c7a9c1fbfef"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\16_to_17\\0.580_a30_z0.6_s2.5.png": {
+    "mtime": 1777928352.1794722,
+    "hash": "33ea51783a1f2eb87c576bd38f1ddb83"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\16_to_17\\0.580_a30_z0.6_s3.5.png": {
+    "mtime": 1777919694.2046933,
+    "hash": "1da09ff85ab5fd8aef3983620e69999c"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\16_to_17\\0.580_a30_z0.6_s3.png": {
+    "mtime": 1777919688.2047997,
+    "hash": "93be52906367ada7452c66752d3ef755"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\16_to_17\\0.580_a30_z0.7_s2.5.png": {
+    "mtime": 1777918608.9535096,
+    "hash": "fb024a39dc9e0c441474ffeecdfd0c18"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\16_to_17\\0.580_a30_z0.7_s3.5.png": {
+    "mtime": 1777919728.6124442,
+    "hash": "1a04a2c3f6dabce928aaf672ac060741"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\16_to_17\\0.580_a30_z0.7_s3.png": {
+    "mtime": 1777919722.80917,
+    "hash": "658d6abe7c02fa65a930fde1821b3f85"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\16_to_17\\0.581_a15_z0.6_s2.5.png": {
+    "mtime": 1777928299.9249663,
+    "hash": "c55e136d064d5c1ca1d58db0d74282cd"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\16_to_17\\0.581_a30_z0.65_s2.5.png": {
+    "mtime": 1777928369.2839322,
+    "hash": "65e25a5f9a789daa12c44c5c70f043a5"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\16_to_17\\0.582_a15_z0.7_s2.5.png": {
+    "mtime": 1777928334.8941028,
+    "hash": "5e9d3502e6b948f0611ec7547ee51ff4"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\16_to_17\\0.583_a30_z0.7_s2.5.png": {
+    "mtime": 1777928386.1826925,
+    "hash": "e22b4987f2f071a088a39f854e9de703"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\16_to_17\\0.583_a45_z0.6_s2.5.png": {
+    "mtime": 1777928403.1002293,
+    "hash": "84d87fb701d3f1ac180ecf6a799bfdda"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\16_to_17\\0.587_a30_z0.7_s3.png": {
+    "mtime": 1777928391.7960398,
+    "hash": "647c9313d643259d78e9efefbbe22ea4"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\16_to_17\\0.589_a15_z0.65_s2.5.png": {
+    "mtime": 1777928317.6953945,
+    "hash": "0d17a626c90785e25a79083c432ed2a6"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\16_to_17\\0.590_a-30_z0.7_s2.5.png": {
+    "mtime": 1777928231.7205887,
+    "hash": "ac26e4fdfbc632ff652973b72f8a58ef"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\16_to_17\\0.593_a15_z0.6_s3.5.png": {
+    "mtime": 1777928311.9231954,
+    "hash": "3d1a7684ff31d9f0447d48d727a0f780"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\16_to_17\\0.594_a45_z0.6_s3.png": {
+    "mtime": 1777928408.948647,
+    "hash": "da86ddc85c920588d59e587fc747a8fc"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\16_to_17\\0.599_a0_z0.7_s2.5.png": {
+    "mtime": 1777918453.3712392,
+    "hash": "a6ea3e868e371d4cdde30c1089da8958"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\16_to_17\\0.600_a-30_z0.65_s3.png": {
+    "mtime": 1777928220.322794,
+    "hash": "4c672da470d5582c367d57a9ceca9f4c"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\16_to_17\\0.600_a0_z0.6_s2.5.png": {
+    "mtime": 1777918418.4260535,
+    "hash": "0c05db1f8274897a53cf7b56304a9ed7"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\16_to_17\\0.600_a15_z0.65_s2.5.png": {
+    "mtime": 1777919593.733517,
+    "hash": "18e91949388588d5b85961306268e66f"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\16_to_17\\0.600_a15_z0.6_s2.5.png": {
+    "mtime": 1777919575.542315,
+    "hash": "4301d62635ff1a46d0e322bc0d9329c4"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\16_to_17\\0.600_a15_z0.7_s2.5.png": {
+    "mtime": 1777919611.7153132,
+    "hash": "95ff4e3c4bde87ddfd7ecbd18ef61265"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\16_to_17\\0.601_a-15_z0.6_s3.png": {
+    "mtime": 1777918528.7911775,
+    "hash": "2edbb2a1f393915238efce79bb9fa807"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\16_to_17\\0.601_a30_z0.65_s2.5.png": {
+    "mtime": 1777918591.9066646,
+    "hash": "212816b928e3a8779c5566bb39313b94"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\16_to_17\\0.601_a30_z0.6_s2.5.png": {
+    "mtime": 1777919682.4358282,
+    "hash": "d509bd85e880788cc223603ba26c9517"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\16_to_17\\0.601_a30_z0.7_s2.5.png": {
+    "mtime": 1777919717.1483252,
+    "hash": "7c52b4405891fd8eab906ef93c48e234"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\16_to_17\\0.602_a-15_z0.65_s3.png": {
+    "mtime": 1777918545.9193974,
+    "hash": "c6f0a1e9cad676f49d7e1a355e040b61"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\16_to_17\\0.604_a-30_z0.65_s2.5.png": {
+    "mtime": 1777928214.5945058,
+    "hash": "2b48ba98f0d62d1cdbe280b03fde1e86"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\16_to_17\\0.604_a-30_z0.6_s2.5.png": {
+    "mtime": 1777928196.6591034,
+    "hash": "3ddf77ed4a35707be54c4b24098cc677"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\16_to_17\\0.604_a-30_z0.6_s3.png": {
+    "mtime": 1777928202.611049,
+    "hash": "d852dc68592cf16ffa5dfe5ce7182fa0"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\16_to_17\\0.606_a15_z0.7_s3.png": {
+    "mtime": 1777928340.631511,
+    "hash": "ad62abc8d13bce7717411f41e9aa3cb6"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\16_to_17\\0.606_a45_z0.6_s3.5.png": {
+    "mtime": 1777928414.6731708,
+    "hash": "474e1059faa0223f283430476986a5e8"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\16_to_17\\0.608_a30_z0.65_s3.png": {
+    "mtime": 1777928374.93738,
+    "hash": "fa3783371a06f171dc0a60e8f92bda00"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\16_to_17\\0.609_a-15_z0.6_s3.png": {
+    "mtime": 1777928254.0473194,
+    "hash": "e357dc930cdfd774d6fe67546cf54494"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\16_to_17\\0.611_a-15_z0.6_s3.5.png": {
+    "mtime": 1777919482.532421,
+    "hash": "0e52f16b9abaf371db8619d04fe040c9"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\16_to_17\\0.611_a-15_z0.7_s3.5.png": {
+    "mtime": 1777919516.9698753,
+    "hash": "6537a0e1a9395a6e874a84a1c4da63de"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\16_to_17\\0.612_a15_z0.65_s3.png": {
+    "mtime": 1777928323.3752122,
+    "hash": "3d01afdd9b47779773b28ae20ad29f29"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\16_to_17\\0.621_a-15_z0.65_s2.5.png": {
+    "mtime": 1777918540.139952,
+    "hash": "e848fcadcb230512561b5455c7d8ded5"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\16_to_17\\0.621_a-15_z0.6_s2.5.png": {
+    "mtime": 1777919470.821308,
+    "hash": "2ef3f7d43d6827c1476d6efe0168c55c"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\16_to_17\\0.621_a-15_z0.7_s2.5.png": {
+    "mtime": 1777919505.3370817,
+    "hash": "0ff1e2fcab38a80d1cc86ac5ec775fd5"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\16_to_17\\0.629_a30_z0.7_s3.5.png": {
+    "mtime": 1777928397.369812,
+    "hash": "7674b91565662ba9efd97e343627536c"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\16_to_17\\0.632_a30_z0.6_s3.png": {
+    "mtime": 1777928357.8574462,
+    "hash": "224957cc549d22c537181e94ac1b5c75"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\16_to_17\\0.641_a-30_z0.7_s3.png": {
+    "mtime": 1777919670.7572334,
+    "hash": "cffac8930e6075e30a28eca3b0377f85"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\16_to_17\\0.641_a30_z0.65_s3.5.png": {
+    "mtime": 1777928380.4726722,
+    "hash": "1a285562619774ff4800912934ce5ee4"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\16_to_17\\0.642_a15_z0.7_s3.5.png": {
+    "mtime": 1777928346.4409049,
+    "hash": "61d5ab92a6beb88a8793c56c86f8f2fe"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\16_to_17\\0.644_a-30_z0.6_s3.5.png": {
+    "mtime": 1777928208.6005056,
+    "hash": "61fc11abc0f7d1c56bca7adea9558f6e"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\16_to_17\\0.644_a-30_z0.6_s3.png": {
+    "mtime": 1777919634.9284668,
+    "hash": "196eb653b8b03201784c480f10de081b"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\16_to_17\\0.646_a-15_z0.7_s3.5.png": {
+    "mtime": 1777917778.206319,
+    "hash": "b6b0c8f477ace6ca39515d57e82b979c"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\16_to_17\\0.647_a-30_z0.65_s3.5.png": {
+    "mtime": 1777928226.0069485,
+    "hash": "c2c056385ba3f5742e2a01eb7df74c2c"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\16_to_17\\0.650_a-15_z0.7_s3.5.png": {
+    "mtime": 1777928293.957141,
+    "hash": "e6264496debb2a1e9e47c35bc360a07d"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\16_to_17\\0.650_a15_z0.65_s3.5.png": {
+    "mtime": 1777928329.1623797,
+    "hash": "dfdfb9ec20134099bae96f2f87629e7c"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\16_to_17\\0.651_a-15_z0.65_s3.5.png": {
+    "mtime": 1777917761.2412345,
+    "hash": "aee9dc908541a64509702050e2338fe5"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\16_to_17\\0.654_a30_z0.6_s3.5.png": {
+    "mtime": 1777928363.8007324,
+    "hash": "73636e0cc417db0fdd18c2385178ebb4"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\16_to_17\\0.790_a-15_z0.7_s3.5.png": {
+    "mtime": 1777917093.3761399,
+    "hash": "1e1b6e04e6435cb5eaac07b32d674263"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\16_to_17\\0.931_a0_z0.7_s2.5.png": {
+    "mtime": 1777917664.6843588,
+    "hash": "0cad70ab7b8e77a24b827511fd85cf6d"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\16_to_17\\0.939_a15_z0.65_s2.5.png": {
+    "mtime": 1777917698.8748038,
+    "hash": "b83fea89b6e3384c8135886d893a1dde"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\16_to_17\\1.000_a-15_z0.65_s3.5.png": {
+    "mtime": 1777917076.3747776,
+    "hash": "f82a1421f2f05a48ddab90195712db53"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\16_to_17\\1.000_a-15_z0.65_s3.png": {
+    "mtime": 1777917070.7389448,
+    "hash": "916f9da96093704ed36ffaf4e463e458"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\16_to_17\\1.000_a-15_z0.6_s2.5.png": {
+    "mtime": 1777917732.8067975,
+    "hash": "e5949fb3153a1726317287cc18fde055"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\16_to_17\\1.000_a-15_z0.6_s3.5.png": {
+    "mtime": 1777917744.1026485,
+    "hash": "a9892c2b09bacc3d9bd8393b2a393d7e"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\16_to_17\\1.000_a-15_z0.6_s3.png": {
+    "mtime": 1777917053.6387086,
+    "hash": "bb9b88a1b4920eb6e970e503d5045cee"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\16_to_17\\1.000_a-15_z0.7_s2.5.png": {
+    "mtime": 1777917766.9365156,
+    "hash": "e39eba73ca558b5d99ec10ad4e4e9610"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\16_to_17\\1.000_a-15_z0.7_s3.png": {
+    "mtime": 1777917087.7324886,
+    "hash": "cdcef0bf2fb0fd6f1e8bdc0f706f11bb"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\16_to_17\\1.000_a0_z0.65_s2.5.png": {
+    "mtime": 1777916963.1019144,
+    "hash": "54617303dedd4506c1a6884cfc5843ed"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\16_to_17\\1.000_a0_z0.65_s3.png": {
+    "mtime": 1777916968.8481534,
+    "hash": "22bac2e1b4f4c729befae4ad161a11f6"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\16_to_17\\1.000_a0_z0.6_s3.5.png": {
+    "mtime": 1777917641.7536426,
+    "hash": "ee1df5db25a833e4000f431e3a1cd8e9"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\16_to_17\\1.000_a0_z0.6_s3.png": {
+    "mtime": 1777917635.8199296,
+    "hash": "f6a37e1ef8baf8f8acc41fbf80a09667"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\16_to_17\\1.000_a0_z0.7_s3.5.png": {
+    "mtime": 1777917676.0537279,
+    "hash": "232d7e55ce12af984b01f24d9dce0b78"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\16_to_17\\1.000_a15_z0.65_s2.5.png": {
+    "mtime": 1777917013.7848587,
+    "hash": "c871a044745a38a18f8e4b76641a1cbe"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\16_to_17\\1.000_a15_z0.65_s3.png": {
+    "mtime": 1777917704.6872394,
+    "hash": "d08dc30ad3d694286a9500ff039a7757"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\16_to_17\\1.000_a15_z0.6_s2.5.png": {
+    "mtime": 1777916996.8721387,
+    "hash": "a3166dfed86cde1e30c5af794a468796"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\16_to_17\\1.000_a15_z0.6_s3.png": {
+    "mtime": 1777917002.6237621,
+    "hash": "3536b2c0aba51c422c08faa1afecb285"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\16_to_17\\1.000_a15_z0.7_s2.5.png": {
+    "mtime": 1777917030.818406,
+    "hash": "bd530ce2cc7d9c3d6cb87b62ed2a1c81"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\16_to_17\\1.000_a15_z0.7_s3.5.png": {
+    "mtime": 1777917042.1839616,
+    "hash": "520d9cc7adf7fb9e74d2620653151e39"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\16_to_17\\1.000_a15_z0.7_s3.png": {
+    "mtime": 1777917721.6002145,
+    "hash": "45523574b712809f785b672ba48713ce"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\16_to_17\\1.000_a30_z0.65_s3.5.png": {
+    "mtime": 1777917812.3039286,
+    "hash": "b145e9bf788f9adc7203730b017d0370"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\16_to_17\\1.000_a30_z0.65_s3.png": {
+    "mtime": 1777917806.5738938,
+    "hash": "9812d491fe5d204708c79c0223563294"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\16_to_17\\1.000_a30_z0.6_s2.5.png": {
+    "mtime": 1777917099.199478,
+    "hash": "b48c3fb4914baffce119914647299f1f"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\16_to_17\\1.000_a30_z0.6_s3.5.png": {
+    "mtime": 1777917795.324978,
+    "hash": "ed5f8aac53a8c4c3f12e80671e7cff34"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\16_to_17\\1.000_a30_z0.7_s3.5.png": {
+    "mtime": 1777917829.4710863,
+    "hash": "4d151b810cab7abc56f61f6e2eef0a6f"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\3_to_4\\0.580_a-20_z0.7_s2.png": {
+    "mtime": 1777918751.7518525,
+    "hash": "b2cae65922b9876977caa1ac8dfb0ba5"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\3_to_4\\0.580_a-30_z0.7_s2.png": {
+    "mtime": 1777918698.9092336,
+    "hash": "709c52c44d437aa2250f72607120c5ce"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\3_to_4\\0.580_a-40_z0.65_s1.5.png": {
+    "mtime": 1777918781.7943957,
+    "hash": "67b40be01be789b90712378de8347dbc"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\3_to_4\\0.580_a-40_z0.65_s2.png": {
+    "mtime": 1777918787.8766353,
+    "hash": "b8f47fc2dfa97cdaa44059037347b167"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\3_to_4\\0.580_a-40_z0.7_s2.png": {
+    "mtime": 1777918805.5393445,
+    "hash": "b74785817ce814d555f619f70967782e"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\3_to_4\\0.582_a-30_z0.75_s1.5.png": {
+    "mtime": 1777918710.612053,
+    "hash": "307ce6530b8e506b34c17b64113f6b44"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\3_to_4\\0.588_a-20_z0.7_s1.5.png": {
+    "mtime": 1777918745.7984834,
+    "hash": "1503adabe5253d554f92a9367f80441a"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\3_to_4\\0.591_a-40_z0.65_s1.png": {
+    "mtime": 1777918775.8552165,
+    "hash": "f2105d314768862da6685b955ae1ee78"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\3_to_4\\0.591_a-40_z0.75_s1.png": {
+    "mtime": 1777918811.463696,
+    "hash": "2d339e1a88542e19502dbe70f76651a9"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\3_to_4\\0.605_a-30_z0.65_s1.png": {
+    "mtime": 1777918669.4966857,
+    "hash": "deb84afdcea45f167a5f431ca4a76ee6"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\3_to_4\\0.619_a-20_z0.75_s1.png": {
+    "mtime": 1777918757.7416642,
+    "hash": "c23a6ee4f78fd1f1388a81de159a3c50"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\3_to_4\\0.623_a-40_z0.75_s2.png": {
+    "mtime": 1777918823.2952762,
+    "hash": "8e644de83e6c58bff9ce729b77ba8ddb"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\3_to_4\\0.638_a-30_z0.65_s2.png": {
+    "mtime": 1777918681.3951588,
+    "hash": "34d96b1601b88f5419c9d6f70dfd7e3c"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\3_to_4\\0.638_a-30_z0.75_s2.png": {
+    "mtime": 1777918716.4065683,
+    "hash": "3b121762f39aa19a16738e91003b7de4"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\3_to_4\\0.645_a-40_z0.7_s1.5.png": {
+    "mtime": 1777918799.7130637,
+    "hash": "88050930e0268509baa64d64483e72fd"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\3_to_4\\0.646_a-40_z0.75_s1.5.png": {
+    "mtime": 1777918817.3268757,
+    "hash": "28469a284af63de838f1f569c63dacf5"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\3_to_4\\0.655_a-20_z0.65_s2.png": {
+    "mtime": 1777918734.0906749,
+    "hash": "f6522d7669f6e94a90790d857856987d"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\3_to_4\\0.656_a-20_z0.75_s2.png": {
+    "mtime": 1777918769.8026772,
+    "hash": "56e4ef79315b97876d6e22d8f6250a75"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\3_to_4\\0.659_a-30_z0.65_s1.5.png": {
+    "mtime": 1777918675.656542,
+    "hash": "c1791893932aade2c5b49d5cd1751d45"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\3_to_4\\0.659_a-30_z0.7_s1.5.png": {
+    "mtime": 1777918693.098697,
+    "hash": "6c0d39f9a084ff0103f713543ebc272c"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\3_to_4\\0.672_a-20_z0.65_s1.5.png": {
+    "mtime": 1777918728.2324479,
+    "hash": "5e681c06fd38298d032cbcb9ff823ec7"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\3_to_4\\0.672_a-20_z0.75_s1.5.png": {
+    "mtime": 1777918763.7993512,
+    "hash": "988d0b851852ef996409acfd86b99107"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\3_to_4\\0.677_a-40_z0.7_s1.png": {
+    "mtime": 1777918793.8549337,
+    "hash": "66f8cc0e5174cbd9a2719244ea712a69"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\3_to_4\\0.687_a-30_z0.75_s1.png": {
+    "mtime": 1777918704.6641686,
+    "hash": "98abbaf1ed954e8bba19abd71266ccd3"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\3_to_4\\0.687_a-30_z0.7_s1.png": {
+    "mtime": 1777918687.2700255,
+    "hash": "cd7ae21176c939192e674da9de511156"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\3_to_4\\0.688_a-30_z0.7_s1.png": {
+    "mtime": 1777918095.926324,
+    "hash": "1edd1104dd70563fc694df7a63d4b48a"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\3_to_4\\0.699_a-20_z0.65_s1.png": {
+    "mtime": 1777918722.4127674,
+    "hash": "9e855ea3654c61c8edec90427c2dc081"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\3_to_4\\0.699_a-20_z0.7_s1.png": {
+    "mtime": 1777918739.9826472,
+    "hash": "5bffa23fa8737d84e7410bc8d686fd3c"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\3_to_4\\0.790_a-30_z0.7_s1.png": {
+    "mtime": 1777917311.4638064,
+    "hash": "94c8bbf536160cf35bf2625eac4ef1ed"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\3_to_4\\0.810_a-30_z0.7_s1.png": {
+    "mtime": 1777916616.3810618,
+    "hash": "39faf2eac20654c9ecb19282b77c53e3"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\4_to_5\\0.222_a-90_z0.65_s2.png": {
+    "mtime": 1777919211.232414,
+    "hash": "8657da888fe761d3065b9f99e301dc26"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\4_to_5\\0.222_a-90_z0.75_s2.png": {
+    "mtime": 1777918297.903177,
+    "hash": "898a989eb7b9c062eaed21f5cc8a8f7c"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\4_to_5\\0.230_a-90_z0.65_s2.png": {
+    "mtime": 1777918263.462278,
+    "hash": "80f6890d7b02d559273dc856e6d18643"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\4_to_5\\0.230_a-90_z0.75_s2.png": {
+    "mtime": 1777919246.6602192,
+    "hash": "9e844e0d49da4099110135a2c4408dc9"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\4_to_5\\0.231_a-90_z0.65_s2.5.png": {
+    "mtime": 1777918269.0523624,
+    "hash": "b221c74824f900ce1ea7e72fad39a5c0"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\4_to_5\\0.231_a-90_z0.75_s2.5.png": {
+    "mtime": 1777919252.447236,
+    "hash": "3fc58e610b7c61a78dc8f6cc84716e9b"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\4_to_5\\0.231_a-90_z0.7_s2.5.png": {
+    "mtime": 1777918286.3187404,
+    "hash": "42bcfdbdd66f3cdc0f335eab512cc370"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\4_to_5\\0.232_a-90_z0.7_s2.png": {
+    "mtime": 1777919229.0029538,
+    "hash": "529da061524f41ec29be2449c2d60aef"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\4_to_5\\0.235_a-90_z0.7_s2.5.png": {
+    "mtime": 1777919234.8539975,
+    "hash": "2fcc9171ccfe42ccfadf1a1cd4cbf713"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\4_to_5\\0.246_a-90_z0.75_s3.png": {
+    "mtime": 1777918309.2929683,
+    "hash": "c30ecd26019552c41484f69d1f660e22"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\4_to_5\\0.246_a-90_z0.7_s3.png": {
+    "mtime": 1777919240.7618861,
+    "hash": "cf3e6d50b9ed001061f2f2151cae7bd4"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\4_to_5\\0.247_a-90_z0.6_s2.5.png": {
+    "mtime": 1777919199.4637835,
+    "hash": "44d7abebea120ad61a76d2208e7f00f6"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\4_to_5\\0.249_a-90_z0.6_s3.png": {
+    "mtime": 1777919205.2557063,
+    "hash": "c4599ad0170278d66e85134ca8849c53"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\4_to_5\\0.280_a-45_z0.65_s2.png": {
+    "mtime": 1777919419.3589928,
+    "hash": "3ac015b38b302ecb6a3e47c136b92d39"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\4_to_5\\0.325_a-45_z0.75_s2.5.png": {
+    "mtime": 1777919459.3067935,
+    "hash": "6336e489b07ea6f3b1c6b700d84d8523"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\4_to_5\\0.520_a-90_z0.65_s3.png": {
+    "mtime": 1777919222.9888268,
+    "hash": "cf6d8d43d9f6c80f66474f38665dcf30"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\4_to_5\\0.520_a-90_z0.75_s3.png": {
+    "mtime": 1777919258.221645,
+    "hash": "4abe165c880435fb61ff9ff0d4faa87c"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\4_to_5\\0.539_a-75_z0.6_s2.png": {
+    "mtime": 1777919263.9674563,
+    "hash": "eebe588493c86d6abf904c8a99e987cb"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\4_to_5\\0.539_a-75_z0.75_s2.png": {
+    "mtime": 1777919316.3275557,
+    "hash": "e313c4817da4f82d2bc839968c910fe5"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\4_to_5\\0.539_a-75_z0.7_s2.png": {
+    "mtime": 1777918332.0375183,
+    "hash": "1a6e4a760169ee9706527a040780b8c8"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\4_to_5\\0.543_a-90_z0.65_s2.5.png": {
+    "mtime": 1777919217.0645258,
+    "hash": "6ac3e27eb628d6f3bebde8d35a186d41"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\4_to_5\\0.543_a-90_z0.6_s2.png": {
+    "mtime": 1777919193.7010362,
+    "hash": "8d890b5d9024e7321267ca62dde8d418"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\4_to_5\\0.543_a-90_z0.7_s2.png": {
+    "mtime": 1777918280.4875734,
+    "hash": "a9eb6057cb4762e6991c085b82ceeee3"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\4_to_5\\0.545_a-90_z0.7_s3.png": {
+    "mtime": 1777918292.0977163,
+    "hash": "c4587dcd53bf837086915040e03f62b6"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\4_to_5\\0.546_a-75_z0.7_s2.5.png": {
+    "mtime": 1777918337.7825263,
+    "hash": "a9b0dee0952c952a2e98dc96843ad5da"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\4_to_5\\0.548_a-75_z0.65_s2.5.png": {
+    "mtime": 1777919287.517099,
+    "hash": "005a7f781961ebbea82881a9bff4a873"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\4_to_5\\0.564_a-90_z0.65_s3.png": {
+    "mtime": 1777918274.7393732,
+    "hash": "aa5ce69163e7404116a5eb954c5662cb"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\4_to_5\\0.568_a-75_z0.7_s3.png": {
+    "mtime": 1777919310.4503272,
+    "hash": "e83d12b6c2f76b2e34d25cb38f6e87fc"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\4_to_5\\0.570_a-75_z0.65_s3.png": {
+    "mtime": 1777918326.2576203,
+    "hash": "08fe4428c37176fb674b64509596ac0d"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\4_to_5\\0.570_a-75_z0.6_s2.5.png": {
+    "mtime": 1777919269.8109045,
+    "hash": "e13bf885798485d679208635372c8f50"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\4_to_5\\0.570_a-75_z0.7_s3.png": {
+    "mtime": 1777918343.551088,
+    "hash": "b62edcae7246631bc9d96a3c8d477b30"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\4_to_5\\0.574_a-75_z0.6_s3.png": {
+    "mtime": 1777919275.726123,
+    "hash": "b8f39490d359c0103a478ab03da33b3d"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\4_to_5\\0.574_a-75_z0.75_s3.png": {
+    "mtime": 1777919327.909988,
+    "hash": "d02ec09d22873c1d8f149305b8481410"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\4_to_5\\0.576_a-75_z0.65_s2.5.png": {
+    "mtime": 1777918320.612388,
+    "hash": "60b25a91c736f332591b7cc942346574"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\4_to_5\\0.576_a-75_z0.7_s2.5.png": {
+    "mtime": 1777919304.648179,
+    "hash": "640c897b5c5c3fc11c4377925cf8c9eb"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\4_to_5\\0.578_a-75_z0.75_s2.5.png": {
+    "mtime": 1777919322.260857,
+    "hash": "ac6fa07a7f7676d00ddcd0e682a4114d"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\4_to_5\\0.580_a-45_z0.6_s2.png": {
+    "mtime": 1777919402.5051832,
+    "hash": "0c03c487cf88f1d1859b8171d4a1e797"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\4_to_5\\0.580_a-60_z0.65_s2.png": {
+    "mtime": 1777919350.9934366,
+    "hash": "457d217144868deb5e1d5da6f503b1db"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\4_to_5\\0.580_a-60_z0.75_s2.png": {
+    "mtime": 1777918401.0081239,
+    "hash": "0674d07d93ab85e9d3b95c899c0ec4b4"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\4_to_5\\0.582_a-75_z0.65_s2.png": {
+    "mtime": 1777918314.9316194,
+    "hash": "e255fe7c069deed6fa4ff607a30872ee"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\4_to_5\\0.582_a-75_z0.7_s2.png": {
+    "mtime": 1777919298.9788299,
+    "hash": "8017e718e2352a875a019a46ad1b5c7b"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\4_to_5\\0.584_a-45_z0.65_s2.5.png": {
+    "mtime": 1777919425.1404643,
+    "hash": "765ff22a1ca62d2d8f106d25d8d690d3"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\4_to_5\\0.588_a-60_z0.7_s2.5.png": {
+    "mtime": 1777919373.9373615,
+    "hash": "5aa82bcb484d99c1121ddbcbd551f688"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\4_to_5\\0.589_a-60_z0.6_s2.5.png": {
+    "mtime": 1777919339.6359775,
+    "hash": "9831d40e3cee35b2204d73ed9f1289ba"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\4_to_5\\0.589_a-60_z0.75_s2.5.png": {
+    "mtime": 1777918406.8912714,
+    "hash": "aea60efc6467926a20ac7c0c09e2033f"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\4_to_5\\0.590_a-75_z0.75_s2.5.png": {
+    "mtime": 1777918354.9548185,
+    "hash": "41b51e2af1d293c27593b735ca2ca2c4"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\4_to_5\\0.590_a-75_z0.75_s3.png": {
+    "mtime": 1777918360.660403,
+    "hash": "27c5553e3829c80159c27bcd8909820a"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\4_to_5\\0.591_a-60_z0.75_s2.5.png": {
+    "mtime": 1777919391.0756035,
+    "hash": "0de8505dd82be2ee171d75e89d610fcd"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\4_to_5\\0.591_a-75_z0.65_s3.png": {
+    "mtime": 1777919293.3435624,
+    "hash": "d52decf995b39c3f3cec9fa618402bb3"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\4_to_5\\0.595_a-75_z0.65_s2.png": {
+    "mtime": 1777919281.5653472,
+    "hash": "3e7ed1151c059ec36d16b7a1793a75c0"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\4_to_5\\0.595_a-75_z0.75_s2.png": {
+    "mtime": 1777918349.234586,
+    "hash": "4850058cb6ee44fca2713225dd53a6bd"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\4_to_5\\0.602_a-45_z0.7_s3.png": {
+    "mtime": 1777919447.9576185,
+    "hash": "f1e84d5bb8ee520266a09e514fb76890"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\4_to_5\\0.606_a-60_z0.65_s3.png": {
+    "mtime": 1777919362.487599,
+    "hash": "4648006ca9557d0a82556c7840aba1db"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\4_to_5\\0.606_a-60_z0.75_s3.png": {
+    "mtime": 1777918412.5466516,
+    "hash": "43f43dac9b6d24001bb1a37ec07ada8c"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\4_to_5\\0.607_a-60_z0.6_s3.png": {
+    "mtime": 1777919345.1791751,
+    "hash": "703fd36cce9f03bc4a43002bdab06fb0"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\4_to_5\\0.610_a-60_z0.7_s3.png": {
+    "mtime": 1777919379.586438,
+    "hash": "a67de98dab8b0d1d17e7b9c10130fbd7"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\4_to_5\\0.612_a-60_z0.75_s3.png": {
+    "mtime": 1777919396.7859716,
+    "hash": "1212216831da00584b1ede9277f5087e"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\4_to_5\\0.613_a-60_z0.7_s3.png": {
+    "mtime": 1777918395.0855463,
+    "hash": "213dd46fd360e2189da252f6fa95f587"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\4_to_5\\0.618_a-60_z0.65_s3.png": {
+    "mtime": 1777918377.9305987,
+    "hash": "2066c2a5a2491a7096c2f1fad918822c"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\4_to_5\\0.621_a-60_z0.65_s2.5.png": {
+    "mtime": 1777918372.2468297,
+    "hash": "77422a5f7068f0e2376e4ea3d3ce6d66"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\4_to_5\\0.623_a-60_z0.65_s2.5.png": {
+    "mtime": 1777919356.782974,
+    "hash": "68397adf36537d2fe48a3b48f6b56495"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\4_to_5\\0.623_a-60_z0.7_s2.5.png": {
+    "mtime": 1777918389.4048405,
+    "hash": "77af61b609e8650347f1e0bf1f1826c5"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\4_to_5\\0.624_a-60_z0.65_s2.png": {
+    "mtime": 1777918366.4520612,
+    "hash": "6af9e8a4d985ef67d87f764c1885471b"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\4_to_5\\0.625_a-60_z0.7_s2.png": {
+    "mtime": 1777919368.1725137,
+    "hash": "9f2a20f968b49b5854ea0839ea53a9c5"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\4_to_5\\0.626_a-60_z0.6_s2.png": {
+    "mtime": 1777919333.758607,
+    "hash": "4131bd3e236a54e30e8209ad8fdee6cd"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\4_to_5\\0.626_a-60_z0.75_s2.png": {
+    "mtime": 1777919385.296954,
+    "hash": "d704c75026eba386bf72467208b8ee58"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\4_to_5\\0.626_a-60_z0.7_s2.png": {
+    "mtime": 1777918383.7109995,
+    "hash": "d3c3fae0e0ade0f7cc4849583cbcc402"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\4_to_5\\0.628_a-45_z0.75_s2.png": {
+    "mtime": 1777919453.7079148,
+    "hash": "0b4a142aa912f7c16bbb23adcc813730"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\4_to_5\\0.629_a-45_z0.7_s2.5.png": {
+    "mtime": 1777919442.1015077,
+    "hash": "a02b2520b0fb211f2085443b6ee29767"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\4_to_5\\0.630_a-45_z0.7_s2.png": {
+    "mtime": 1777919436.4417398,
+    "hash": "80db3c49519d05467ccc2fa0965287ae"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\4_to_5\\0.635_a-45_z0.6_s2.5.png": {
+    "mtime": 1777919408.1123857,
+    "hash": "c8f2a50025b30e0949610d4de459c5e7"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\4_to_5\\0.637_a-45_z0.6_s3.png": {
+    "mtime": 1777919413.862795,
+    "hash": "4afec4e875b16724aba4e55c3ca4425e"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\4_to_5\\0.637_a-45_z0.75_s3.png": {
+    "mtime": 1777919464.9331205,
+    "hash": "d7121701d0e55e63a9c4f638645ac764"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\4_to_5\\0.638_a-45_z0.65_s3.png": {
+    "mtime": 1777919430.7999232,
+    "hash": "d4f229f7e501d944dc3695cab2ada272"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\4_to_5\\0.739_a-75_z0.65_s3.png": {
+    "mtime": 1777917538.938578,
+    "hash": "dd247ce0ff377b02e2bd22b18e9044e7"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\4_to_5\\0.739_a-75_z0.75_s3.png": {
+    "mtime": 1777917573.5089393,
+    "hash": "480c54965dd77a661ff1f849b5d00c59"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\4_to_5\\0.739_a-75_z0.7_s3.png": {
+    "mtime": 1777917556.1524494,
+    "hash": "680a44002516b49f6c4e61520a235035"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\4_to_5\\0.743_a-75_z0.7_s2.5.png": {
+    "mtime": 1777917550.4120274,
+    "hash": "4010ed127c759ac99efd60bfc65fa206"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\4_to_5\\0.750_a-75_z0.75_s2.5.png": {
+    "mtime": 1777917567.6952746,
+    "hash": "2b95a2c3e5313858224b5db3a1d718f1"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\4_to_5\\0.790_a-60_z0.65_s3.png": {
+    "mtime": 1777916906.0740442,
+    "hash": "dbd8db07b8f1d29a1d3b0f5c0ddace73"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\4_to_5\\0.790_a-60_z0.75_s2.5.png": {
+    "mtime": 1777916934.699555,
+    "hash": "4b1f98ca1b7162f40f86368a7f26c352"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\4_to_5\\0.790_a-60_z0.7_s2.5.png": {
+    "mtime": 1777916917.4100995,
+    "hash": "85d7a48ea417afddfde85a985ac9879b"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\4_to_5\\0.790_a-60_z0.7_s3.png": {
+    "mtime": 1777916923.1383295,
+    "hash": "01a83c2c81b625d59b9fd3486fc84f10"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\4_to_5\\0.790_a-75_z0.65_s3.png": {
+    "mtime": 1777916854.9428627,
+    "hash": "c7e0978954441fcf79504a90f68431f6"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\4_to_5\\0.790_a-75_z0.75_s2.5.png": {
+    "mtime": 1777916883.4583893,
+    "hash": "9432b699f3f5d6972f7da8c6c970e805"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\4_to_5\\0.790_a-75_z0.7_s3.png": {
+    "mtime": 1777916872.0007498,
+    "hash": "bc1ffc6ea1c5925deca157b232d64a6d"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\4_to_5\\0.790_a-90_z0.65_s2.5.png": {
+    "mtime": 1777916798.4920743,
+    "hash": "d30ee2a0d318e112f16e6378ee70345b"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\4_to_5\\0.790_a-90_z0.75_s2.5.png": {
+    "mtime": 1777916832.2613833,
+    "hash": "2af043a73325e4bfa8867fb40ea391a9"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\4_to_5\\0.790_a-90_z0.7_s2.5.png": {
+    "mtime": 1777916815.226521,
+    "hash": "5fd7e2dd30e3160fbde8ec42223a230d"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\4_to_5\\0.791_a-60_z0.7_s2.5.png": {
+    "mtime": 1777917601.8265054,
+    "hash": "6efa58bdb4c4c89b2b5ebe1427a1d3a2"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\4_to_5\\0.799_a-60_z0.65_s2.5.png": {
+    "mtime": 1777917584.8618531,
+    "hash": "e21257e71e183ecc62cf45f334fa4f0e"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\4_to_5\\0.844_a-90_z0.7_s2.png": {
+    "mtime": 1777917493.9659126,
+    "hash": "07c9dd791c4bf7d8b52d6179e7f2d673"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\4_to_5\\0.845_a-90_z0.65_s2.png": {
+    "mtime": 1777917476.9963531,
+    "hash": "cf0691b122a86199d8de548bc58cb439"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\4_to_5\\0.862_a-90_z0.65_s3.png": {
+    "mtime": 1777917488.2010255,
+    "hash": "2453766e4a875a835f2a1c39a2857603"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\4_to_5\\0.862_a-90_z0.75_s3.png": {
+    "mtime": 1777917521.894179,
+    "hash": "cce7811409a64194f661bb420383d7e9"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\4_to_5\\0.862_a-90_z0.7_s3.png": {
+    "mtime": 1777917505.1516175,
+    "hash": "63513c0a8fd79d87f9b30c04656edb8e"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\4_to_5\\0.863_a-90_z0.65_s2.5.png": {
+    "mtime": 1777917482.5813944,
+    "hash": "c5415f177788f01134ed883b40cfa7f3"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\4_to_5\\0.863_a-90_z0.75_s2.5.png": {
+    "mtime": 1777917516.3685944,
+    "hash": "d3f500156377479904005273ac8e85b6"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\4_to_5\\0.863_a-90_z0.75_s2.png": {
+    "mtime": 1777917510.7680907,
+    "hash": "1a0f7d6d564616f7c300a59a3d1982fc"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\4_to_5\\0.863_a-90_z0.7_s2.5.png": {
+    "mtime": 1777917499.5396674,
+    "hash": "7fdbf0f1993a3d2e16bcf271a4549ae4"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\4_to_5\\0.911_a-75_z0.65_s2.5.png": {
+    "mtime": 1777917533.161524,
+    "hash": "fef8f5be44626f8e25215d406cfeb844"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\4_to_5\\0.918_a-75_z0.65_s2.png": {
+    "mtime": 1777917527.604759,
+    "hash": "4c41f4c4a1e65705e042013074d1b432"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\4_to_5\\0.941_a-75_z0.75_s2.png": {
+    "mtime": 1777917561.906356,
+    "hash": "e30466683d26d4fde49c8bc85a067b88"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\4_to_5\\0.941_a-75_z0.7_s2.png": {
+    "mtime": 1777917544.5830812,
+    "hash": "b358b231ace0887a31d79c770638e196"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\4_to_5\\0.953_a-60_z0.65_s3.png": {
+    "mtime": 1777917590.5357323,
+    "hash": "d1c2ab3b6b2ddd506f36b7b3bee2c4d4"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\4_to_5\\0.953_a-60_z0.7_s3.png": {
+    "mtime": 1777917607.4068465,
+    "hash": "93c2eec36691ca4a3c84835f12b67ae5"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\4_to_5\\0.954_a-60_z0.75_s3.png": {
+    "mtime": 1777917624.3080046,
+    "hash": "49bb60d92947dfe49a01c1bed3144cb2"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\4_to_5\\0.964_a-60_z0.75_s2.5.png": {
+    "mtime": 1777917618.6842418,
+    "hash": "6a0171aa7ce3d2b6ec1d4c4c1d4c1a21"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\4_to_5\\0.978_a-60_z0.7_s2.png": {
+    "mtime": 1777917596.1233282,
+    "hash": "f7386f885fa1fb1f5e266129236de6c1"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\4_to_5\\0.992_a-60_z0.75_s2.png": {
+    "mtime": 1777917612.9389026,
+    "hash": "b1905dbd78db71d916b5ec8f8b9b9d64"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\4_to_5\\0.993_a-60_z0.65_s2.png": {
+    "mtime": 1777917579.1529682,
+    "hash": "b0ee364f9410df154f7e4bff35a425dd"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\4_to_5\\1.000_a-60_z0.65_s2.5.png": {
+    "mtime": 1777916900.4153273,
+    "hash": "e5c4d2d45aac5b81f27c2aae639714fa"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\4_to_5\\1.000_a-60_z0.65_s2.png": {
+    "mtime": 1777916894.656748,
+    "hash": "203c565f84864cae1b8f3de2dddb8307"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\4_to_5\\1.000_a-60_z0.75_s2.png": {
+    "mtime": 1777916928.926226,
+    "hash": "5ad252d908c7039067c8416a5df63eb7"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\4_to_5\\1.000_a-60_z0.75_s3.png": {
+    "mtime": 1777916940.3870308,
+    "hash": "2926f0acea876f517fa607af8eb4a42a"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\4_to_5\\1.000_a-60_z0.7_s2.png": {
+    "mtime": 1777916911.638846,
+    "hash": "7a49b983cac54ce20c758383559440f2"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\4_to_5\\1.000_a-75_z0.65_s2.5.png": {
+    "mtime": 1777916849.260959,
+    "hash": "2ada0f7751b4873bd92ff92d7a879672"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\4_to_5\\1.000_a-75_z0.65_s2.png": {
+    "mtime": 1777916843.660048,
+    "hash": "60924ee9f1aaa9f1d54e7f65dcd6f539"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\4_to_5\\1.000_a-75_z0.75_s2.png": {
+    "mtime": 1777916877.7118096,
+    "hash": "dbe75f5ae717c9670e0007251ad54872"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\4_to_5\\1.000_a-75_z0.75_s3.png": {
+    "mtime": 1777916889.012353,
+    "hash": "ee3e56dd9687cf246b827dc973ae053b"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\4_to_5\\1.000_a-75_z0.7_s2.5.png": {
+    "mtime": 1777916866.2856297,
+    "hash": "e4c022d25eeeb1493260070902944437"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\4_to_5\\1.000_a-75_z0.7_s2.png": {
+    "mtime": 1777916860.6068175,
+    "hash": "a41c40badbe8c20f830e128ac2f71418"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\4_to_5\\1.000_a-90_z0.65_s2.png": {
+    "mtime": 1777916792.8958116,
+    "hash": "169a7b88fc180e1d45fe288b1a31847b"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\4_to_5\\1.000_a-90_z0.65_s3.png": {
+    "mtime": 1777916804.006689,
+    "hash": "d6713606aa08a625622e19e4b6a1f18b"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\4_to_5\\1.000_a-90_z0.75_s2.png": {
+    "mtime": 1777916826.5784318,
+    "hash": "303f2e9b027d5e34b3b9c39a2dfc55d5"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\4_to_5\\1.000_a-90_z0.75_s3.png": {
+    "mtime": 1777916837.8952076,
+    "hash": "c61e1d2d4e6a1bbea1ff847ffd48bd2a"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\4_to_5\\1.000_a-90_z0.7_s2.png": {
+    "mtime": 1777916809.616365,
+    "hash": "1b75f4ea5eef5db667eeabd0d588a7c7"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\camera-screenshots\\sweep\\4_to_5\\1.000_a-90_z0.7_s3.png": {
+    "mtime": 1777916820.8000703,
+    "hash": "7df68b095bf02eca5a1cd07ab86d95e6"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\public\\favicon.png": {
+    "mtime": 1777541143.8324273,
+    "hash": "b9e2e6209b90a16250a028e9142f242a"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\public\\sauce-label.png": {
+    "mtime": 1777541143.8584425,
+    "hash": "969afba41fd70d8fde73c10fbb8ea7a3"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\public\\images\\sticker-rond-pb.webp": {
+    "mtime": 1777541143.8594427,
+    "hash": "b70caaf18758decfd0f88d0285fa21ab"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\website\\public\\favicon.png": {
+    "mtime": 1777892193.30948,
+    "hash": "b9e2e6209b90a16250a028e9142f242a"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\website\\public\\images\\sticker-rond-pb.webp": {
+    "mtime": 1777892193.2929666,
+    "hash": "b70caaf18758decfd0f88d0285fa21ab"
+  }
+}

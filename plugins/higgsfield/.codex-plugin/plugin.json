@@ -1,0 +1,40 @@
+{
+  "name": "higgsfield",
+  "version": "0.1.0",
+  "description": "Connect Codex to Higgsfield's hosted MCP server for image and video generation.",
+  "author": {
+    "name": "Local"
+  },
+  "homepage": "https://higgsfield.ai/mcp",
+  "repository": "https://higgsfield.ai/mcp",
+  "license": "Proprietary",
+  "keywords": [
+    "higgsfield",
+    "mcp",
+    "image-generation",
+    "video-generation"
+  ],
+  "mcpServers": "./.mcp.json",
+  "interface": {
+    "displayName": "Higgsfield",
+    "shortDescription": "Generate images and videos through Higgsfield MCP",
+    "longDescription": "Connects Codex to Higgsfield's hosted MCP server so you can generate images, create videos, and browse prior creations after signing in with your Higgsfield account.",
+    "developerName": "Higgsfield",
+    "category": "Creativity",
+    "capabilities": [
+      "Interactive",
+      "Read",
+      "Write"
+    ],
+    "websiteURL": "https://higgsfield.ai/mcp",
+    "privacyPolicyURL": "https://higgsfield.ai/privacy-policy",
+    "termsOfServiceURL": "https://higgsfield.ai/terms-of-use-agreement",
+    "defaultPrompt": [
+      "Generate a cinematic product shot",
+      "Create a short video from this concept",
+      "Show my recent Higgsfield creations"
+    ],
+    "brandColor": "#111111",
+    "screenshots": []
+  }
+}

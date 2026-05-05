@@ -22,3 +22,16 @@ yarn-error.log*
 
 package-lock.json
 .vercel
+
+# local dev artifacts
+.devserver.log
+.devserver.err.log
+.claude/settings.local.json
+.claude/scheduled_tasks.lock
+
+# nested workspace deps
+viz/node_modules/
+viz/out/
+
+# large generated screenshot dumps
+docs/camera-screenshots/

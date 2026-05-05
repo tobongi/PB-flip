@@ -1,0 +1,18 @@
+{
+  "name": "viz",
+  "version": "1.0.0",
+  "description": "Visual floor-plan for PB-flip restaurant tables",
+  "scripts": {
+    "dev": "npx remotion studio",
+    "render": "npx remotion render FloorMap out/floor-map.mp4"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@remotion/cli": "^4.0.457",
+    "react": "^19.2.5",
+    "react-dom": "^19.2.5",
+    "remotion": "^4.0.457"
+  }
+}

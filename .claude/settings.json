@@ -1,0 +1,50 @@
+{
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "shell": "powershell",
+            "command": "$root = (git rev-parse --show-toplevel 2>$null); if ($root -and (Test-Path \"$root/graphify-out/graph.json\")) { python \"$root/.claude/graphify_session_start.py\" }",
+            "statusMessage": "Loading knowledge graph..."
+          }
+        ]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "matcher": "Read|Glob|Grep",
+        "hooks": [
+          {
+            "type": "command",
+            "shell": "powershell",
+            "command": "if (Test-Path 'graphify-out/graph.json') { $f = python -c \"import json,sys; d=json.load(sys.stdin); print(d.get('tool_input',{}).get('file_path','') or d.get('tool_input',{}).get('pattern','') or d.get('tool_input',{}).get('path',''))\"; Write-Output ('{\"hookSpecificOutput\":{\"hookEventName\":\"PreToolUse\",\"additionalContext\":\"graphify: graph exists at graphify-out/graph.json. Use /graphify query or /graphify explain instead of reading raw files to save 80-90% context.\"}}') }"
+          }
+        ]
+      },
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "CMD=$(python3 -c \"import json,sys; d=json.load(sys.stdin); print(d.get('tool_input',d).get('command',''))\" 2>/dev/null || true); case \"$CMD\" in *grep*|*rg\\ *|*ripgrep*|*find\\ *|*fd\\ *|*ack\\ *|*ag\\ *)   [ -f graphify-out/graph.json ] &&   echo '{\"hookSpecificOutput\":{\"hookEventName\":\"PreToolUse\",\"additionalContext\":\"graphify: Knowledge graph exists. Read graphify-out/GRAPH_REPORT.md for god nodes and community structure before searching raw files.\"}}'   || true ;; esac"
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "shell": "powershell",
+            "command": "$root = (git rev-parse --show-toplevel 2>$null); if ($root -and (Test-Path \"$root/graphify-out/graph.json\")) { Set-Location $root; graphify update . 2>&1 | Out-Null }",
+            "async": true,
+            "statusMessage": "Updating knowledge graph..."
+          }
+        ]
+      }
+    ]
+  }
+}
