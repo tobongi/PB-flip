@@ -16,8 +16,8 @@
     "hash": "644f535022d9e6bdbee2b98117c33bfb"
   },
   "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\config\\webpack.config.prod.js": {
-    "mtime": 1777572458.214723,
-    "hash": "e409eb538774dab6ca6804dfd9f27978"
+    "mtime": 1777990120.631858,
+    "hash": "25e828b8036c00a496da34ba47374547"
   },
   "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\config\\webpackDevServer.config.js": {
     "mtime": 1777541143.72662,
@@ -39,6 +39,10 @@
     "mtime": 1777597370.587468,
     "hash": "2623ee51e2812ce28aa1906c8c17b75c"
   },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\public\\service-worker.js": {
+    "mtime": 1777990131.0309987,
+    "hash": "1ddb23029b3e9980ce32909ce1912ac5"
+  },
   "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\scripts\\annotate-screenshot.py": {
     "mtime": 1777887215.2569704,
     "hash": "86b8a500de393f89d1eff48f6148a7f9"
@@ -48,8 +52,8 @@
     "hash": "c339fbfc0e2a12a495188b4ae68b2e88"
   },
   "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\scripts\\build.js": {
-    "mtime": 1777541143.9646218,
-    "hash": "3bc078d0c9b4c7a5a293bc1123489c6e"
+    "mtime": 1777990102.6736836,
+    "hash": "983ff9eeef9c59559e7b055c460a0b3c"
   },
   "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\scripts\\camera-quality-metrics.js": {
     "mtime": 1777917893.4514885,
@@ -124,8 +128,8 @@
     "hash": "2e3ddb39b3ef64571c8e0319435b5edf"
   },
   "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\src\\index.js": {
-    "mtime": 1777986606.441082,
-    "hash": "f32e6e9386ae00614694d65e3229748c"
+    "mtime": 1777990164.0636034,
+    "hash": "a653a7a7260e74495c9a18b0ad2deed4"
   },
   "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\src\\orbitControls.js": {
     "mtime": 1777541144.0138998,
@@ -144,8 +148,8 @@
     "hash": "51c42e66506224228a19cbf0229e22a3"
   },
   "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\src\\game\\GameController.js": {
-    "mtime": 1777985430.240871,
-    "hash": "1c89888898414c55ae81d9c6f171316b"
+    "mtime": 1777992826.1142025,
+    "hash": "c3de3354f60385772a8895611818d42f"
   },
   "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\src\\game\\index.js": {
     "mtime": 1777541144.0012863,
@@ -160,24 +164,24 @@
     "hash": "f21ad766b813b61f02c8f0f6794c34ac"
   },
   "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\src\\game\\entities\\Block.js": {
-    "mtime": 1777985355.1110363,
-    "hash": "7bd6a801c826b8049fd28c7cdcbf3a82"
+    "mtime": 1777993345.9890795,
+    "hash": "99a6b3f6d2ac5ed1394776c9cc5a28d3"
   },
   "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\src\\game\\entities\\blockCatalog.js": {
     "mtime": 1777985355.1140485,
     "hash": "c203d1814a868fad04370bf87aa41a80"
   },
   "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\src\\game\\entities\\Bottle.js": {
-    "mtime": 1777572458.2291746,
-    "hash": "629f083188ba0d7c95733c638d85edf4"
+    "mtime": 1777991691.6054406,
+    "hash": "2a3aa01934f0198205040e95cff5b17a"
   },
   "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\src\\game\\fx\\PolymericParticles.js": {
     "mtime": 1777541143.9992554,
     "hash": "2ba1147584dca7532acb7a2321dbf452"
   },
   "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\src\\game\\fx\\SputteringParticles.js": {
-    "mtime": 1777541143.9992554,
-    "hash": "654370db0f04e0e5e1392f9beb514fa8"
+    "mtime": 1777992838.3037777,
+    "hash": "c40de595ad65c3ce1eafef27d3cd162a"
   },
   "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\src\\game\\fx\\Waves.js": {
     "mtime": 1777541144.000252,
@@ -196,12 +200,12 @@
     "hash": "703fcb03597dbf97ae51e7574aebaf45"
   },
   "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\src\\game\\world\\CameraController.js": {
-    "mtime": 1777985916.9553216,
-    "hash": "e1b582f60b88658507b7365549624357"
+    "mtime": 1777993387.6913946,
+    "hash": "25c5b4d49f5adf65fb956159883ba29e"
   },
   "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\src\\game\\world\\WorldScene.js": {
-    "mtime": 1777572458.2331696,
-    "hash": "94b27ab5aafff17e593f98448156a45e"
+    "mtime": 1777991966.8460512,
+    "hash": "0bfa66411fa303931ea4d0c9828a1531"
   },
   "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\src\\game\\worlds\\restaurant.js": {
     "mtime": 1777986126.9447098,
@@ -304,8 +308,8 @@
     "hash": "97b17ac5174c56f9facef15c531242db"
   },
   "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\website\\src\\components\\GameIframe.tsx": {
-    "mtime": 1777892275.2351491,
-    "hash": "46ff8003015209b2d531e483fe8528a9"
+    "mtime": 1777990002.281762,
+    "hash": "58760a742bb15dc4cff1f8b1fa6cda45"
   },
   "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\website\\src\\components\\Nav.tsx": {
     "mtime": 1777892254.9510243,
@@ -328,16 +332,20 @@
     "hash": "9802eabfda64b88137de8898ca4369f2"
   },
   "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\website\\src\\pages\\PlayPage.tsx": {
-    "mtime": 1777892277.0771644,
-    "hash": "950eafee4f6b4e7650bd22f1982cc4ab"
+    "mtime": 1777990008.635664,
+    "hash": "38d4d74ed90a9bdfd8c18fe6dabaae08"
   },
   "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\CLAUDE.md": {
     "mtime": 1777889969.9856694,
     "hash": "2ed67c68f28bc1ef95ac24167431d7e8"
   },
   "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\README.md": {
-    "mtime": 1777541137.4033039,
-    "hash": "8f8a29f4ff1fb86e693b18342c8ccc6e"
+    "mtime": 1777996373.5351253,
+    "hash": "25fba92ebca2d4f075b15c1ed46e3f83"
+  },
+  "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\HOSTING.md": {
+    "mtime": 1777996357.3021705,
+    "hash": "0234be336fbfd1ead785ba1a7bf6ff07"
   },
   "C:\\Users\\drama\\Documents\\DESPII\\PB-flip\\docs\\phase-3-r3f-migration.md": {
     "mtime": 1777572458.215811,

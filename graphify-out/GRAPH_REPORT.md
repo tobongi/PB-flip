@@ -1,16 +1,16 @@
 # Graph Report - PB-flip  (2026-05-05)
 
 ## Corpus Check
-- 83 files · ~14,910,315 words
+- 84 files · ~14,912,661 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 577 nodes · 797 edges · 38 communities detected
-- Extraction: 95% EXTRACTED · 5% INFERRED · 0% AMBIGUOUS · INFERRED: 38 edges (avg confidence: 0.84)
+- 581 nodes · 806 edges · 38 communities detected
+- Extraction: 95% EXTRACTED · 5% INFERRED · 0% AMBIGUOUS · INFERRED: 40 edges (avg confidence: 0.83)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `493ad769`
+- Built from commit: `8c4b0158`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -52,16 +52,16 @@
 - [[_COMMUNITY_Community 39|Community 39]]
 - [[_COMMUNITY_Community 41|Community 41]]
 - [[_COMMUNITY_Community 44|Community 44]]
-- [[_COMMUNITY_Community 54|Community 54]]
+- [[_COMMUNITY_Community 55|Community 55]]
 
 ## God Nodes (most connected - your core abstractions)
-1. `Game` - 47 edges
+1. `Game` - 48 edges
 2. `CameraController` - 38 edges
 3. `TextTexture` - 28 edges
 4. `CameraController` - 26 edges
 5. `Bottle` - 16 edges
-6. `Seamless Orthoâ†”Persp Projection Blend Plan` - 12 edges
-7. `isDebugEnabled()` - 10 edges
+6. `isDebugEnabled()` - 12 edges
+7. `Seamless Orthoâ†”Persp Projection Blend Plan` - 12 edges
 8. `Block` - 10 edges
 9. `scoreMatch()` - 9 edges
 10. `CameraController (State Machine Rewrite)` - 9 edges
@@ -83,11 +83,11 @@
 - **CameraController State Machine â€” Label Tracking, Flip Modes, Projection Swap** — phase3doc_cameracontroller, phase3doc_label_tracking, phase3doc_flip_modes, phase3doc_projection_swap [EXTRACTED 1.00]
 - **Adaptive Zoom Pipeline â€” Compute, Damping, UI Compensation, Ground Plane** — adaptivezoom_compute_zoom, adaptivezoom_flip_damping, adaptivezoom_ui_compensation, adaptivezoom_ground_plane [EXTRACTED 1.00]
 
-## Communities (76 total, 18 thin omitted)
+## Communities (77 total, 18 thin omitted)
 
 ### Community 0 - "Community 0"
 Cohesion: 0.07
-Nodes (12): computeGameSize(), updateViewport(), isDebugEnabled(), getCubeById(), applyQuaternion(), applyVector(), cloneCheckpoint(), Game (+4 more)
+Nodes (13): computeGameSize(), updateViewport(), isDebugEnabled(), getCubeById(), applyQuaternion(), applyVector(), cloneCheckpoint(), Game (+5 more)
 
 ### Community 2 - "Community 2"
 Cohesion: 0.08
@@ -117,7 +117,7 @@ Nodes (5): AddScoreText, CenterText, ScoreText, ShadowText, Text
 Cohesion: 0.26
 Nodes (5): evalSafeNumber(), parseOverrideBlob(), parseOverrides(), parseSingleOverride(), parseVariants()
 
-### Community 12 - "Community 12"
+### Community 13 - "Community 13"
 Cohesion: 0.41
 Nodes (11): ceramicMat(), createCuttingBoard(), createGrillBlock(), createPlateStack(), createServingTray(), createSpiceShaker(), createTagine(), enableShadows() (+3 more)
 
@@ -173,10 +173,10 @@ Nodes (4): La Maison PB, PB Logo, Since 2009 (Brand Founded), Sticker Rond PB
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **Why does `getCubeById()` connect `Community 0` to `Community 12`?**
+- **Why does `getCubeById()` connect `Community 0` to `Community 13`?**
   _High betweenness centrality (0.007) - this node is a cross-community bridge._
-- **Why does `isDebugEnabled()` connect `Community 0` to `Community 13`?**
-  _High betweenness centrality (0.006) - this node is a cross-community bridge._
+- **Why does `isDebugEnabled()` connect `Community 0` to `Community 12`?**
+  _High betweenness centrality (0.007) - this node is a cross-community bridge._
 - **What connects `Annotates a restaurant screenshot with table indices. The projection is calibrat`, `Cormorant Garamond Font`, `Josefin Sans Font` to the rest of the system?**
   _26 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `Community 0` be split into smaller, more focused modules?**

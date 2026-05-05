@@ -1,0 +1,16 @@
+/static/*  /static/:splat  200
+/models/*  /models/:splat  200
+/images/*  /images/:splat  200
+/dna/*     /dna/:splat     200
+/*.js      /:splat.js      200
+/*.css     /:splat.css     200
+/*.glb     /:splat.glb     200
+/*.gltf    /:splat.gltf    200
+/*.png     /:splat.png     200
+/*.jpg     /:splat.jpg     200
+/*.webp    /:splat.webp    200
+/*.json    /:splat.json    200
+/*.wasm    /:splat.wasm    200
+/*.mp3     /:splat.mp3     200
+/*.woff2   /:splat.woff2   200
+/*         /index.html     200

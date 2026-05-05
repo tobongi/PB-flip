@@ -118,7 +118,7 @@
       "source_file": "config/polyfills.js",
       "source_location": "L1",
       "id": "config_polyfills_js",
-      "community": 55,
+      "community": 56,
       "norm_label": "polyfills.js"
     },
     {
@@ -127,7 +127,7 @@
       "source_file": "config/webpack.config.dev.js",
       "source_location": "L1",
       "id": "config_webpack_config_dev_js",
-      "community": 56,
+      "community": 57,
       "norm_label": "webpack.config.dev.js"
     },
     {
@@ -136,17 +136,8 @@
       "source_file": "config/webpack.config.prod.js",
       "source_location": "L1",
       "id": "config_webpack_config_prod_js",
-      "community": 47,
+      "community": 54,
       "norm_label": "webpack.config.prod.js"
-    },
-    {
-      "label": "logger()",
-      "file_type": "code",
-      "source_file": "config/webpack.config.prod.js",
-      "source_location": "L313",
-      "id": "config_webpack_config_prod_logger",
-      "community": 47,
-      "norm_label": "logger()"
     },
     {
       "label": "webpackDevServer.config.js",
@@ -154,7 +145,7 @@
       "source_file": "config/webpackDevServer.config.js",
       "source_location": "L1",
       "id": "config_webpackdevserver_config_js",
-      "community": 48,
+      "community": 47,
       "norm_label": "webpackdevserver.config.js"
     },
     {
@@ -163,7 +154,7 @@
       "source_file": "config/webpackDevServer.config.js",
       "source_location": "L89",
       "id": "config_webpackdevserver_config_before",
-      "community": 48,
+      "community": 47,
       "norm_label": "before()"
     },
     {
@@ -199,7 +190,7 @@
       "source_file": "config/jest/fileTransform.js",
       "source_location": "L1",
       "id": "config_jest_filetransform_js",
-      "community": 49,
+      "community": 48,
       "norm_label": "filetransform.js"
     },
     {
@@ -208,7 +199,7 @@
       "source_file": "config/jest/fileTransform.js",
       "source_location": "L9",
       "id": "jest_filetransform_process",
-      "community": 49,
+      "community": 48,
       "norm_label": "process()"
     },
     {
@@ -617,6 +608,15 @@
       "norm_label": "random()"
     },
     {
+      "label": "service-worker.js",
+      "file_type": "code",
+      "source_file": "public/service-worker.js",
+      "source_location": "L1",
+      "id": "public_service_worker_js",
+      "community": 58,
+      "norm_label": "service-worker.js"
+    },
+    {
       "label": "annotate-screenshot.py",
       "file_type": "code",
       "source_file": "scripts/annotate-screenshot.py",
@@ -764,7 +764,7 @@
       "label": "build()",
       "file_type": "code",
       "source_file": "scripts/build.js",
-      "source_location": "L104",
+      "source_location": "L109",
       "id": "scripts_build_build",
       "community": 42,
       "norm_label": "build()"
@@ -773,7 +773,7 @@
       "label": "copyPublicFolder()",
       "file_type": "code",
       "source_file": "scripts/build.js",
-      "source_location": "L145",
+      "source_location": "L150",
       "id": "scripts_build_copypublicfolder",
       "community": 42,
       "norm_label": "copypublicfolder()"
@@ -1450,7 +1450,7 @@
       "source_file": "scripts/start.js",
       "source_location": "L1",
       "id": "scripts_start_js",
-      "community": 57,
+      "community": 59,
       "norm_label": "start.js"
     },
     {
@@ -1540,7 +1540,7 @@
       "source_file": "scripts/test.js",
       "source_location": "L1",
       "id": "scripts_test_js",
-      "community": 58,
+      "community": 60,
       "norm_label": "test.js"
     },
     {
@@ -1675,7 +1675,7 @@
       "source_file": "src/game.js",
       "source_location": "L1",
       "id": "src_game_js",
-      "community": 59,
+      "community": 61,
       "norm_label": "game.js"
     },
     {
@@ -1684,7 +1684,7 @@
       "source_file": "src/gltfLoader.js",
       "source_location": "L1",
       "id": "src_gltfloader_js",
-      "community": 60,
+      "community": 62,
       "norm_label": "gltfloader.js"
     },
     {
@@ -1700,7 +1700,7 @@
       "label": "Loading",
       "file_type": "code",
       "source_file": "src/index.js",
-      "source_location": "L42",
+      "source_location": "L59",
       "id": "src_index_loading",
       "community": 3,
       "norm_label": "loading"
@@ -1709,7 +1709,7 @@
       "label": ".componentDidMount()",
       "file_type": "code",
       "source_file": "src/index.js",
-      "source_location": "L46",
+      "source_location": "L63",
       "id": "src_index_loading_componentdidmount",
       "community": 3,
       "norm_label": ".componentdidmount()"
@@ -1718,7 +1718,7 @@
       "label": ".componentWillUnmount()",
       "file_type": "code",
       "source_file": "src/index.js",
-      "source_location": "L60",
+      "source_location": "L77",
       "id": "src_index_loading_componentwillunmount",
       "community": 3,
       "norm_label": ".componentwillunmount()"
@@ -1727,7 +1727,7 @@
       "label": ".render()",
       "file_type": "code",
       "source_file": "src/index.js",
-      "source_location": "L64",
+      "source_location": "L81",
       "id": "src_index_loading_render",
       "community": 3,
       "norm_label": ".render()"
@@ -1736,7 +1736,7 @@
       "label": "Landing",
       "file_type": "code",
       "source_file": "src/index.js",
-      "source_location": "L181",
+      "source_location": "L198",
       "id": "src_index_landing",
       "community": 3,
       "norm_label": "landing"
@@ -1745,7 +1745,7 @@
       "label": ".render()",
       "file_type": "code",
       "source_file": "src/index.js",
-      "source_location": "L193",
+      "source_location": "L210",
       "id": "src_index_landing_render",
       "community": 3,
       "norm_label": ".render()"
@@ -1754,7 +1754,7 @@
       "label": "GameCanvas",
       "file_type": "code",
       "source_file": "src/index.js",
-      "source_location": "L485",
+      "source_location": "L502",
       "id": "src_index_gamecanvas",
       "community": 3,
       "norm_label": "gamecanvas"
@@ -1763,7 +1763,7 @@
       "label": ".componentDidMount()",
       "file_type": "code",
       "source_file": "src/index.js",
-      "source_location": "L492",
+      "source_location": "L509",
       "id": "src_index_gamecanvas_componentdidmount",
       "community": 3,
       "norm_label": ".componentdidmount()"
@@ -1772,7 +1772,7 @@
       "label": ".componentWillUnmount()",
       "file_type": "code",
       "source_file": "src/index.js",
-      "source_location": "L496",
+      "source_location": "L513",
       "id": "src_index_gamecanvas_componentwillunmount",
       "community": 3,
       "norm_label": ".componentwillunmount()"
@@ -1781,7 +1781,7 @@
       "label": ".render()",
       "file_type": "code",
       "source_file": "src/index.js",
-      "source_location": "L500",
+      "source_location": "L517",
       "id": "src_index_gamecanvas_render",
       "community": 3,
       "norm_label": ".render()"
@@ -1790,7 +1790,7 @@
       "label": "Hud()",
       "file_type": "code",
       "source_file": "src/index.js",
-      "source_location": "L511",
+      "source_location": "L528",
       "id": "src_index_hud",
       "community": 3,
       "norm_label": "hud()"
@@ -1799,7 +1799,7 @@
       "label": "Score",
       "file_type": "code",
       "source_file": "src/index.js",
-      "source_location": "L615",
+      "source_location": "L632",
       "id": "src_index_score",
       "community": 3,
       "norm_label": "score"
@@ -1808,7 +1808,7 @@
       "label": ".render()",
       "file_type": "code",
       "source_file": "src/index.js",
-      "source_location": "L627",
+      "source_location": "L644",
       "id": "src_index_score_render",
       "community": 3,
       "norm_label": ".render()"
@@ -1817,7 +1817,7 @@
       "label": "_loadWinBottleScene()",
       "file_type": "code",
       "source_file": "src/index.js",
-      "source_location": "L861",
+      "source_location": "L878",
       "id": "src_index_loadwinbottlescene",
       "community": 3,
       "norm_label": "_loadwinbottlescene()"
@@ -1826,7 +1826,7 @@
       "label": "BottleGLB",
       "file_type": "code",
       "source_file": "src/index.js",
-      "source_location": "L870",
+      "source_location": "L887",
       "id": "src_index_bottleglb",
       "community": 3,
       "norm_label": "bottleglb"
@@ -1835,7 +1835,7 @@
       "label": ".componentDidMount()",
       "file_type": "code",
       "source_file": "src/index.js",
-      "source_location": "L871",
+      "source_location": "L888",
       "id": "src_index_bottleglb_componentdidmount",
       "community": 3,
       "norm_label": ".componentdidmount()"
@@ -1844,7 +1844,7 @@
       "label": ".componentWillUnmount()",
       "file_type": "code",
       "source_file": "src/index.js",
-      "source_location": "L938",
+      "source_location": "L955",
       "id": "src_index_bottleglb_componentwillunmount",
       "community": 3,
       "norm_label": ".componentwillunmount()"
@@ -1853,7 +1853,7 @@
       "label": ".render()",
       "file_type": "code",
       "source_file": "src/index.js",
-      "source_location": "L948",
+      "source_location": "L965",
       "id": "src_index_bottleglb_render",
       "community": 3,
       "norm_label": ".render()"
@@ -1862,7 +1862,7 @@
       "label": "Win",
       "file_type": "code",
       "source_file": "src/index.js",
-      "source_location": "L963",
+      "source_location": "L980",
       "id": "src_index_win",
       "community": 3,
       "norm_label": "win"
@@ -1871,7 +1871,7 @@
       "label": ".render()",
       "file_type": "code",
       "source_file": "src/index.js",
-      "source_location": "L969",
+      "source_location": "L986",
       "id": "src_index_win_render",
       "community": 3,
       "norm_label": ".render()"
@@ -1880,7 +1880,7 @@
       "label": "App",
       "file_type": "code",
       "source_file": "src/index.js",
-      "source_location": "L1214",
+      "source_location": "L1231",
       "id": "src_index_app",
       "community": 3,
       "norm_label": "app"
@@ -1889,7 +1889,7 @@
       "label": ".componentDidMount()",
       "file_type": "code",
       "source_file": "src/index.js",
-      "source_location": "L1222",
+      "source_location": "L1239",
       "id": "src_index_app_componentdidmount",
       "community": 3,
       "norm_label": ".componentdidmount()"
@@ -1898,7 +1898,7 @@
       "label": ".componentWillUnmount()",
       "file_type": "code",
       "source_file": "src/index.js",
-      "source_location": "L1233",
+      "source_location": "L1250",
       "id": "src_index_app_componentwillunmount",
       "community": 3,
       "norm_label": ".componentwillunmount()"
@@ -1907,7 +1907,7 @@
       "label": ".renderUI()",
       "file_type": "code",
       "source_file": "src/index.js",
-      "source_location": "L1245",
+      "source_location": "L1262",
       "id": "src_index_app_renderui",
       "community": 3,
       "norm_label": ".renderui()"
@@ -1916,7 +1916,7 @@
       "label": ".render()",
       "file_type": "code",
       "source_file": "src/index.js",
-      "source_location": "L1262",
+      "source_location": "L1279",
       "id": "src_index_app_render",
       "community": 3,
       "norm_label": ".render()"
@@ -1927,7 +1927,7 @@
       "source_file": "src/orbitControls.js",
       "source_location": "L1",
       "id": "src_orbitcontrols_js",
-      "community": 61,
+      "community": 63,
       "norm_label": "orbitcontrols.js"
     },
     {
@@ -2224,7 +2224,7 @@
       "source_file": "src/animations/variants.js",
       "source_location": "L1",
       "id": "src_animations_variants_js",
-      "community": 62,
+      "community": 64,
       "norm_label": "variants.js"
     },
     {
@@ -2330,7 +2330,7 @@
       "label": ".handleWin()",
       "file_type": "code",
       "source_file": "src/game/GameController.js",
-      "source_location": "L466",
+      "source_location": "L473",
       "id": "game_gamecontroller_game_handlewin",
       "community": 0,
       "norm_label": ".handlewin()"
@@ -2339,7 +2339,7 @@
       "label": ".handleFailedLanding()",
       "file_type": "code",
       "source_file": "src/game/GameController.js",
-      "source_location": "L473",
+      "source_location": "L480",
       "id": "game_gamecontroller_game_handlefailedlanding",
       "community": 0,
       "norm_label": ".handlefailedlanding()"
@@ -2348,7 +2348,7 @@
       "label": ".syncBottleBody()",
       "file_type": "code",
       "source_file": "src/game/GameController.js",
-      "source_location": "L498",
+      "source_location": "L505",
       "id": "game_gamecontroller_game_syncbottlebody",
       "community": 0,
       "norm_label": ".syncbottlebody()"
@@ -2357,7 +2357,7 @@
       "label": ".clearPendingFailureTimeout()",
       "file_type": "code",
       "source_file": "src/game/GameController.js",
-      "source_location": "L508",
+      "source_location": "L515",
       "id": "game_gamecontroller_game_clearpendingfailuretimeout",
       "community": 0,
       "norm_label": ".clearpendingfailuretimeout()"
@@ -2366,7 +2366,7 @@
       "label": ".clearPendingTimeouts()",
       "file_type": "code",
       "source_file": "src/game/GameController.js",
-      "source_location": "L515",
+      "source_location": "L522",
       "id": "game_gamecontroller_game_clearpendingtimeouts",
       "community": 0,
       "norm_label": ".clearpendingtimeouts()"
@@ -2375,7 +2375,7 @@
       "label": ".stopGameplayTweens()",
       "file_type": "code",
       "source_file": "src/game/GameController.js",
-      "source_location": "L519",
+      "source_location": "L526",
       "id": "game_gamecontroller_game_stopgameplaytweens",
       "community": 0,
       "norm_label": ".stopgameplaytweens()"
@@ -2384,7 +2384,7 @@
       "label": ".resetBottleEffects()",
       "file_type": "code",
       "source_file": "src/game/GameController.js",
-      "source_location": "L526",
+      "source_location": "L533",
       "id": "game_gamecontroller_game_resetbottleeffects",
       "community": 0,
       "norm_label": ".resetbottleeffects()"
@@ -2393,7 +2393,7 @@
       "label": ".clearBlocks()",
       "file_type": "code",
       "source_file": "src/game/GameController.js",
-      "source_location": "L540",
+      "source_location": "L547",
       "id": "game_gamecontroller_game_clearblocks",
       "community": 0,
       "norm_label": ".clearblocks()"
@@ -2402,7 +2402,7 @@
       "label": ".getTurnDirection()",
       "file_type": "code",
       "source_file": "src/game/GameController.js",
-      "source_location": "L548",
+      "source_location": "L555",
       "id": "game_gamecontroller_game_getturndirection",
       "community": 0,
       "norm_label": ".getturndirection()"
@@ -2411,7 +2411,7 @@
       "label": ".resetBottleForTurn()",
       "file_type": "code",
       "source_file": "src/game/GameController.js",
-      "source_location": "L561",
+      "source_location": "L568",
       "id": "game_gamecontroller_game_resetbottleforturn",
       "community": 0,
       "norm_label": ".resetbottleforturn()"
@@ -2420,7 +2420,7 @@
       "label": ".getRandomState()",
       "file_type": "code",
       "source_file": "src/game/GameController.js",
-      "source_location": "L583",
+      "source_location": "L590",
       "id": "game_gamecontroller_game_getrandomstate",
       "community": 0,
       "norm_label": ".getrandomstate()"
@@ -2429,7 +2429,7 @@
       "label": ".resetRandom()",
       "file_type": "code",
       "source_file": "src/game/GameController.js",
-      "source_location": "L590",
+      "source_location": "L597",
       "id": "game_gamecontroller_game_resetrandom",
       "community": 0,
       "norm_label": ".resetrandom()"
@@ -2438,7 +2438,7 @@
       "label": ".resestRandom()",
       "file_type": "code",
       "source_file": "src/game/GameController.js",
-      "source_location": "L606",
+      "source_location": "L613",
       "id": "game_gamecontroller_game_resestrandom",
       "community": 0,
       "norm_label": ".resestrandom()"
@@ -2447,7 +2447,7 @@
       "label": ".serializeBlock()",
       "file_type": "code",
       "source_file": "src/game/GameController.js",
-      "source_location": "L610",
+      "source_location": "L617",
       "id": "game_gamecontroller_game_serializeblock",
       "community": 0,
       "norm_label": ".serializeblock()"
@@ -2456,7 +2456,7 @@
       "label": ".restoreBlock()",
       "file_type": "code",
       "source_file": "src/game/GameController.js",
-      "source_location": "L635",
+      "source_location": "L642",
       "id": "game_gamecontroller_game_restoreblock",
       "community": 0,
       "norm_label": ".restoreblock()"
@@ -2465,7 +2465,7 @@
       "label": ".serializeBottle()",
       "file_type": "code",
       "source_file": "src/game/GameController.js",
-      "source_location": "L671",
+      "source_location": "L678",
       "id": "game_gamecontroller_game_serializebottle",
       "community": 0,
       "norm_label": ".serializebottle()"
@@ -2474,7 +2474,7 @@
       "label": ".restoreBottle()",
       "file_type": "code",
       "source_file": "src/game/GameController.js",
-      "source_location": "L702",
+      "source_location": "L709",
       "id": "game_gamecontroller_game_restorebottle",
       "community": 0,
       "norm_label": ".restorebottle()"
@@ -2483,7 +2483,7 @@
       "label": ".createCheckpoint()",
       "file_type": "code",
       "source_file": "src/game/GameController.js",
-      "source_location": "L789",
+      "source_location": "L796",
       "id": "game_gamecontroller_game_createcheckpoint",
       "community": 0,
       "norm_label": ".createcheckpoint()"
@@ -2492,7 +2492,7 @@
       "label": ".saveRetryCheckpoint()",
       "file_type": "code",
       "source_file": "src/game/GameController.js",
-      "source_location": "L828",
+      "source_location": "L835",
       "id": "game_gamecontroller_game_saveretrycheckpoint",
       "community": 0,
       "norm_label": ".saveretrycheckpoint()"
@@ -2501,7 +2501,7 @@
       "label": ".loadCheckpoint()",
       "file_type": "code",
       "source_file": "src/game/GameController.js",
-      "source_location": "L833",
+      "source_location": "L840",
       "id": "game_gamecontroller_game_loadcheckpoint",
       "community": 0,
       "norm_label": ".loadcheckpoint()"
@@ -2510,7 +2510,7 @@
       "label": ".retryCheckpoint()",
       "file_type": "code",
       "source_file": "src/game/GameController.js",
-      "source_location": "L889",
+      "source_location": "L896",
       "id": "game_gamecontroller_game_retrycheckpoint",
       "community": 0,
       "norm_label": ".retrycheckpoint()"
@@ -2519,7 +2519,7 @@
       "label": ".setWorld()",
       "file_type": "code",
       "source_file": "src/game/GameController.js",
-      "source_location": "L900",
+      "source_location": "L907",
       "id": "game_gamecontroller_game_setworld",
       "community": 0,
       "norm_label": ".setworld()"
@@ -2528,7 +2528,7 @@
       "label": ".createTableBlock()",
       "file_type": "code",
       "source_file": "src/game/GameController.js",
-      "source_location": "L915",
+      "source_location": "L923",
       "id": "game_gamecontroller_game_createtableblock",
       "community": 0,
       "norm_label": ".createtableblock()"
@@ -2537,7 +2537,7 @@
       "label": ".createBlock()",
       "file_type": "code",
       "source_file": "src/game/GameController.js",
-      "source_location": "L944",
+      "source_location": "L952",
       "id": "game_gamecontroller_game_createblock",
       "community": 0,
       "norm_label": ".createblock()"
@@ -2546,7 +2546,7 @@
       "label": ".toggleMode()",
       "file_type": "code",
       "source_file": "src/game/GameController.js",
-      "source_location": "L977",
+      "source_location": "L985",
       "id": "game_gamecontroller_game_togglemode",
       "community": 0,
       "norm_label": ".togglemode()"
@@ -2555,7 +2555,7 @@
       "label": ".currentBlock()",
       "file_type": "code",
       "source_file": "src/game/GameController.js",
-      "source_location": "L982",
+      "source_location": "L990",
       "id": "game_gamecontroller_game_currentblock",
       "community": 0,
       "norm_label": ".currentblock()"
@@ -2564,7 +2564,7 @@
       "label": ".nextBlock()",
       "file_type": "code",
       "source_file": "src/game/GameController.js",
-      "source_location": "L986",
+      "source_location": "L994",
       "id": "game_gamecontroller_game_nextblock",
       "community": 0,
       "norm_label": ".nextblock()"
@@ -2573,7 +2573,7 @@
       "label": ".towardsBlock()",
       "file_type": "code",
       "source_file": "src/game/GameController.js",
-      "source_location": "L990",
+      "source_location": "L998",
       "id": "game_gamecontroller_game_towardsblock",
       "community": 0,
       "norm_label": ".towardsblock()"
@@ -2582,7 +2582,7 @@
       "label": ".add()",
       "file_type": "code",
       "source_file": "src/game/GameController.js",
-      "source_location": "L995",
+      "source_location": "L1003",
       "id": "game_gamecontroller_game_add",
       "community": 0,
       "norm_label": ".add()"
@@ -2591,7 +2591,7 @@
       "label": ".remove()",
       "file_type": "code",
       "source_file": "src/game/GameController.js",
-      "source_location": "L1000",
+      "source_location": "L1008",
       "id": "game_gamecontroller_game_remove",
       "community": 0,
       "norm_label": ".remove()"
@@ -2600,7 +2600,7 @@
       "label": ".start()",
       "file_type": "code",
       "source_file": "src/game/GameController.js",
-      "source_location": "L1005",
+      "source_location": "L1013",
       "id": "game_gamecontroller_game_start",
       "community": 0,
       "norm_label": ".start()"
@@ -2609,7 +2609,7 @@
       "label": ".resolveRestartSeed()",
       "file_type": "code",
       "source_file": "src/game/GameController.js",
-      "source_location": "L1011",
+      "source_location": "L1019",
       "id": "game_gamecontroller_game_resolverestartseed",
       "community": 0,
       "norm_label": ".resolverestartseed()"
@@ -2618,7 +2618,7 @@
       "label": ".resolveRestartCheckpoint()",
       "file_type": "code",
       "source_file": "src/game/GameController.js",
-      "source_location": "L1023",
+      "source_location": "L1031",
       "id": "game_gamecontroller_game_resolverestartcheckpoint",
       "community": 0,
       "norm_label": ".resolverestartcheckpoint()"
@@ -2627,7 +2627,7 @@
       "label": ".resolveRestaurantStartTableIndex()",
       "file_type": "code",
       "source_file": "src/game/GameController.js",
-      "source_location": "L1035",
+      "source_location": "L1043",
       "id": "game_gamecontroller_game_resolverestaurantstarttableindex",
       "community": 0,
       "norm_label": ".resolverestaurantstarttableindex()"
@@ -2636,16 +2636,25 @@
       "label": ".restart()",
       "file_type": "code",
       "source_file": "src/game/GameController.js",
-      "source_location": "L1043",
+      "source_location": "L1051",
       "id": "game_gamecontroller_game_restart",
       "community": 0,
       "norm_label": ".restart()"
     },
     {
+      "label": "._markShadowsDirty()",
+      "file_type": "code",
+      "source_file": "src/game/GameController.js",
+      "source_location": "L1093",
+      "id": "game_gamecontroller_game_markshadowsdirty",
+      "community": 0,
+      "norm_label": "._markshadowsdirty()"
+    },
+    {
       "label": ".render()",
       "file_type": "code",
       "source_file": "src/game/GameController.js",
-      "source_location": "L1079",
+      "source_location": "L1095",
       "id": "game_gamecontroller_game_render",
       "community": 0,
       "norm_label": ".render()"
@@ -2654,7 +2663,7 @@
       "label": ".resize()",
       "file_type": "code",
       "source_file": "src/game/GameController.js",
-      "source_location": "L1083",
+      "source_location": "L1099",
       "id": "game_gamecontroller_game_resize",
       "community": 0,
       "norm_label": ".resize()"
@@ -2663,7 +2672,7 @@
       "label": ".difficulty()",
       "file_type": "code",
       "source_file": "src/game/GameController.js",
-      "source_location": "L1131",
+      "source_location": "L1160",
       "id": "game_gamecontroller_game_difficulty",
       "community": 0,
       "norm_label": ".difficulty()"
@@ -2672,7 +2681,7 @@
       "label": ".randomCube()",
       "file_type": "code",
       "source_file": "src/game/GameController.js",
-      "source_location": "L1135",
+      "source_location": "L1164",
       "id": "game_gamecontroller_game_randomcube",
       "community": 0,
       "norm_label": ".randomcube()"
@@ -2683,7 +2692,7 @@
       "source_file": "src/game/index.js",
       "source_location": "L1",
       "id": "src_game_index_js",
-      "community": 63,
+      "community": 65,
       "norm_label": "index.js"
     },
     {
@@ -2762,7 +2771,7 @@
       "label": ".update()",
       "file_type": "code",
       "source_file": "src/game/entities/Block.js",
-      "source_location": "L73",
+      "source_location": "L87",
       "id": "entities_block_block_update",
       "community": 16,
       "norm_label": ".update()"
@@ -2771,7 +2780,7 @@
       "label": ".trackTween()",
       "file_type": "code",
       "source_file": "src/game/entities/Block.js",
-      "source_location": "L75",
+      "source_location": "L89",
       "id": "entities_block_block_tracktween",
       "community": 16,
       "norm_label": ".tracktween()"
@@ -2780,7 +2789,7 @@
       "label": ".stopTweens()",
       "file_type": "code",
       "source_file": "src/game/entities/Block.js",
-      "source_location": "L85",
+      "source_location": "L99",
       "id": "entities_block_block_stoptweens",
       "community": 16,
       "norm_label": ".stoptweens()"
@@ -2789,7 +2798,7 @@
       "label": ".press()",
       "file_type": "code",
       "source_file": "src/game/entities/Block.js",
-      "source_location": "L90",
+      "source_location": "L104",
       "id": "entities_block_block_press",
       "community": 16,
       "norm_label": ".press()"
@@ -2798,7 +2807,7 @@
       "label": ".bounce()",
       "file_type": "code",
       "source_file": "src/game/entities/Block.js",
-      "source_location": "L104",
+      "source_location": "L118",
       "id": "entities_block_block_bounce",
       "community": 16,
       "norm_label": ".bounce()"
@@ -2807,7 +2816,7 @@
       "label": ".down()",
       "file_type": "code",
       "source_file": "src/game/entities/Block.js",
-      "source_location": "L117",
+      "source_location": "L131",
       "id": "entities_block_block_down",
       "community": 16,
       "norm_label": ".down()"
@@ -2816,7 +2825,7 @@
       "label": ".canHold()",
       "file_type": "code",
       "source_file": "src/game/entities/Block.js",
-      "source_location": "L132",
+      "source_location": "L146",
       "id": "entities_block_block_canhold",
       "community": 16,
       "norm_label": ".canhold()"
@@ -2827,7 +2836,7 @@
       "source_file": "src/game/entities/blockCatalog.js",
       "source_location": "L1",
       "id": "src_game_entities_blockcatalog_js",
-      "community": 12,
+      "community": 13,
       "norm_label": "blockcatalog.js"
     },
     {
@@ -2836,7 +2845,7 @@
       "source_file": "src/game/entities/blockCatalog.js",
       "source_location": "L16",
       "id": "entities_blockcatalog_enableshadows",
-      "community": 12,
+      "community": 13,
       "norm_label": "enableshadows()"
     },
     {
@@ -2845,7 +2854,7 @@
       "source_file": "src/game/entities/blockCatalog.js",
       "source_location": "L25",
       "id": "entities_blockcatalog_woodmat",
-      "community": 12,
+      "community": 13,
       "norm_label": "woodmat()"
     },
     {
@@ -2854,7 +2863,7 @@
       "source_file": "src/game/entities/blockCatalog.js",
       "source_location": "L29",
       "id": "entities_blockcatalog_ceramicmat",
-      "community": 12,
+      "community": 13,
       "norm_label": "ceramicmat()"
     },
     {
@@ -2863,7 +2872,7 @@
       "source_file": "src/game/entities/blockCatalog.js",
       "source_location": "L33",
       "id": "entities_blockcatalog_metalmat",
-      "community": 12,
+      "community": 13,
       "norm_label": "metalmat()"
     },
     {
@@ -2872,7 +2881,7 @@
       "source_file": "src/game/entities/blockCatalog.js",
       "source_location": "L37",
       "id": "entities_blockcatalog_plasticmat",
-      "community": 12,
+      "community": 13,
       "norm_label": "plasticmat()"
     },
     {
@@ -2881,7 +2890,7 @@
       "source_file": "src/game/entities/blockCatalog.js",
       "source_location": "L42",
       "id": "entities_blockcatalog_createcuttingboard",
-      "community": 12,
+      "community": 13,
       "norm_label": "createcuttingboard()"
     },
     {
@@ -2890,7 +2899,7 @@
       "source_file": "src/game/entities/blockCatalog.js",
       "source_location": "L91",
       "id": "entities_blockcatalog_createspiceshaker",
-      "community": 12,
+      "community": 13,
       "norm_label": "createspiceshaker()"
     },
     {
@@ -2899,7 +2908,7 @@
       "source_file": "src/game/entities/blockCatalog.js",
       "source_location": "L194",
       "id": "entities_blockcatalog_createservingtray",
-      "community": 12,
+      "community": 13,
       "norm_label": "createservingtray()"
     },
     {
@@ -2908,7 +2917,7 @@
       "source_file": "src/game/entities/blockCatalog.js",
       "source_location": "L246",
       "id": "entities_blockcatalog_creategrillblock",
-      "community": 12,
+      "community": 13,
       "norm_label": "creategrillblock()"
     },
     {
@@ -2917,7 +2926,7 @@
       "source_file": "src/game/entities/blockCatalog.js",
       "source_location": "L314",
       "id": "entities_blockcatalog_createtagine",
-      "community": 12,
+      "community": 13,
       "norm_label": "createtagine()"
     },
     {
@@ -2926,7 +2935,7 @@
       "source_file": "src/game/entities/blockCatalog.js",
       "source_location": "L369",
       "id": "entities_blockcatalog_createplatestack",
-      "community": 12,
+      "community": 13,
       "norm_label": "createplatestack()"
     },
     {
@@ -2987,7 +2996,7 @@
       "label": ".update()",
       "file_type": "code",
       "source_file": "src/game/entities/Bottle.js",
-      "source_location": "L417",
+      "source_location": "L413",
       "id": "entities_bottle_bottle_update",
       "community": 8,
       "norm_label": ".update()"
@@ -2996,7 +3005,7 @@
       "label": "._composeWorldQuat()",
       "file_type": "code",
       "source_file": "src/game/entities/Bottle.js",
-      "source_location": "L427",
+      "source_location": "L423",
       "id": "entities_bottle_bottle_composeworldquat",
       "community": 8,
       "norm_label": "._composeworldquat()"
@@ -3005,7 +3014,7 @@
       "label": ".getLabelDirection()",
       "file_type": "code",
       "source_file": "src/game/entities/Bottle.js",
-      "source_location": "L432",
+      "source_location": "L428",
       "id": "entities_bottle_bottle_getlabeldirection",
       "community": 8,
       "norm_label": ".getlabeldirection()"
@@ -3014,7 +3023,7 @@
       "label": ".getLabelWorldNormal()",
       "file_type": "code",
       "source_file": "src/game/entities/Bottle.js",
-      "source_location": "L444",
+      "source_location": "L440",
       "id": "entities_bottle_bottle_getlabelworldnormal",
       "community": 8,
       "norm_label": ".getlabelworldnormal()"
@@ -3023,7 +3032,7 @@
       "label": ".getLabelWorldPosition()",
       "file_type": "code",
       "source_file": "src/game/entities/Bottle.js",
-      "source_location": "L454",
+      "source_location": "L450",
       "id": "entities_bottle_bottle_getlabelworldposition",
       "community": 8,
       "norm_label": ".getlabelworldposition()"
@@ -3032,7 +3041,7 @@
       "label": ".setLabelFaceDirection()",
       "file_type": "code",
       "source_file": "src/game/entities/Bottle.js",
-      "source_location": "L470",
+      "source_location": "L466",
       "id": "entities_bottle_bottle_setlabelfacedirection",
       "community": 8,
       "norm_label": ".setlabelfacedirection()"
@@ -3041,7 +3050,7 @@
       "label": ".computeBoundingBox()",
       "file_type": "code",
       "source_file": "src/game/entities/Bottle.js",
-      "source_location": "L488",
+      "source_location": "L484",
       "id": "entities_bottle_bottle_computeboundingbox",
       "community": 8,
       "norm_label": ".computeboundingbox()"
@@ -3050,7 +3059,7 @@
       "label": ".trackTween()",
       "file_type": "code",
       "source_file": "src/game/entities/Bottle.js",
-      "source_location": "L512",
+      "source_location": "L508",
       "id": "entities_bottle_bottle_tracktween",
       "community": 8,
       "norm_label": ".tracktween()"
@@ -3059,7 +3068,7 @@
       "label": ".stopTweens()",
       "file_type": "code",
       "source_file": "src/game/entities/Bottle.js",
-      "source_location": "L522",
+      "source_location": "L518",
       "id": "entities_bottle_bottle_stoptweens",
       "community": 8,
       "norm_label": ".stoptweens()"
@@ -3068,7 +3077,7 @@
       "label": ".flip()",
       "file_type": "code",
       "source_file": "src/game/entities/Bottle.js",
-      "source_location": "L527",
+      "source_location": "L523",
       "id": "entities_bottle_bottle_flip",
       "community": 8,
       "norm_label": ".flip()"
@@ -3077,7 +3086,7 @@
       "label": ".fall()",
       "file_type": "code",
       "source_file": "src/game/entities/Bottle.js",
-      "source_location": "L594",
+      "source_location": "L604",
       "id": "entities_bottle_bottle_fall",
       "community": 8,
       "norm_label": ".fall()"
@@ -3086,7 +3095,7 @@
       "label": ".press()",
       "file_type": "code",
       "source_file": "src/game/entities/Bottle.js",
-      "source_location": "L601",
+      "source_location": "L611",
       "id": "entities_bottle_bottle_press",
       "community": 8,
       "norm_label": ".press()"
@@ -3095,7 +3104,7 @@
       "label": ".bounce()",
       "file_type": "code",
       "source_file": "src/game/entities/Bottle.js",
-      "source_location": "L633",
+      "source_location": "L643",
       "id": "entities_bottle_bottle_bounce",
       "community": 8,
       "norm_label": ".bounce()"
@@ -3194,7 +3203,7 @@
       "label": ".stop()",
       "file_type": "code",
       "source_file": "src/game/fx/SputteringParticles.js",
-      "source_location": "L75",
+      "source_location": "L79",
       "id": "fx_sputteringparticles_sputteringparticles_stop",
       "community": 24,
       "norm_label": ".stop()"
@@ -3428,7 +3437,7 @@
       "label": "CameraController",
       "file_type": "code",
       "source_file": "src/game/world/CameraController.js",
-      "source_location": "L191",
+      "source_location": "L202",
       "id": "world_cameracontroller_cameracontroller",
       "community": 5,
       "norm_label": "cameracontroller"
@@ -3437,7 +3446,7 @@
       "label": ".constructor()",
       "file_type": "code",
       "source_file": "src/game/world/CameraController.js",
-      "source_location": "L355",
+      "source_location": "L366",
       "id": "world_cameracontroller_cameracontroller_constructor",
       "community": 5,
       "norm_label": ".constructor()"
@@ -3446,7 +3455,7 @@
       "label": ".setRandom()",
       "file_type": "code",
       "source_file": "src/game/world/CameraController.js",
-      "source_location": "L387",
+      "source_location": "L398",
       "id": "world_cameracontroller_cameracontroller_setrandom",
       "community": 5,
       "norm_label": ".setrandom()"
@@ -3455,7 +3464,7 @@
       "label": ".captureBaseline()",
       "file_type": "code",
       "source_file": "src/game/world/CameraController.js",
-      "source_location": "L393",
+      "source_location": "L404",
       "id": "world_cameracontroller_cameracontroller_capturebaseline",
       "community": 5,
       "norm_label": ".capturebaseline()"
@@ -3464,7 +3473,7 @@
       "label": ".setStateIdle()",
       "file_type": "code",
       "source_file": "src/game/world/CameraController.js",
-      "source_location": "L408",
+      "source_location": "L419",
       "id": "world_cameracontroller_cameracontroller_setstateidle",
       "community": 5,
       "norm_label": ".setstateidle()"
@@ -3473,7 +3482,7 @@
       "label": ".setStateCharge()",
       "file_type": "code",
       "source_file": "src/game/world/CameraController.js",
-      "source_location": "L415",
+      "source_location": "L426",
       "id": "world_cameracontroller_cameracontroller_setstatecharge",
       "community": 5,
       "norm_label": ".setstatecharge()"
@@ -3482,7 +3491,7 @@
       "label": ".setStateFlip()",
       "file_type": "code",
       "source_file": "src/game/world/CameraController.js",
-      "source_location": "L423",
+      "source_location": "L434",
       "id": "world_cameracontroller_cameracontroller_setstateflip",
       "community": 5,
       "norm_label": ".setstateflip()"
@@ -3491,7 +3500,7 @@
       "label": ".setStateLanding()",
       "file_type": "code",
       "source_file": "src/game/world/CameraController.js",
-      "source_location": "L461",
+      "source_location": "L472",
       "id": "world_cameracontroller_cameracontroller_setstatelanding",
       "community": 5,
       "norm_label": ".setstatelanding()"
@@ -3500,7 +3509,7 @@
       "label": ".setStateFailed()",
       "file_type": "code",
       "source_file": "src/game/world/CameraController.js",
-      "source_location": "L473",
+      "source_location": "L484",
       "id": "world_cameracontroller_cameracontroller_setstatefailed",
       "community": 5,
       "norm_label": ".setstatefailed()"
@@ -3509,7 +3518,7 @@
       "label": "._maybeSwapProjection()",
       "file_type": "code",
       "source_file": "src/game/world/CameraController.js",
-      "source_location": "L479",
+      "source_location": "L490",
       "id": "world_cameracontroller_cameracontroller_maybeswapprojection",
       "community": 5,
       "norm_label": "._maybeswapprojection()"
@@ -3518,7 +3527,7 @@
       "label": ".setProjection()",
       "file_type": "code",
       "source_file": "src/game/world/CameraController.js",
-      "source_location": "L496",
+      "source_location": "L507",
       "id": "world_cameracontroller_cameracontroller_setprojection",
       "community": 5,
       "norm_label": ".setprojection()"
@@ -3527,7 +3536,7 @@
       "label": ".setTarget()",
       "file_type": "code",
       "source_file": "src/game/world/CameraController.js",
-      "source_location": "L553",
+      "source_location": "L564",
       "id": "world_cameracontroller_cameracontroller_settarget",
       "community": 5,
       "norm_label": ".settarget()"
@@ -3536,7 +3545,7 @@
       "label": ".update()",
       "file_type": "code",
       "source_file": "src/game/world/CameraController.js",
-      "source_location": "L760",
+      "source_location": "L777",
       "id": "world_cameracontroller_cameracontroller_update",
       "community": 5,
       "norm_label": ".update()"
@@ -3545,7 +3554,7 @@
       "label": "._applyProjectionParams()",
       "file_type": "code",
       "source_file": "src/game/world/CameraController.js",
-      "source_location": "L1050",
+      "source_location": "L1079",
       "id": "world_cameracontroller_cameracontroller_applyprojectionparams",
       "community": 5,
       "norm_label": "._applyprojectionparams()"
@@ -3554,7 +3563,7 @@
       "label": "._applyFailedGrade()",
       "file_type": "code",
       "source_file": "src/game/world/CameraController.js",
-      "source_location": "L1085",
+      "source_location": "L1114",
       "id": "world_cameracontroller_cameracontroller_applyfailedgrade",
       "community": 5,
       "norm_label": "._applyfailedgrade()"
@@ -3563,7 +3572,7 @@
       "label": "._updateOcclusionFading()",
       "file_type": "code",
       "source_file": "src/game/world/CameraController.js",
-      "source_location": "L1130",
+      "source_location": "L1159",
       "id": "world_cameracontroller_cameracontroller_updateocclusionfading",
       "community": 5,
       "norm_label": "._updateocclusionfading()"
@@ -3572,7 +3581,7 @@
       "label": "._tickCooldowns()",
       "file_type": "code",
       "source_file": "src/game/world/CameraController.js",
-      "source_location": "L1202",
+      "source_location": "L1247",
       "id": "world_cameracontroller_cameracontroller_tickcooldowns",
       "community": 5,
       "norm_label": "._tickcooldowns()"
@@ -3581,7 +3590,7 @@
       "label": "._collectProximityOccluders()",
       "file_type": "code",
       "source_file": "src/game/world/CameraController.js",
-      "source_location": "L1216",
+      "source_location": "L1261",
       "id": "world_cameracontroller_cameracontroller_collectproximityoccluders",
       "community": 5,
       "norm_label": "._collectproximityoccluders()"
@@ -3590,7 +3599,7 @@
       "label": "._getOccluderMeshes()",
       "file_type": "code",
       "source_file": "src/game/world/CameraController.js",
-      "source_location": "L1250",
+      "source_location": "L1302",
       "id": "world_cameracontroller_cameracontroller_getoccludermeshes",
       "community": 5,
       "norm_label": "._getoccludermeshes()"
@@ -3599,7 +3608,7 @@
       "label": "._applyOcclusionFade()",
       "file_type": "code",
       "source_file": "src/game/world/CameraController.js",
-      "source_location": "L1275",
+      "source_location": "L1327",
       "id": "world_cameracontroller_cameracontroller_applyocclusionfade",
       "community": 5,
       "norm_label": "._applyocclusionfade()"
@@ -3608,7 +3617,7 @@
       "label": ".snap()",
       "file_type": "code",
       "source_file": "src/game/world/CameraController.js",
-      "source_location": "L1326",
+      "source_location": "L1378",
       "id": "world_cameracontroller_cameracontroller_snap",
       "community": 5,
       "norm_label": ".snap()"
@@ -3617,7 +3626,7 @@
       "label": "._refreshTargetCameraAxis()",
       "file_type": "code",
       "source_file": "src/game/world/CameraController.js",
-      "source_location": "L1395",
+      "source_location": "L1447",
       "id": "world_cameracontroller_cameracontroller_refreshtargetcameraaxis",
       "community": 5,
       "norm_label": "._refreshtargetcameraaxis()"
@@ -3626,7 +3635,7 @@
       "label": "._wallProximity()",
       "file_type": "code",
       "source_file": "src/game/world/CameraController.js",
-      "source_location": "L1574",
+      "source_location": "L1641",
       "id": "world_cameracontroller_cameracontroller_wallproximity",
       "community": 5,
       "norm_label": "._wallproximity()"
@@ -3635,7 +3644,7 @@
       "label": "._scoreSightline()",
       "file_type": "code",
       "source_file": "src/game/world/CameraController.js",
-      "source_location": "L1632",
+      "source_location": "L1699",
       "id": "world_cameracontroller_cameracontroller_scoresightline",
       "community": 5,
       "norm_label": "._scoresightline()"
@@ -3644,7 +3653,7 @@
       "label": ".startFlipTracking()",
       "file_type": "code",
       "source_file": "src/game/world/CameraController.js",
-      "source_location": "L1685",
+      "source_location": "L1752",
       "id": "world_cameracontroller_cameracontroller_startfliptracking",
       "community": 5,
       "norm_label": ".startfliptracking()"
@@ -3653,7 +3662,7 @@
       "label": ".stopFlipTracking()",
       "file_type": "code",
       "source_file": "src/game/world/CameraController.js",
-      "source_location": "L1691",
+      "source_location": "L1758",
       "id": "world_cameracontroller_cameracontroller_stopfliptracking",
       "community": 5,
       "norm_label": ".stopfliptracking()"
@@ -3691,7 +3700,7 @@
       "source_file": "src/game/worlds/restaurant.js",
       "source_location": "L1",
       "id": "src_game_worlds_restaurant_js",
-      "community": 13,
+      "community": 12,
       "norm_label": "restaurant.js"
     },
     {
@@ -3700,7 +3709,7 @@
       "source_file": "src/game/worlds/restaurant.js",
       "source_location": "L7",
       "id": "worlds_restaurant_loadrestaurantmodel",
-      "community": 13,
+      "community": 12,
       "norm_label": "loadrestaurantmodel()"
     },
     {
@@ -3709,7 +3718,7 @@
       "source_file": "src/game/worlds/restaurant.js",
       "source_location": "L26",
       "id": "worlds_restaurant_haspbancestor",
-      "community": 13,
+      "community": 12,
       "norm_label": "haspbancestor()"
     },
     {
@@ -3718,7 +3727,7 @@
       "source_file": "src/game/worlds/restaurant.js",
       "source_location": "L35",
       "id": "worlds_restaurant_extracttables",
-      "community": 13,
+      "community": 12,
       "norm_label": "extracttables()"
     },
     {
@@ -3727,7 +3736,7 @@
       "source_file": "src/game/worlds/restaurant.js",
       "source_location": "L62",
       "id": "worlds_restaurant_ordertables",
-      "community": 13,
+      "community": 12,
       "norm_label": "ordertables()"
     },
     {
@@ -3736,7 +3745,7 @@
       "source_file": "src/game/worlds/restaurant.js",
       "source_location": "L109",
       "id": "worlds_restaurant_reordertables",
-      "community": 13,
+      "community": 12,
       "norm_label": "reordertables()"
     },
     {
@@ -3745,7 +3754,7 @@
       "source_file": "src/game/worlds/restaurant.js",
       "source_location": "L308",
       "id": "worlds_restaurant_assigncameraangle",
-      "community": 13,
+      "community": 12,
       "norm_label": "assigncameraangle()"
     },
     {
@@ -3754,7 +3763,7 @@
       "source_file": "src/game/worlds/restaurant.js",
       "source_location": "L325",
       "id": "worlds_restaurant_correctproblematictablepositions",
-      "community": 13,
+      "community": 12,
       "norm_label": "correctproblematictablepositions()"
     },
     {
@@ -3763,7 +3772,7 @@
       "source_file": "src/game/worlds/restaurant.js",
       "source_location": "L338",
       "id": "worlds_restaurant_clipwallsection",
-      "community": 13,
+      "community": 12,
       "norm_label": "clipwallsection()"
     },
     {
@@ -3772,7 +3781,7 @@
       "source_file": "src/game/worlds/restaurant.js",
       "source_location": "L348",
       "id": "worlds_restaurant_makewallsopaque",
-      "community": 13,
+      "community": 12,
       "norm_label": "makewallsopaque()"
     },
     {
@@ -3781,7 +3790,7 @@
       "source_file": "src/game/worlds/restaurant.js",
       "source_location": "L359",
       "id": "worlds_restaurant_createwallopenings",
-      "community": 13,
+      "community": 12,
       "norm_label": "createwallopenings()"
     },
     {
@@ -3790,7 +3799,7 @@
       "source_file": "src/game/worlds/restaurant.js",
       "source_location": "L412",
       "id": "worlds_restaurant_initializerestaurantmodel",
-      "community": 13,
+      "community": 12,
       "norm_label": "initializerestaurantmodel()"
     },
     {
@@ -3826,7 +3835,7 @@
       "source_file": "src/r3f/r3fAdapter.js",
       "source_location": "L1",
       "id": "src_r3f_r3fadapter_js",
-      "community": 64,
+      "community": 66,
       "norm_label": "r3fadapter.js"
     },
     {
@@ -4105,7 +4114,7 @@
       "source_file": "src/r3f/__tests__/scoring.test.js",
       "source_location": "L1",
       "id": "src_r3f_tests_scoring_test_js",
-      "community": 65,
+      "community": 67,
       "norm_label": "scoring.test.js"
     },
     {
@@ -4132,7 +4141,7 @@
       "source_file": "src/store/gameStore.js",
       "source_location": "L1",
       "id": "src_store_gamestore_js",
-      "community": 50,
+      "community": 49,
       "norm_label": "gamestore.js"
     },
     {
@@ -4141,7 +4150,7 @@
       "source_file": "src/store/gameStore.js",
       "source_location": "L6",
       "id": "store_gamestore_getviewport",
-      "community": 50,
+      "community": 49,
       "norm_label": "getviewport()"
     },
     {
@@ -4150,7 +4159,7 @@
       "source_file": "viz/remotion.config.js",
       "source_location": "L1",
       "id": "viz_remotion_config_js",
-      "community": 66,
+      "community": 68,
       "norm_label": "remotion.config.js"
     },
     {
@@ -4348,7 +4357,7 @@
       "source_file": "website/postcss.config.js",
       "source_location": "L1",
       "id": "website_postcss_config_js",
-      "community": 67,
+      "community": 69,
       "norm_label": "postcss.config.js"
     },
     {
@@ -4357,7 +4366,7 @@
       "source_file": "website/tailwind.config.ts",
       "source_location": "L1",
       "id": "website_tailwind_config_ts",
-      "community": 68,
+      "community": 70,
       "norm_label": "tailwind.config.ts"
     },
     {
@@ -4366,7 +4375,7 @@
       "source_file": "website/vite.config.ts",
       "source_location": "L1",
       "id": "website_vite_config_ts",
-      "community": 69,
+      "community": 71,
       "norm_label": "vite.config.ts"
     },
     {
@@ -4375,7 +4384,7 @@
       "source_file": "website/src/App.tsx",
       "source_location": "L1",
       "id": "website_src_app_tsx",
-      "community": 51,
+      "community": 50,
       "norm_label": "app.tsx"
     },
     {
@@ -4384,7 +4393,7 @@
       "source_file": "website/src/App.tsx",
       "source_location": "L10",
       "id": "src_app_app",
-      "community": 51,
+      "community": 50,
       "norm_label": "app()"
     },
     {
@@ -4393,7 +4402,7 @@
       "source_file": "website/src/main.tsx",
       "source_location": "L1",
       "id": "website_src_main_tsx",
-      "community": 70,
+      "community": 72,
       "norm_label": "main.tsx"
     },
     {
@@ -4402,7 +4411,7 @@
       "source_file": "website/src/vite-env.d.ts",
       "source_location": "L1",
       "id": "website_src_vite_env_d_ts",
-      "community": 71,
+      "community": 73,
       "norm_label": "vite-env.d.ts"
     },
     {
@@ -4411,7 +4420,7 @@
       "source_file": "website/src/components/Footer.tsx",
       "source_location": "L1",
       "id": "website_src_components_footer_tsx",
-      "community": 52,
+      "community": 51,
       "norm_label": "footer.tsx"
     },
     {
@@ -4420,7 +4429,7 @@
       "source_file": "website/src/components/Footer.tsx",
       "source_location": "L3",
       "id": "components_footer_footer",
-      "community": 52,
+      "community": 51,
       "norm_label": "footer()"
     },
     {
@@ -4429,8 +4438,17 @@
       "source_file": "website/src/components/GameIframe.tsx",
       "source_location": "L1",
       "id": "website_src_components_gameiframe_tsx",
-      "community": 72,
+      "community": 52,
       "norm_label": "gameiframe.tsx"
+    },
+    {
+      "label": "GameIframe()",
+      "file_type": "code",
+      "source_file": "website/src/components/GameIframe.tsx",
+      "source_location": "L5",
+      "id": "components_gameiframe_gameiframe",
+      "community": 52,
+      "norm_label": "gameiframe()"
     },
     {
       "label": "Nav.tsx",
@@ -4474,7 +4492,7 @@
       "source_file": "website/src/pages/AboutPage.tsx",
       "source_location": "L1",
       "id": "website_src_pages_aboutpage_tsx",
-      "community": 73,
+      "community": 74,
       "norm_label": "aboutpage.tsx"
     },
     {
@@ -4483,7 +4501,7 @@
       "source_file": "website/src/pages/HowToPlayPage.tsx",
       "source_location": "L1",
       "id": "website_src_pages_howtoplaypage_tsx",
-      "community": 74,
+      "community": 75,
       "norm_label": "howtoplaypage.tsx"
     },
     {
@@ -4492,7 +4510,7 @@
       "source_file": "website/src/pages/LandingPage.tsx",
       "source_location": "L1",
       "id": "website_src_pages_landingpage_tsx",
-      "community": 75,
+      "community": 76,
       "norm_label": "landingpage.tsx"
     },
     {
@@ -4508,10 +4526,28 @@
       "label": "PlayPage()",
       "file_type": "code",
       "source_file": "website/src/pages/PlayPage.tsx",
-      "source_location": "L4",
+      "source_location": "L7",
       "id": "pages_playpage_playpage",
       "community": 53,
       "norm_label": "playpage()"
+    },
+    {
+      "label": "detectMobile()",
+      "file_type": "code",
+      "source_file": "src/game/world/WorldScene.js",
+      "source_location": "L28",
+      "community": 0,
+      "norm_label": "detectmobile()",
+      "id": "world_worldscene_detectmobile"
+    },
+    {
+      "label": "logger()",
+      "file_type": "code",
+      "source_file": "config/webpack.config.prod.js",
+      "source_location": "L311",
+      "community": 54,
+      "norm_label": "logger()",
+      "id": "config_webpack_config_prod_logger"
     },
     {
       "label": "BottleSVG()",
@@ -5429,7 +5465,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 54,
+      "community": 55,
       "norm_label": "pb-flip app favicon",
       "id": "favicon_appicon"
     },
@@ -5442,7 +5478,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 54,
+      "community": 55,
       "norm_label": "green character brand mark",
       "id": "favicon_brand"
     },
@@ -9376,6 +9412,16 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "src/game/GameController.js",
+      "source_location": "L1085",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "game_gamecontroller_game",
+      "target": "game_gamecontroller_game_markshadowsdirty"
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/game/GameController.js",
       "source_location": "L987",
       "weight": 1.0,
       "confidence_score": 1.0,
@@ -9595,6 +9641,28 @@
       "confidence_score": 1.0,
       "source": "game_gamecontroller_game_resolvelanding",
       "target": "game_gamecontroller_game_saveretrycheckpoint"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/game/GameController.js",
+      "source_location": "L464",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "game_gamecontroller_game_resolvelanding",
+      "target": "game_gamecontroller_game_markshadowsdirty"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "src/game/GameController.js",
+      "source_location": "L467",
+      "weight": 1.0,
+      "source": "game_gamecontroller_game_resolvelanding",
+      "target": "config_debug_isdebugenabled"
     },
     {
       "relation": "calls",
@@ -9942,6 +10010,17 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "src/game/GameController.js",
+      "source_location": "L913",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "game_gamecontroller_game_setworld",
+      "target": "game_gamecontroller_game_markshadowsdirty"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/game/GameController.js",
       "source_location": "L812",
       "weight": 1.0,
       "confidence_score": 1.0,
@@ -10100,6 +10179,28 @@
       "source_location": "L943",
       "weight": 1.0,
       "source": "game_gamecontroller_game_resolverestaurantstarttableindex",
+      "target": "config_debug_isdebugenabled"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/game/GameController.js",
+      "source_location": "L1078",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "game_gamecontroller_game_restart",
+      "target": "game_gamecontroller_game_markshadowsdirty"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "src/game/GameController.js",
+      "source_location": "L1083",
+      "weight": 1.0,
+      "source": "game_gamecontroller_game_restart",
       "target": "config_debug_isdebugenabled"
     },
     {
@@ -11764,6 +11865,16 @@
       "target": "world_worldscene_createworldscene"
     },
     {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/game/world/WorldScene.js",
+      "source_location": "L28",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_game_world_worldscene_js",
+      "target": "world_worldscene_detectmobile"
+    },
+    {
       "relation": "calls",
       "context": "call",
       "confidence": "EXTRACTED",
@@ -11773,6 +11884,17 @@
       "confidence_score": 1.0,
       "source": "world_worldscene_createworldscene",
       "target": "world_worldscene_creategradientbackground"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/game/world/WorldScene.js",
+      "source_location": "L40",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "world_worldscene_createworldscene",
+      "target": "world_worldscene_detectmobile"
     },
     {
       "relation": "contains",
@@ -12761,6 +12883,16 @@
       "confidence_score": 1.0,
       "source": "website_src_components_footer_tsx",
       "target": "components_footer_footer"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "website/src/components/GameIframe.tsx",
+      "source_location": "L5",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "website_src_components_gameiframe_tsx",
+      "target": "components_gameiframe_gameiframe"
     },
     {
       "relation": "imports",
@@ -13860,5 +13992,5 @@
       "source_file": "docs/superpowers/plans/2026-04-30-adaptive-camera-zoom.md"
     }
   ],
-  "built_at_commit": "493ad7699b7da9b5403cec53c121956fb73ce140"
+  "built_at_commit": "8c4b0158470d5c3528320e31932b004c4909207b"
 }
