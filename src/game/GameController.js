@@ -128,6 +128,14 @@ export default class Game extends THREE.EventDispatcher {
     );
     this.cameraController.captureBaseline();
 
+    if (typeof window !== 'undefined' && window.addEventListener) {
+      window.addEventListener('pb-flip:compile-needed', () => {
+        if (this.renderer && this.renderer.compile && this.scene && this.cameraController) {
+          this.renderer.compile(this.scene, this.cameraController.activeCamera);
+        }
+      });
+    }
+
     if (isDebugEnabled() && debugConfig.scene && debugConfig.scene.enableOrbitControls) {
       // Debug-orbit workflow:
       //   - Right-drag rotates the active camera around its target.
@@ -1076,6 +1084,12 @@ export default class Game extends THREE.EventDispatcher {
     this.cameraController.snap(this.bottle);
     this.saveRetryCheckpoint('restart');
     this._markShadowsDirty();
+    // Pre-compile every material in the scene now so the first flip doesn't
+    // hit a one-time GLSL compile stall (~100 ms on mobile GPUs). Cheap to
+    // do at restart, paid once.
+    if (this.renderer && this.renderer.compile) {
+      this.renderer.compile(this.scene, this.cameraController.activeCamera);
+    }
     return cloneCheckpoint(this.lastCheckpoint);
   }
 
@@ -1118,7 +1132,13 @@ export default class Game extends THREE.EventDispatcher {
     this.time = time;
 
     TWEEN.update();
-    this.world.step(1 / 60, dt, 3);
+    // Physics is cheap (single dynamic body, sleeping otherwise) but the
+    // catch-up substeps were the actual mid-flip stutter on mobile. With
+    // maxSubSteps=3 a single 50 ms frame would do 3 physics steps, making
+    // the next frame even slower — classic death spiral. Step at the
+    // arcade-friendly 30 Hz with at most one substep so each frame's
+    // physics cost is bounded and predictable.
+    this.world.step(1 / 30, dt, 1);
     this.bottle.update();
     // While the bottle is in motion (flipping or falling), the shadow needs
     // to follow it. When idle/landed, the shadow stays cached — this is the

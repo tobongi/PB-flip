@@ -388,6 +388,14 @@ export default class Bottle {
           this.bottle.remove(this.bottle.children[i]);
         }
         this.bottle.add(model);
+
+        // Tell any listening renderer to pre-compile the new material(s) so
+        // we don't pay a 50–100 ms GLSL compile stall on the first frame the
+        // model is rendered (which would land mid-flip and look like a
+        // skipped frame). The window event is consumed by GameController.
+        if (typeof window !== 'undefined' && window.dispatchEvent && window.CustomEvent) {
+          window.dispatchEvent(new window.CustomEvent('pb-flip:compile-needed'));
+        }
       })
       .catch(err => {
         console.warn('Bottle GLB load failed, keeping current mesh:', err);
@@ -522,7 +530,18 @@ export default class Bottle {
 
   flip(distance, direction, landingZ = this.groundZ) {
     const displacement = direction.clone().multiplyScalar(distance);
-    const tumbleAxis = direction.clone().applyAxisAngle(new THREE.Vector3(0, 0, 1), Math.PI / 2).normalize();
+    // Reuse a single Z-axis vector for the cross-product rotation (avoid
+    // allocating per call). The tween's onUpdate runs every frame and used
+    // to allocate two Quaternions + a Vector3 per frame; cache them so the
+    // mid-flip frames don't churn the GC.
+    if (!this._zAxis) this._zAxis = new THREE.Vector3(0, 0, 1);
+    if (!this._tumbleAxisCached) this._tumbleAxisCached = new THREE.Vector3();
+    if (!this._tumbleQ) this._tumbleQ = new THREE.Quaternion();
+    if (!this._yawQ) this._yawQ = new THREE.Quaternion();
+    const tumbleAxis = this._tumbleAxisCached
+      .copy(direction)
+      .applyAxisAngle(this._zAxis, Math.PI / 2)
+      .normalize();
 
     const { x, y } = this.mesh.position.clone().add(displacement);
     const startZ = this.mesh.position.z;
@@ -549,17 +568,20 @@ export default class Bottle {
     while (yawDelta > Math.PI) yawDelta -= Math.PI * 2;
     while (yawDelta < -Math.PI) yawDelta += Math.PI * 2;
 
+    const tumbleQ = this._tumbleQ;
+    const yawQ = this._yawQ;
+    const zAxis = this._zAxis;
     rotate = this.trackTween(
       new TWEEN.Tween({ angle: 0, yaw: startYaw })
         .to({ angle: Math.PI * 2, yaw: startYaw + yawDelta }, FLIP_DURATION)
         .easing(TWEEN.Easing.Sinusoidal.InOut)
         .onUpdate(({ angle, yaw }) => {
-          const tumble = new THREE.Quaternion().setFromAxisAngle(tumbleAxis, angle);
-          const yawQ = new THREE.Quaternion().setFromAxisAngle(new THREE.Vector3(0, 0, 1), yaw);
-          this.bottle.quaternion.copy(tumble).multiply(yawQ);
+          tumbleQ.setFromAxisAngle(tumbleAxis, angle);
+          yawQ.setFromAxisAngle(zAxis, yaw);
+          this.bottle.quaternion.copy(tumbleQ).multiply(yawQ);
         })
         .onComplete(() => {
-          this.bottle.quaternion.setFromAxisAngle(new THREE.Vector3(0, 0, 1), travelYaw);
+          this.bottle.quaternion.setFromAxisAngle(zAxis, travelYaw);
           this.tweens = this.tweens.filter(activeTween => activeTween !== rotate);
         })
     );
