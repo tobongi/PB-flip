@@ -29,9 +29,22 @@ jobs:
       - run: npm ci
 
       - name: Build
-        # package.json "homepage" already sets PUBLIC_URL=/PB-flip so all
-        # asset paths come out prefixed correctly — no sed rewriting needed.
         run: npm run build
+
+      - name: Rewrite hardcoded root-relative asset paths to /PB-flip subpath
+        # package.json "homepage" prefixes webpack chunk paths but NOT hardcoded
+        # string literals in JS (e.g. '/models/foo.glb', '/images/bar.webp').
+        # Rewrite them so GitHub Pages (/PB-flip) can resolve them.
+        run: |
+          find build/static -type f \( -name '*.js' -o -name '*.css' \) -print0 | xargs -0 sed -i \
+            -e 's|"/models/|"/PB-flip/models/|g' \
+            -e "s|'/models/|'/PB-flip/models/|g" \
+            -e 's|"/images/|"/PB-flip/images/|g' \
+            -e "s|'/images/|'/PB-flip/images/|g" \
+            -e 's|"/dna/|"/PB-flip/dna/|g' \
+            -e "s|'/dna/|'/PB-flip/dna/|g" \
+            -e 's|"/sauce-label.png"|"/PB-flip/sauce-label.png"|g' \
+            -e "s|'/sauce-label.png'|'/PB-flip/sauce-label.png'|g"
 
       - name: SPA fallback + Jekyll disable
         run: |
