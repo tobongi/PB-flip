@@ -175,7 +175,6 @@ export default class Game extends THREE.EventDispatcher {
         lastLog = now;
         const cam = this.cameraController.activeCamera;
         const tgt = this.debugOrbitControls.target;
-        const bottle = this.bottle && this.bottle.mesh ? this.bottle.mesh.position : null;
         const next = this.nextBlock && this.nextBlock.mesh ? this.nextBlock.mesh.position : null;
         const cur = this.currentBlock && this.currentBlock.mesh ? this.currentBlock.mesh.position : null;
         const dist = cam.position.distanceTo(tgt);
