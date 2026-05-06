@@ -1,0 +1,76 @@
+{
+  "name": "PB Poulet Braisé",
+  "overview": "PB Poulet Braisé is a French restaurant chain specializing in braised chicken and poultry since 2009. The brand offers a diverse menu of gourmet dishes including burgers, wraps, and signature sauces, delivering a generous and convivial dining experience through table service, takeaway, and delivery.",
+  "websiteUrl": "https://pbpouletbraise.fr/",
+  "brandValues": ["Qualité", "Générosité", "Convivialité", "Innovation", "Passion"],
+  "visualAesthetics": ["Earthy Sophistication", "Savory Warmth", "Modern Rotisserie", "Boldly Authentic", "Urban Organic"],
+  "toneOfVoice": ["Welcoming", "Generous", "Modern", "Energetic"],
+  "fonts": ["fugaz one", "montserrat"],
+  "campaigns": [{
+    "creatives": [{
+      "title": "Dads Deserve Real Flavor",
+      "versions": [{
+        "fileName": "resource_bH2PUn_cbxmc7kNLkhw_m2.png"
+      }]
+    }, {
+      "title": "Authentically Braised Chicken",
+      "versions": [{
+        "fileName": "resource_bug8LAt6nXMeWE57hyeOHy.png"
+      }]
+    }, {
+      "title": "A Feast Made for Sharing",
+      "versions": [{
+        "fileName": "resource_8-jAhu1L9JYcCQ5I0tAkJh.png"
+      }]
+    }, {
+      "title": "The Perfect Family Setting",
+      "versions": [{
+        "fileName": "resource_9XcAv0aUrvh1Nd38yhN_o6.png"
+      }]
+    }]
+  }, {
+    "creatives": [{
+      "title": "A feast as generous as she is",
+      "versions": [{
+        "fileName": "resource_8p1H00gmV0f6TMmn2p24Hu.png"
+      }]
+    }, {
+      "title": "Forget the kitchen chaos",
+      "versions": [{
+        "fileName": "resource_bOZ7Bi5t-F_dfj28Qls_gt.png"
+      }]
+    }, {
+      "title": "Generosity in every bite",
+      "versions": [{
+        "fileName": "resource_aM2iIkPTbDk7z4ceCPrkeh.png"
+      }]
+    }, {
+      "title": "Gather around the flavors",
+      "versions": [{
+        "fileName": "resource_aIue1d6U-z-7OZWTKzH4nQ.png"
+      }]
+    }]
+  }, {
+    "creatives": [{
+      "title": "The Art of the Big Table",
+      "versions": [{
+        "fileName": "resource_8jc0QiKV5Eoe1XdCnSvOUY.png"
+      }]
+    }, {
+      "title": "Shared Platters, Zero Stress",
+      "versions": [{
+        "fileName": "resource_b2f4FJAZC3Id8TBMvIb4Wq.png"
+      }]
+    }, {
+      "title": "More Space for More Memories",
+      "versions": [{
+        "fileName": "resource_aLdfpMoZqaQfe2nYFmEk6e.png"
+      }]
+    }, {
+      "title": "A Sweet End for the Whole Squad",
+      "versions": [{
+        "fileName": "resource_b_QnGCenYR-1gHRkStg4f9.png"
+      }]
+    }]
+  }]
+}
